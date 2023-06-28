@@ -6,8 +6,6 @@ codecov:
 
 flags:
   admin:
-    paths:
-      - src/admin/**/*
     carryforward: false
   everything-else:
     ignore:
