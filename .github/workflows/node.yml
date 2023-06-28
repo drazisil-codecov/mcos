@@ -39,3 +39,20 @@ jobs:
           chmod +x codecov-linux
           ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F admin
           ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
