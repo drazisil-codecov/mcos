@@ -37,15 +37,7 @@ jobs:
           gpg --verify codecov-linux.SHA256SUM.sig codecov-linux.SHA256SUM
           shasum -a 256 -c codecov-linux.SHA256SUM
           chmod +x codecov-linux
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F admin
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
-          ./codecov-linux -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
-          
-          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
-          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
-          ./codecov-linux -t 18362b60-86ca-4be2-a8cb-2bc94f4f0bd2 -F everything-else
+          ./codecov-linux -v -t c555975f-a034-4e5c-ac43-58a073410792 -F admin
+          ./codecov-linux -v -t c555975f-a034-4e5c-ac43-58a073410792 -F everything-else
+          ./codecov-linux -v -t c555975f-a034-4e5c-ac43-58a073410792 -F period.test
+
