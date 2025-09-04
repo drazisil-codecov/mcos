@@ -27,6 +27,10 @@ export class HotkeyManager {
 		if (key.ctrl && key.name === "c") {
 			this.exit();
 		} else {
+			if (key.name === "x") {
+				this.exit()
+				return
+			}
 			switch (key.name) {
 				case "h":
 					this.showHelp();
