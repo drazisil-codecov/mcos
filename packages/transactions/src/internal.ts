@@ -247,7 +247,7 @@ function decryptMessage(
 		outboundMessage.setPayloadEncryption(false);
 
 		log.debug(
-			`[${connectionId}] Decrypted message: ${inboundMessage.toHexString()}`,
+			`[${connectionId}] Decrypted message: ${outboundMessage.toHexString()}`,
 		);
 
 		return outboundMessage;

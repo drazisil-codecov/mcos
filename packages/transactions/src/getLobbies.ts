@@ -31,6 +31,9 @@ async function _getLobbies({
 	const lobby = new LobbyInfo();
 	lobby._lobbyId = 2;
 	lobby._lobbyName = "LOBBY";
+	lobby._raceTypeId = 14; // TESTDRIVE
+	lobby._elementId = 16 // CRC_NIGHT_WEATHER
+	lobby._turfName = "Hillvally Punks"
 	lobby._topDog = "Drazi Crendraven";
 	lobby._maxNumberPlayers = 8;
 
