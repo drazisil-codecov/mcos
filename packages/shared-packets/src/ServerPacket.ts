@@ -72,6 +72,11 @@ export class ServerPacket extends BasePacket implements SerializableMessage {
 		return this;
 	}
 
+	setPayloadCompression(compressed: boolean): ServerPacket {
+		this.header.setPayloadCompression(compressed);
+		return this;
+	}
+
 	getMessageId(): number {
 		return this.data.getMessageId();
 	}
@@ -91,6 +96,10 @@ export class ServerPacket extends BasePacket implements SerializableMessage {
 
 	isPayloadEncrypted(): boolean {
 		return this.header.isPayloadEncrypted();
+	}
+
+	isPayloadCompressed(): boolean {
+		return this.header.isPayloadCompressed();
 	}
 
 	isValidSignature(): boolean {

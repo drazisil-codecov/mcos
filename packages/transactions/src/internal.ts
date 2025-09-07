@@ -34,6 +34,7 @@ import {
 	type BufferSerializer,
 } from "rusty-motors-shared-packets";
 import { _MSG_STRING } from "./_MSG_STRING.js";
+import { explode } from "pklib-ts"
 
 
 
@@ -148,11 +149,24 @@ export async function receiveTransactionsData({
 		decryptedMessage = inboundMessage;
 	}
 
+	let decompressedMessage: ServerPacket;
+
+	if (decryptedMessage.isPayloadCompressed()) {
+
+		decompressedMessage = decompressMessage(
+			decryptedMessage,
+			connectionId,
+		);
+	} else {
+		log.debug(`[${connectionId}] Message is not encrypted`);
+		decompressedMessage = decryptedMessage;
+	}
+
 	// Process the message
 
 	const response = await processInput({
 		connectionId,
-		inboundMessage: decryptedMessage,
+		inboundMessage: decompressedMessage,
 		log,
 	});
 
@@ -297,6 +311,59 @@ function encryptOutboundMessage(
 		});
 		throw err;
 	}
+}
+
+function decompressMessage(
+	compressedMessage: ServerPacket,
+	connectionId: string,
+	log = getServerLogger("transactionServer.decompressInboundMessage"),
+): ServerPacket {
+	log.debug(`Decompressing message with initial messageId of ${compressedMessage.getMessageId()}`)
+
+	const uncompressedLen = compressedMessage.data.getMessageId()
+
+	    const outputBuffer = new Uint8Array(64 * 1024); // 64KB buffer
+    let outputPos = 0;
+
+	const compressedPayload = compressedMessage.getDataBuffer().subarray(2)
+    
+    const writeCallback = (data: Uint8Array, bytesToWrite: number): number => {
+      if (outputPos + bytesToWrite > outputBuffer.length) {
+        throw new Error('Output buffer overflow');
+      }
+      outputBuffer.set(data.slice(0, bytesToWrite), outputPos);
+      outputPos += bytesToWrite;
+      return bytesToWrite;
+    };
+    
+    let inputPos = 0;
+    const readCallback = (buffer: Uint8Array, bytesToRead: number): number => {
+      const available = Math.min(bytesToRead, compressedPayload.length - inputPos);
+      if (available <= 0) return 0;
+      
+      buffer.set(compressedPayload.subarray(inputPos, inputPos + available));
+      inputPos += available;
+      return available;
+    };
+    
+    const result = explode(readCallback, writeCallback);
+    
+    if (result.success) {
+      const outputData = Buffer.from(outputBuffer.slice(0, outputPos));
+
+	  log.debug(`DecompressedPayload: ${outputData.toString("hex")}`)
+      
+        // Output raw binary data to stdout
+		const uncompressedMessage = ServerPacket.copy(compressedMessage, outputData);
+		uncompressedMessage.setPayloadCompression(false)
+		return uncompressedMessage
+	} else {
+		log.error(`returned data len: ${result.decompressedData?.length}`)
+
+		throw new Error(result.errorCode.valueOf().toString() ?? 'Oh no!')
+	}
+
+
 }
 
 /**

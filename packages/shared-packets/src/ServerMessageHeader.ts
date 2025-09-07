@@ -73,11 +73,24 @@ export class ServerMessageHeader
 		return (this.flags & 0x08) != 0;
 	}
 
+	isPayloadCompressed(): boolean {
+		return (this.flags & 0x02) != 0; 
+	}
+
 	setPayloadEncryption(encrypted: boolean): ServerMessageHeader {
 		if (encrypted) {
 			this.flags |= 0x08;
 		} else {
 			this.flags &= ~0x08;
+		}
+		return this;
+	}
+
+	setPayloadCompression(encrypted: boolean): ServerMessageHeader {
+		if (encrypted) {
+			this.flags |= 0x02;
+		} else {
+			this.flags &= ~0x02;
 		}
 		return this;
 	}
