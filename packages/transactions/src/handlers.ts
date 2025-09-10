@@ -31,6 +31,7 @@ import { login } from "./login.js";
 import { trackingPing } from "./trackingPing.js";
 import { _buyCarFromDealer } from "./_buyCarFromDealer.js";
 import { IServerMessage } from "rusty-motors-shared-packets";
+import { _crcPreRaceData } from "./_crcPreRaceData.js";
 
 export interface MessageHandlerArgs {
 	connectionId: string;
@@ -112,5 +113,9 @@ export const messageHandlers: MessageHandler[] = [
 	{
 		name: "MC_PURCHASE_STOCK_CAR",
 		handler: _buyCarFromDealer,
+	},
+	{
+		name: "MC_CRC_PRE_RACE_DATA",
+		handler: _crcPreRaceData
 	}
 ];

@@ -11,7 +11,7 @@
     },
     "scripts": {
         "clean": "rm -rf **/node_modules node_modules",
-        "start": "make start",
+        "start": "npx tsx --import ./instrument.mjs --openssl-legacy-provider --env-file=.env src/nps_server.ts",
         "check:all": "pnpm run -r --stream check",
         "lint:all": "pnpm run -r --stream lint",
         "format:all": "pnpm run -r --stream format",
