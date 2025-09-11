@@ -121,4 +121,12 @@ export class GamePacket extends BasePacket implements SerializableMessage {
 
 		return data.readUInt16BE(4) === 0x101 ? 257 : 0;
 	}
+
+	override _doDeserialize(buf: Buffer) {
+		return this.deserialize(buf)
+	}
+
+	override _doSerialize() {
+		return this.serialize()
+	}
 }

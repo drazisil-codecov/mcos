@@ -29,6 +29,14 @@ export class BufferSerializer implements SerializableInterface {
 		this._data = data;
 	}
 
+	_doDeserialize(buf: Buffer) {
+		return this.deserialize(buf)
+	}
+
+	_doSerialize() {
+		return this.serialize()
+	}
+
 	/**
 	 * Calculates and returns the byte size of the data.
 	 *

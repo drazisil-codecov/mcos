@@ -32,6 +32,8 @@ import { trackingPing } from "./trackingPing.js";
 import { _buyCarFromDealer } from "./_buyCarFromDealer.js";
 import { IServerMessage } from "rusty-motors-shared-packets";
 import { _crcPreRaceData } from "./_crcPreRaceData.js";
+import { _updateCachedVehicle } from "./_updateCachedVehicle.js";
+import { _getCompleteVehicleInfo } from "./_getFullCarInfo.js";
 
 export interface MessageHandlerArgs {
 	connectionId: string;
@@ -66,10 +68,10 @@ export const messageHandlers: MessageHandler[] = [
 		name: "MC_LOGOUT",
 		handler: _logout,
 	},
-	// {
-	// 	name: "MC_GET_COMPLETE_VEHICLE_INFO",
-	// 	handler: _getFullCarInfo,
-	// }
+	{
+		name: "MC_GET_COMPLETE_VEHICLE_INFO",
+		handler: _getCompleteVehicleInfo,
+	},
 	{
 		name: "MC_GET_LOBBIES",
 		handler: getLobbies,
@@ -117,5 +119,9 @@ export const messageHandlers: MessageHandler[] = [
 	{
 		name: "MC_CRC_PRE_RACE_DATA",
 		handler: _crcPreRaceData
+	},
+	{
+		name: "MC_UPDATE_CACHED_VEHICLE",
+		handler: _updateCachedVehicle
 	}
 ];

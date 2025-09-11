@@ -3,7 +3,7 @@ import { GenericReplyMessage } from "./GenericReplyMessage.js";
 import type { MessageHandlerArgs, MessageHandlerResult } from "./handlers.js";
 import { getServerLogger } from "rusty-motors-shared";
 
-const defaultLogger = getServerLogger("handlers/trackingPing");
+const defaultLogger = getServerLogger("handlers/updateCachedVehicle");
 
 /**
  * @param {MessageHandlerArgs} args

@@ -1,0 +1,1946 @@
+dbcode.c(810) DB_INIT
+dbcode.c(3023) Got IClassFactory!
+dbcode.c(3044) Got IClassFactory2!
+dbcode.c(3072) Warning: Could not create engine interface w/CoCreateInstance()!
+dbcode.c(3377)  The class has not been licensed
+
+dbcode.c(3089) Could not get engine from IClassFactory!
+dbcode.c(3377)  The class has not been licensed
+
+dbcode.c(3111) Trying Wide license key on IClassFactory2->CreateInstanceLic()!
+DAO Engine version: 3.51
+dbcode.c(3176) Workspace type is Jet.
+dbcode.c(3195)Workspace count=1
+dbcode.c(3213)Default Workspace: name=#Default Workspace#, username=admin
+dbcode.c(3221) 
+dbcode.c(1513) DB_ChangeModeToSingleRace
+dbcode.c(873) Putting request! DB, Init thyself!
+
+DBHandlers.c(1325) DBServiceRequestQ: request #704 DBT_GO_SINGLERACE
+
+dbcode.c(1479) DBREQ_ChangeMode
+dbcode.c(1383) DBCode_ChangeMode
+dbcode.c(1304) Dbcode_StartSingleRaceAndOnlineMode
+dbcode.c(1691) DB_StartUpDatabase
+dbcode.c(1698) C:\Program Files\EA Games\Motor City Online\SaveData\DB\Tmp.MDB
+dbcode.c(4413) creating tmp Query
+
+dbcode.c(1730) dbdata.junkyardOwnerID = 9
+
+dbcode.c(1734) dbdata.escrowOwnerID = 13
+
+DBPhysics.c(1888)DBPhysics_GetTireAuxData
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58A20,buf:0x052435C0,size:  7528, DBPhysics.c(1986))
+DBHandlers.c(1325) DBServiceRequestQ: request #705 DBT_STARTUP
+
+DBHandlers.c(1325) DBServiceRequestQ: request #763 DBT_GET_GAMECONFIG_CAR_TABLE
+
+dbperson.c(1765) DB_GetGameConfigCarTableOffline
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58C10,buf:0x0525E8C0,size: 23200, dbperson.c(1880))
+dbparts.c(8800) Putting request! DBRequester_GetSkinIDList
+
+DBHandlers.c(1325) DBServiceRequestQ: request #764 DBT_GET_SKIN_ID_LIST
+
+dbparts.c(8722) DBParts_GetSkinIDList
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58B60,buf:0x05229760,size: 87324, dbparts.c(8751))
+dbcode.c(2071) DB_GetStockCarList()
+
+DBHandlers.c(1325) DBServiceRequestQ: request #708 DBT_GET_STOCK_CAR_LIST
+
+dbcode.c(1806) Dbcode_GetStockCarList
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58DE0,buf:0x051E48F0,size:    24, dbcode.c(1976))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58B20,buf:0x05264C90,size:360900, dbcode.c(1993))
+dbcode.c(2025) car count=154  (1604)
+dbparts.c(7952)DBParts_BPT2CarEra(101)
+dbparts.c(7952)DBParts_BPT2CarEra(102)
+dbparts.c(7952)DBParts_BPT2CarEra(103)
+dbparts.c(7952)DBParts_BPT2CarEra(104)
+dbparts.c(7952)DBParts_BPT2CarEra(105)
+dbparts.c(7952)DBParts_BPT2CarEra(106)
+dbparts.c(7952)DBParts_BPT2CarEra(107)
+dbparts.c(7952)DBParts_BPT2CarEra(108)
+dbparts.c(7952)DBParts_BPT2CarEra(109)
+dbparts.c(7952)DBParts_BPT2CarEra(110)
+dbparts.c(7952)DBParts_BPT2CarEra(111)
+dbparts.c(7952)DBParts_BPT2CarEra(112)
+dbparts.c(7952)DBParts_BPT2CarEra(113)
+dbparts.c(7952)DBParts_BPT2CarEra(114)
+dbparts.c(7952)DBParts_BPT2CarEra(115)
+dbparts.c(7952)DBParts_BPT2CarEra(116)
+dbparts.c(7952)DBParts_BPT2CarEra(117)
+dbparts.c(7952)DBParts_BPT2CarEra(118)
+dbparts.c(7952)DBParts_BPT2CarEra(119)
+dbparts.c(7952)DBParts_BPT2CarEra(120)
+dbparts.c(7952)DBParts_BPT2CarEra(121)
+dbparts.c(7952)DBParts_BPT2CarEra(122)
+dbparts.c(7952)DBParts_BPT2CarEra(123)
+dbparts.c(7952)DBParts_BPT2CarEra(124)
+dbparts.c(7952)DBParts_BPT2CarEra(125)
+dbparts.c(7952)DBParts_BPT2CarEra(126)
+dbparts.c(7952)DBParts_BPT2CarEra(127)
+dbparts.c(7952)DBParts_BPT2CarEra(128)
+dbparts.c(7952)DBParts_BPT2CarEra(129)
+dbparts.c(7952)DBParts_BPT2CarEra(130)
+dbparts.c(7952)DBParts_BPT2CarEra(131)
+dbparts.c(7952)DBParts_BPT2CarEra(132)
+dbparts.c(7952)DBParts_BPT2CarEra(133)
+dbparts.c(7952)DBParts_BPT2CarEra(134)
+dbparts.c(7952)DBParts_BPT2CarEra(135)
+dbparts.c(7952)DBParts_BPT2CarEra(153)
+dbparts.c(7952)DBParts_BPT2CarEra(159)
+dbparts.c(7952)DBParts_BPT2CarEra(171)
+dbparts.c(7952)DBParts_BPT2CarEra(173)
+dbparts.c(7952)DBParts_BPT2CarEra(174)
+dbparts.c(7952)DBParts_BPT2CarEra(175)
+dbparts.c(7952)DBParts_BPT2CarEra(176)
+dbparts.c(7952)DBParts_BPT2CarEra(177)
+dbparts.c(7952)DBParts_BPT2CarEra(178)
+dbparts.c(7952)DBParts_BPT2CarEra(179)
+dbparts.c(7952)DBParts_BPT2CarEra(180)
+dbparts.c(7952)DBParts_BPT2CarEra(184)
+dbparts.c(7952)DBParts_BPT2CarEra(190)
+dbparts.c(7952)DBParts_BPT2CarEra(208)
+dbparts.c(7952)DBParts_BPT2CarEra(236)
+dbparts.c(7952)DBParts_BPT2CarEra(320)
+dbparts.c(7952)DBParts_BPT2CarEra(335)
+dbparts.c(7952)DBParts_BPT2CarEra(336)
+dbparts.c(7952)DBParts_BPT2CarEra(337)
+dbparts.c(7952)DBParts_BPT2CarEra(338)
+dbparts.c(7952)DBParts_BPT2CarEra(339)
+dbparts.c(7952)DBParts_BPT2CarEra(340)
+dbparts.c(7952)DBParts_BPT2CarEra(341)
+dbparts.c(7952)DBParts_BPT2CarEra(342)
+dbparts.c(7952)DBParts_BPT2CarEra(343)
+dbparts.c(7952)DBParts_BPT2CarEra(344)
+dbparts.c(7952)DBParts_BPT2CarEra(345)
+dbparts.c(7952)DBParts_BPT2CarEra(346)
+dbparts.c(7952)DBParts_BPT2CarEra(347)
+dbparts.c(7952)DBParts_BPT2CarEra(348)
+dbparts.c(7952)DBParts_BPT2CarEra(349)
+dbparts.c(7952)DBParts_BPT2CarEra(350)
+dbparts.c(7952)DBParts_BPT2CarEra(351)
+dbparts.c(7952)DBParts_BPT2CarEra(352)
+dbparts.c(7952)DBParts_BPT2CarEra(353)
+dbparts.c(7952)DBParts_BPT2CarEra(354)
+dbparts.c(7952)DBParts_BPT2CarEra(355)
+dbparts.c(7952)DBParts_BPT2CarEra(356)
+dbparts.c(7952)DBParts_BPT2CarEra(357)
+dbparts.c(7952)DBParts_BPT2CarEra(358)
+dbparts.c(7952)DBParts_BPT2CarEra(359)
+dbparts.c(7952)DBParts_BPT2CarEra(360)
+dbparts.c(7952)DBParts_BPT2CarEra(361)
+dbparts.c(7952)DBParts_BPT2CarEra(362)
+dbparts.c(7952)DBParts_BPT2CarEra(363)
+dbparts.c(7952)DBParts_BPT2CarEra(364)
+dbparts.c(7952)DBParts_BPT2CarEra(365)
+dbparts.c(7952)DBParts_BPT2CarEra(366)
+dbparts.c(7952)DBParts_BPT2CarEra(367)
+dbparts.c(7952)DBParts_BPT2CarEra(368)
+dbparts.c(7952)DBParts_BPT2CarEra(369)
+dbparts.c(7952)DBParts_BPT2CarEra(370)
+dbparts.c(7952)DBParts_BPT2CarEra(371)
+dbparts.c(7952)DBParts_BPT2CarEra(372)
+dbparts.c(7952)DBParts_BPT2CarEra(373)
+dbparts.c(7952)DBParts_BPT2CarEra(374)
+dbparts.c(7952)DBParts_BPT2CarEra(375)
+dbparts.c(7952)DBParts_BPT2CarEra(377)
+dbparts.c(7952)DBParts_BPT2CarEra(378)
+dbparts.c(7952)DBParts_BPT2CarEra(379)
+dbparts.c(7952)DBParts_BPT2CarEra(383)
+dbparts.c(7952)DBParts_BPT2CarEra(384)
+dbparts.c(7952)DBParts_BPT2CarEra(385)
+dbparts.c(7952)DBParts_BPT2CarEra(386)
+dbparts.c(7952)DBParts_BPT2CarEra(387)
+dbparts.c(7952)DBParts_BPT2CarEra(388)
+dbparts.c(7952)DBParts_BPT2CarEra(389)
+dbparts.c(7952)DBParts_BPT2CarEra(390)
+dbparts.c(7952)DBParts_BPT2CarEra(391)
+dbparts.c(7952)DBParts_BPT2CarEra(392)
+dbparts.c(7952)DBParts_BPT2CarEra(393)
+dbparts.c(7952)DBParts_BPT2CarEra(394)
+dbparts.c(7952)DBParts_BPT2CarEra(395)
+dbparts.c(7952)DBParts_BPT2CarEra(396)
+dbparts.c(7952)DBParts_BPT2CarEra(397)
+dbparts.c(7952)DBParts_BPT2CarEra(398)
+dbparts.c(7952)DBParts_BPT2CarEra(399)
+dbparts.c(7952)DBParts_BPT2CarEra(400)
+dbparts.c(7952)DBParts_BPT2CarEra(401)
+dbparts.c(7952)DBParts_BPT2CarEra(402)
+dbparts.c(7952)DBParts_BPT2CarEra(403)
+dbparts.c(7952)DBParts_BPT2CarEra(404)
+dbparts.c(7952)DBParts_BPT2CarEra(405)
+dbparts.c(7952)DBParts_BPT2CarEra(406)
+dbparts.c(7952)DBParts_BPT2CarEra(407)
+dbparts.c(7952)DBParts_BPT2CarEra(408)
+dbparts.c(7952)DBParts_BPT2CarEra(409)
+dbparts.c(7952)DBParts_BPT2CarEra(410)
+dbparts.c(7952)DBParts_BPT2CarEra(411)
+dbparts.c(7952)DBParts_BPT2CarEra(412)
+dbparts.c(7952)DBParts_BPT2CarEra(413)
+dbparts.c(7952)DBParts_BPT2CarEra(414)
+dbparts.c(7952)DBParts_BPT2CarEra(415)
+dbparts.c(7952)DBParts_BPT2CarEra(416)
+dbparts.c(7952)DBParts_BPT2CarEra(417)
+dbparts.c(7952)DBParts_BPT2CarEra(418)
+dbparts.c(7952)DBParts_BPT2CarEra(419)
+dbparts.c(7952)DBParts_BPT2CarEra(420)
+dbparts.c(7952)DBParts_BPT2CarEra(421)
+dbparts.c(7952)DBParts_BPT2CarEra(422)
+dbparts.c(7952)DBParts_BPT2CarEra(423)
+dbparts.c(7952)DBParts_BPT2CarEra(424)
+dbparts.c(7952)DBParts_BPT2CarEra(425)
+dbparts.c(7952)DBParts_BPT2CarEra(426)
+dbparts.c(7952)DBParts_BPT2CarEra(427)
+dbparts.c(7952)DBParts_BPT2CarEra(428)
+dbparts.c(7952)DBParts_BPT2CarEra(429)
+dbparts.c(7952)DBParts_BPT2CarEra(430)
+dbparts.c(7952)DBParts_BPT2CarEra(431)
+dbparts.c(7952)DBParts_BPT2CarEra(432)
+dbparts.c(7952)DBParts_BPT2CarEra(433)
+dbparts.c(7952)DBParts_BPT2CarEra(434)
+dbparts.c(7952)DBParts_BPT2CarEra(435)
+dbparts.c(7952)DBParts_BPT2CarEra(436)
+dbparts.c(7952)DBParts_BPT2CarEra(437)
+dbparts.c(7952)DBParts_BPT2CarEra(438)
+dbparts.c(7952)DBParts_BPT2CarEra(439)
+dbparts.c(7952)DBParts_BPT2CarEra(440)
+dbparts.c(7952)DBParts_BPT2CarEra(441)
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  101 pt:  101 apt:  101 viv:          
+dbparts.c(914)Ford           Coupe                     dbg:'1932 Ford V-8 Coupe     '
+
+dbcode.c(2041)  [ 0]  bptid: 101  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  102 pt:  102 apt:  101 viv:          
+dbparts.c(914)Ford           Coupe                     dbg:'1940 Ford Deluxe Coupe  '
+
+dbcode.c(2041)  [ 1]  bptid: 102  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  103 pt:  103 apt:  101 viv:          
+dbparts.c(914)Ford           Crestline                 dbg:'1953 Ford Crestline     '
+
+dbcode.c(2041)  [ 2]  bptid: 103  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  104 pt:  104 apt:  101 viv:          
+dbparts.c(914)Ford           Fairlane                  dbg:'1957 Ford Fairlane 500  '
+
+dbcode.c(2041)  [ 3]  bptid: 104  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  105 pt:  105 apt:  101 viv:          
+dbparts.c(914)Ford           Ranchero                  dbg:'1957 Ford Ranchero      '
+
+dbcode.c(2041)  [ 4]  bptid: 105  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  106 pt:  106 apt:  101 viv:          
+dbparts.c(914)Ford           Thunderbird               dbg:'1957 Ford Thunderbird   '
+
+dbcode.c(2041)  [ 5]  bptid: 106  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  107 pt:  107 apt:  101 viv:          
+dbparts.c(914)Ford           Thunderbird               dbg:'1963 Ford Thunderbird   '
+
+dbcode.c(2041)  [ 6]  bptid: 107  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  108 pt:  108 apt:  101 viv:          
+dbparts.c(914)Ford           Mustang                   dbg:'1965 Ford Mustang       '
+
+dbcode.c(2041)  [ 7]  bptid: 108  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  109 pt:  109 apt:  101 viv:          
+dbparts.c(914)Ford           Galaxie                   dbg:'1964 Ford Galaxie 500   '
+
+dbcode.c(2041)  [ 8]  bptid: 109  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  110 pt:  110 apt:  101 viv:          
+dbparts.c(914)Ford           Torino GT                 dbg:'1969 Ford Torino GT     '
+
+dbcode.c(2041)  [ 9]  bptid: 110  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  111 pt:  111 apt:  101 viv:          
+dbparts.c(914)Ford           Boss 302                  dbg:'1970 Ford Boss 302 Mustang'
+
+dbcode.c(2041)  [10]  bptid: 111  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  112 pt:  112 apt:  101 viv:          
+dbparts.c(914)Mercury        Coupe                     dbg:'1949 Mercury Coupe      '
+
+dbcode.c(2041)  [11]  bptid: 112  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  113 pt:  113 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Bel-Air                   dbg:'1957 Chevrolet Bel-Air  '
+
+dbcode.c(2041)  [12]  bptid: 113  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  114 pt:  114 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Corvette                  dbg:'1957 Chevrolet Corvette '
+
+dbcode.c(2041)  [13]  bptid: 114  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  115 pt:  115 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Nomad                     dbg:'1957 Chevrolet Nomad Wagon'
+
+dbcode.c(2041)  [14]  bptid: 115  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  116 pt:  116 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Impala                    dbg:'1964 Chevrolet Impala   '
+
+dbcode.c(2041)  [15]  bptid: 116  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  117 pt:  117 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Stingray                  dbg:'1963 Chevrolet Corvette Stingray'
+
+dbcode.c(2041)  [16]  bptid: 117  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  118 pt:  118 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Impala                    dbg:'1958 Chevrolet Impala   '
+
+dbcode.c(2041)  [17]  bptid: 118  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  119 pt:  119 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Chevelle                  dbg:'1967 Chevrolet Chevelle '
+
+dbcode.c(2041)  [18]  bptid: 119  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  120 pt:  120 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro                    dbg:'1967 Chevrolet Camaro   '
+
+dbcode.c(2041)  [19]  bptid: 120  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  121 pt:  121 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Chevelle                  dbg:'1970 Chevrolet Chevelle '
+
+dbcode.c(2041)  [20]  bptid: 121  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  122 pt:  122 apt:  101 viv:          
+dbparts.c(914)Chevrolet      El Camino                 dbg:'1970 Chevrolet El Camino'
+
+dbcode.c(2041)  [21]  bptid: 122  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  123 pt:  123 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Nova                      dbg:'1970 Chevrolet Nova     '
+
+dbcode.c(2041)  [22]  bptid: 123  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  124 pt:  124 apt:  101 viv:          
+dbparts.c(914)Cadillac       Series 62                 dbg:'1947 Cadillac Series 62 Sedanette'
+
+dbcode.c(2041)  [23]  bptid: 124  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  125 pt:  125 apt:  101 viv:          
+dbparts.c(914)Cadillac       Eldorado                  dbg:'1959 Cadillac Eldorado Biarritz'
+
+dbcode.c(2041)  [24]  bptid: 125  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  126 pt:  126 apt:  101 viv:          
+dbparts.c(914)Oldsmobile     4-4-2                     dbg:'1969 Oldsmobile 4-4-2   '
+
+dbcode.c(2041)  [25]  bptid: 126  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  127 pt:  127 apt:  101 viv:          
+dbparts.c(914)Buick          Century                   dbg:'1955 Buick Century      '
+
+dbcode.c(2041)  [26]  bptid: 127  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  128 pt:  128 apt:  101 viv:          
+dbparts.c(914)Pontiac        GTO                       dbg:'1966 Pontiac GTO        '
+
+dbcode.c(2041)  [27]  bptid: 128  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  129 pt:  129 apt:  101 viv:          
+dbparts.c(914)Pontiac        GTO                       dbg:'1969 Pontiac GTO        '
+
+dbcode.c(2041)  [28]  bptid: 129  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  130 pt:  130 apt:  101 viv:          
+dbparts.c(914)Pontiac        Firebird T/A              dbg:'1973 Pontiac Firebird T/A'
+
+dbcode.c(2041)  [29]  bptid: 130  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  131 pt:  131 apt:  101 viv:          
+dbparts.c(914)AMC            AMX                       dbg:'1969 AMX                '
+
+dbcode.c(2041)  [30]  bptid: 131  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  132 pt:  132 apt:  101 viv:          
+dbparts.c(914)Dodge          Charger                   dbg:'1969 Dodge Charger      '
+
+dbcode.c(2041)  [31]  bptid: 132  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  133 pt:  133 apt:  101 viv:          
+dbparts.c(914)Plymouth       Rd. Runner                dbg:'1969 Plymouth Road Runner'
+
+dbcode.c(2041)  [32]  bptid: 133  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  134 pt:  134 apt:  101 viv:          
+dbparts.c(914)Plymouth       Cuda                      dbg:'1970 Cuda               '
+
+dbcode.c(2041)  [33]  bptid: 134  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  135 pt:  135 apt:  101 viv:          
+dbparts.c(914)Plymouth       Duster                    dbg:'1971 Plymouth Duster    '
+
+dbcode.c(2041)  [34]  bptid: 135  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  153 pt:  138 apt:  101 viv:          
+dbparts.c(914)EA             Traffic 2 door            dbg:'Traffic 2 door          '
+
+dbcode.c(2041)  [35]  bptid: 153  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  159 pt:  104 apt:  101 viv:          
+dbparts.c(914)Ford           Fairlane                  dbg:'1957 Ford Fairlane 500  '
+
+dbcode.c(2041)  [36]  bptid: 159  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  171 pt:  142 apt:  101 viv:          
+dbparts.c(914)Ford           Boss 429                  dbg:'1970 Ford Boss 429 Mustang'
+
+dbcode.c(2041)  [37]  bptid: 171  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  173 pt:  146 apt:  101 viv:          
+dbparts.c(914)EA             TRFMONTE                  dbg:'TRFMONTE                '
+
+dbcode.c(2041)  [38]  bptid: 173  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  174 pt:  147 apt:  101 viv:          
+dbparts.c(914)EA             TRFDELVR                  dbg:'TRFDELVR                '
+
+dbcode.c(2041)  [39]  bptid: 174  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  175 pt:  148 apt:  101 viv:          
+dbparts.c(914)EA             TRFBUS                    dbg:'TRFBUS                  '
+
+dbcode.c(2041)  [40]  bptid: 175  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  176 pt:  149 apt:  101 viv:          
+dbparts.c(914)EA             TRFGSX                    dbg:'TRFGSX                  '
+
+dbcode.c(2041)  [41]  bptid: 176  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  177 pt:  150 apt:  101 viv:          
+dbparts.c(914)EA             TRFSTANG                  dbg:'TRFSTANG                '
+
+dbcode.c(2041)  [42]  bptid: 177  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  178 pt:  151 apt:  101 viv:          
+dbparts.c(914)EA             TRFTBIRD                  dbg:'TRFTBIRD                '
+
+dbcode.c(2041)  [43]  bptid: 178  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  179 pt:  152 apt:  101 viv:          
+dbparts.c(914)EA             TRFPUP1                   dbg:'TRFPUP1                 '
+
+dbcode.c(2041)  [44]  bptid: 179  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  180 pt:  153 apt:  101 viv:          
+dbparts.c(914)EA             TRF2DR                    dbg:'TRF2DR                  '
+
+dbcode.c(2041)  [45]  bptid: 180  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  184 pt:  157 apt:  101 viv:          
+dbparts.c(914)Plymouth       GTX                       dbg:'1969 Plymouth GTX Coupe '
+
+dbcode.c(2041)  [46]  bptid: 184  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  190 pt:  154 apt:  101 viv:          
+dbparts.c(914)AMC            Big Bad AMX               dbg:'1969 AMC Big Bad AMX    '
+
+dbcode.c(2041)  [47]  bptid: 190  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  208 pt:  127 apt:  101 viv:          
+dbparts.c(914)Buick          Century                   dbg:'1955 Buick Century      '
+
+dbcode.c(2041)  [48]  bptid: 208  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  236 pt:  113 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Bel-Air                   dbg:'1957 Chevrolet Bel-Air  '
+
+dbcode.c(2041)  [49]  bptid: 236  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  320 pt:  207 apt:  101 viv:          
+dbparts.c(914)Shelby         Cobra 427 S/C             dbg:'Shelby 427 Cobra        '
+
+dbcode.c(2041)  [50]  bptid: 320  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  335 pt:  210 apt:  101 viv:          
+dbparts.c(914)Ford           Mustang                   dbg:'1970 Ford Mustang       '
+
+dbcode.c(2041)  [51]  bptid: 335  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  336 pt:  211 apt:  101 viv:          
+dbparts.c(914)Ford           Torino Cobra              dbg:'1969 Ford Torino GT Cobra'
+
+dbcode.c(2041)  [52]  bptid: 336  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  337 pt:  212 apt:  101 viv:          
+dbparts.c(914)Ford           Mach 1                    dbg:'1970 Ford Mustang Mach 1'
+
+dbcode.c(2041)  [53]  bptid: 337  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  338 pt:  213 apt:  101 viv:          
+dbparts.c(914)Plymouth       Hemi Cuda                 dbg:'1970 Plymouth Hemi Cuda '
+
+dbcode.c(2041)  [54]  bptid: 338  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  339 pt:  214 apt:  101 viv:          
+dbparts.c(914)Plymouth       440 Cuda                  dbg:'1970 Plymouth 440 Cuda  '
+
+dbcode.c(2041)  [55]  bptid: 339  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  340 pt:  215 apt:  101 viv:          
+dbparts.c(914)Plymouth       AAR Cuda                  dbg:'1970 Plymouth AAR Cuda  '
+
+dbcode.c(2041)  [56]  bptid: 340  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  341 pt:  216 apt:  101 viv:          
+dbparts.c(914)Plymouth       340 Duster                dbg:'1971 Plymouth 340 Duster'
+
+dbcode.c(2041)  [57]  bptid: 341  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  342 pt:  217 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Impala SS                 dbg:'1964 Chevrolet Impala SS'
+
+dbcode.c(2041)  [58]  bptid: 342  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  343 pt:  218 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Chevelle SS               dbg:'1967 Chevrolet Chevelle SS'
+
+dbcode.c(2041)  [59]  bptid: 343  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  344 pt:  219 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro RS                 dbg:'1967 Chevrolet Camaro RS'
+
+dbcode.c(2041)  [60]  bptid: 344  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  345 pt:  220 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro Z-28               dbg:'1967 Chevrolet Camaro Z-28'
+
+dbcode.c(2041)  [61]  bptid: 345  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  346 pt:  221 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Chevelle SS               dbg:'1970 Chevrolet Chevelle SS'
+
+dbcode.c(2041)  [62]  bptid: 346  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  347 pt:  222 apt:  101 viv:          
+dbparts.c(914)Chevrolet      El Camino SS              dbg:'1970 Chevrolet El Camino SS'
+
+dbcode.c(2041)  [63]  bptid: 347  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  348 pt:  223 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Nova SS                   dbg:'1970 Chevrolet Nova SS  '
+
+dbcode.c(2041)  [64]  bptid: 348  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  349 pt:  224 apt:  101 viv:          
+dbparts.c(914)Oldsmobile     4-4-2 W-30                dbg:'1969 Oldsmobile 442 W-30'
+
+dbcode.c(2041)  [65]  bptid: 349  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  350 pt:  225 apt:  101 viv:          
+dbparts.c(914)Oldsmobile     Hurst 4-4-2               dbg:'1969 Oldsmobile Hurst 442'
+
+dbcode.c(2041)  [66]  bptid: 350  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  351 pt:  226 apt:  101 viv:          
+dbparts.c(914)Pontiac        GTO Judge                 dbg:'1969 Pontiac GTO Judge  '
+
+dbcode.c(2041)  [67]  bptid: 351  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  352 pt:  227 apt:  101 viv:          
+dbparts.c(914)Pontiac        Firebird Formula          dbg:'1973 Pontiac Firebird Formula'
+
+dbcode.c(2041)  [68]  bptid: 352  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  353 pt:  228 apt:  101 viv:          
+dbparts.c(914)Pontiac        Firebird                  dbg:'1973 Pontiac Firebird   '
+
+dbcode.c(2041)  [69]  bptid: 353  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  354 pt:  124 apt:  101 viv:          
+dbparts.c(914)Cadillac       Series 62                 dbg:'1947 Cadillac Series 62 Sedanette'
+
+dbcode.c(2041)  [70]  bptid: 354  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  355 pt:  112 apt:  101 viv:          
+dbparts.c(914)Mercury        Coupe                     dbg:'1949 Mercury Coupe      '
+
+dbcode.c(2041)  [71]  bptid: 355  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  356 pt:  103 apt:  101 viv:          
+dbparts.c(914)Ford           Crestline                 dbg:'1953 Ford Crestline     '
+
+dbcode.c(2041)  [72]  bptid: 356  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  357 pt:  104 apt:  101 viv:          
+dbparts.c(914)Ford           Fairlane                  dbg:'1957 Ford Fairlane 500  '
+
+dbcode.c(2041)  [73]  bptid: 357  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  358 pt:  105 apt:  101 viv:          
+dbparts.c(914)Ford           Ranchero                  dbg:'1957 Ford Ranchero      '
+
+dbcode.c(2041)  [74]  bptid: 358  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  359 pt:  106 apt:  101 viv:          
+dbparts.c(914)Ford           Thunderbird               dbg:'1957 Ford Thunderbird   '
+
+dbcode.c(2041)  [75]  bptid: 359  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  360 pt:  113 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Bel-Air                   dbg:'1957 Chevrolet Bel-Air  '
+
+dbcode.c(2041)  [76]  bptid: 360  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  361 pt:  115 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Nomad                     dbg:'1957 Chevrolet Nomad Wagon'
+
+dbcode.c(2041)  [77]  bptid: 361  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  362 pt:  114 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Corvette                  dbg:'1957 Chevrolet Corvette '
+
+dbcode.c(2041)  [78]  bptid: 362  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  363 pt:  118 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Impala                    dbg:'1958 Chevrolet Impala   '
+
+dbcode.c(2041)  [79]  bptid: 363  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  364 pt:  117 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Stingray                  dbg:'1963 Chevrolet Corvette Stingray'
+
+dbcode.c(2041)  [80]  bptid: 364  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  365 pt:  116 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Impala                    dbg:'1964 Chevrolet Impala   '
+
+dbcode.c(2041)  [81]  bptid: 365  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  366 pt:  109 apt:  101 viv:          
+dbparts.c(914)Ford           Galaxie                   dbg:'1964 Ford Galaxie 500   '
+
+dbcode.c(2041)  [82]  bptid: 366  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  367 pt:  108 apt:  101 viv:          
+dbparts.c(914)Ford           Mustang                   dbg:'1965 Ford Mustang       '
+
+dbcode.c(2041)  [83]  bptid: 367  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  368 pt:  128 apt:  101 viv:          
+dbparts.c(914)Pontiac        GTO                       dbg:'1966 Pontiac GTO        '
+
+dbcode.c(2041)  [84]  bptid: 368  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  369 pt:  119 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Chevelle                  dbg:'1967 Chevrolet Chevelle '
+
+dbcode.c(2041)  [85]  bptid: 369  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  370 pt:  120 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro                    dbg:'1967 Chevrolet Camaro   '
+
+dbcode.c(2041)  [86]  bptid: 370  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  371 pt:  126 apt:  101 viv:          
+dbparts.c(914)Oldsmobile     4-4-2                     dbg:'1969 Oldsmobile 4-4-2   '
+
+dbcode.c(2041)  [87]  bptid: 371  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  372 pt:  129 apt:  101 viv:          
+dbparts.c(914)Pontiac        GTO                       dbg:'1969 Pontiac GTO        '
+
+dbcode.c(2041)  [88]  bptid: 372  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  373 pt:  133 apt:  101 viv:          
+dbparts.c(914)Plymouth       Rd. Runner                dbg:'1969 Plymouth Road Runner'
+
+dbcode.c(2041)  [89]  bptid: 373  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  374 pt:  140 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro SS                 dbg:'1967 Chevrolet Camaro SS'
+
+dbcode.c(2041)  [90]  bptid: 374  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  375 pt:  106 apt:  101 viv:          
+dbparts.c(914)Ford           Thunderbird               dbg:'1957 Ford Thunderbird   '
+
+dbcode.c(2041)  [91]  bptid: 375  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  377 pt:  113 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Bel-Air                   dbg:'1957 Chevrolet Bel-Air  '
+
+dbcode.c(2041)  [92]  bptid: 377  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  378 pt:  127 apt:  101 viv:          
+dbparts.c(914)Buick          Century                   dbg:'1955 Buick Century      '
+
+dbcode.c(2041)  [93]  bptid: 378  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  379 pt:  103 apt:  101 viv:          
+dbparts.c(914)Ford           Crestline                 dbg:'1953 Ford Crestline     '
+
+dbcode.c(2041)  [94]  bptid: 379  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  383 pt:  129 apt:  101 viv:          
+dbparts.c(914)Pontiac        GTO                       dbg:'1969 Pontiac GTO        '
+
+dbcode.c(2041)  [95]  bptid: 383  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  384 pt:  108 apt:  101 viv:          
+dbparts.c(914)Ford           Mustang                   dbg:'1965 Ford Mustang       '
+
+dbcode.c(2041)  [96]  bptid: 384  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  385 pt:  106 apt:  101 viv:          
+dbparts.c(914)Ford           Thunderbird               dbg:'1957 Ford Thunderbird   '
+
+dbcode.c(2041)  [97]  bptid: 385  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  386 pt:  127 apt:  101 viv:          
+dbparts.c(914)Buick          Century                   dbg:'1955 Buick Century      '
+
+dbcode.c(2041)  [98]  bptid: 386  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  387 pt:  121 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Chevelle                  dbg:'1970 Chevrolet Chevelle '
+
+dbcode.c(2041)  [99]  bptid: 387  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  388 pt:  109 apt:  101 viv:          
+dbparts.c(914)Ford           Galaxie                   dbg:'1964 Ford Galaxie 500   '
+
+dbcode.c(2041)  [100]  bptid: 388  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  389 pt:  132 apt:  101 viv:          
+dbparts.c(914)Dodge          Charger                   dbg:'1969 Dodge Charger      '
+
+dbcode.c(2041)  [101]  bptid: 389  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  390 pt:  113 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Bel-Air                   dbg:'1957 Chevrolet Bel-Air  '
+
+dbcode.c(2041)  [102]  bptid: 390  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  391 pt:  103 apt:  101 viv:          
+dbparts.c(914)Ford           Crestline                 dbg:'1953 Ford Crestline     '
+
+dbcode.c(2041)  [103]  bptid: 391  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  392 pt:  131 apt:  101 viv:          
+dbparts.c(914)AMC            AMX                       dbg:'1969 AMX                '
+
+dbcode.c(2041)  [104]  bptid: 392  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  393 pt:  105 apt:  101 viv:          
+dbparts.c(914)Ford           Ranchero                  dbg:'1957 Ford Ranchero      '
+
+dbcode.c(2041)  [105]  bptid: 393  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  394 pt:  120 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro                    dbg:'1967 Chevrolet Camaro   '
+
+dbcode.c(2041)  [106]  bptid: 394  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  395 pt:  112 apt:  101 viv:          
+dbparts.c(914)Mercury        Mod Coupe                 dbg:'1949 Mercury Coupe      '
+
+dbcode.c(2041)  [107]  bptid: 395  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  396 pt:  113 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Mod Bel Air               dbg:'1957 Chevrolet Bel-Air  '
+
+dbcode.c(2041)  [108]  bptid: 396  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  397 pt:  128 apt:  101 viv:          
+dbparts.c(914)Pontiac        Mod GTO                   dbg:'1966 Pontiac GTO        '
+
+dbcode.c(2041)  [109]  bptid: 397  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  398 pt:  125 apt:  101 viv:          
+dbparts.c(914)Cadillac       Mod Eldorado              dbg:'1959 Cadillac Eldorado Biarritz'
+
+dbcode.c(2041)  [110]  bptid: 398  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  399 pt:  117 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Mod Stingray              dbg:'1963 Chevrolet Corvette Stingray'
+
+dbcode.c(2041)  [111]  bptid: 399  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  400 pt:  108 apt:  101 viv:          
+dbparts.c(914)Ford           Mod Mustang               dbg:'1965 Ford Mustang       '
+
+dbcode.c(2041)  [112]  bptid: 400  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  401 pt:  134 apt:  101 viv:          
+dbparts.c(914)Plymouth       Mod Cuda                  dbg:'1970 Cuda               '
+
+dbcode.c(2041)  [113]  bptid: 401  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  402 pt:  127 apt:  101 viv:          
+dbparts.c(914)Buick          Century                   dbg:'1955 Buick Century      '
+
+dbcode.c(2041)  [114]  bptid: 402  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  403 pt:  140 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro SS                 dbg:'1967 Chevrolet Camaro SS'
+
+dbcode.c(2041)  [115]  bptid: 403  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  404 pt:  207 apt:  101 viv:          
+dbparts.c(914)Shelby         Cobra 427 S/C             dbg:'Shelby 427 Cobra        '
+
+dbcode.c(2041)  [116]  bptid: 404  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  405 pt:  117 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Stingray                  dbg:'1963 Chevrolet Corvette Stingray'
+
+dbcode.c(2041)  [117]  bptid: 405  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  406 pt:  207 apt:  101 viv:          
+dbparts.c(914)Shelby         Cobra 427 S/C             dbg:'Shelby 427 Cobra        '
+
+dbcode.c(2041)  [118]  bptid: 406  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  407 pt:  213 apt:  101 viv:          
+dbparts.c(914)Plymouth       Hemi Cuda                 dbg:'1970 Plymouth Hemi Cuda '
+
+dbcode.c(2041)  [119]  bptid: 407  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  408 pt:  111 apt:  101 viv:          
+dbparts.c(914)Ford           Boss 302                  dbg:'1970 Ford Boss 302 Mustang'
+
+dbcode.c(2041)  [120]  bptid: 408  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  409 pt:  220 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Camaro Z-28               dbg:'1967 Chevrolet Camaro Z-28'
+
+dbcode.c(2041)  [121]  bptid: 409  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  410 pt:  130 apt:  101 viv:          
+dbparts.c(914)Pontiac        Firebird T/A              dbg:'1973 Pontiac Firebird T/A'
+
+dbcode.c(2041)  [122]  bptid: 410  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  411 pt:  132 apt:  101 viv:          
+dbparts.c(914)Dodge          Charger R/T               dbg:'1969 Dodge Charger      '
+
+dbcode.c(2041)  [123]  bptid: 411  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  412 pt:  111 apt:  101 viv:          
+dbparts.c(914)Ford           Boss 302                  dbg:'1970 Ford Boss 302 Mustang'
+
+dbcode.c(2041)  [124]  bptid: 412  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  413 pt:  114 apt:  101 viv:          
+dbparts.c(914)Chevrolet      Corvette                  dbg:'1957 Chevrolet Corvette '
+
+dbcode.c(2041)  [125]  bptid: 413  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  414 pt:  114 apt:  101 viv:          
+dbparts.c(914)Electronic Arts Chevrolet Corvette - AI   dbg:'1957 Chevrolet Corvette '
+
+dbcode.c(2041)  [126]  bptid: 414  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  415 pt:  114 apt:  101 viv:          
+dbparts.c(914)Electronic Arts AI 57 Vette               dbg:'1957 Chevrolet Corvette '
+
+dbcode.c(2041)  [127]  bptid: 415  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  416 pt:  133 apt:  101 viv:          
+dbparts.c(914)Electronic Arts AI 69 Runner              dbg:'1969 Plymouth Road Runner'
+
+dbcode.c(2041)  [128]  bptid: 416  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  417 pt:  108 apt:  101 viv:          
+dbparts.c(914)Electronic Arts AI 1964 Mustang           dbg:'1965 Ford Mustang       '
+
+dbcode.c(2041)  [129]  bptid: 417  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  418 pt:  121 apt:  101 viv:          
+dbparts.c(914)Chevrolet      AI Chevelle               dbg:'1970 Chevrolet Chevelle '
+
+dbcode.c(2041)  [130]  bptid: 418  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  419 pt:  112 apt:  101 viv:          
+dbparts.c(914)Electronic Arts AI 1949 Mercury Mod Coupe  dbg:'1949 Mercury Coupe      '
+
+dbcode.c(2041)  [131]  bptid: 419  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  420 pt:  103 apt:  101 viv:          
+dbparts.c(914)Ford           AI 1953 Ford Crestline    dbg:'1953 Ford Crestline     '
+
+dbcode.c(2041)  [132]  bptid: 420  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  421 pt:  118 apt:  101 viv:          
+dbparts.c(914)Chevrolet      AI 1958 Chevy Impala      dbg:'1958 Chevrolet Impala   '
+
+dbcode.c(2041)  [133]  bptid: 421  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  422 pt:  113 apt:  101 viv:          
+dbparts.c(914)Chevrolet      AI Chevy Bel Air          dbg:'1957 Chevrolet Bel-Air  '
+
+dbcode.c(2041)  [134]  bptid: 422  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  423 pt:  127 apt:  101 viv:          
+dbparts.c(914)Chevrolet      AI 1955 Chevy Buick Century  dbg:'1955 Buick Century      '
+
+dbcode.c(2041)  [135]  bptid: 423  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  424 pt:  218 apt:  101 viv:          
+dbparts.c(914)Electronic Arts AI 1967 Chevy Chevelle SS  dbg:'1967 Chevrolet Chevelle SS'
+
+dbcode.c(2041)  [136]  bptid: 424  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  425 pt:  142 apt:  101 viv:          
+dbparts.c(914)Ford           AI 1970 Ford Boss 429     dbg:'1970 Ford Boss 429 Mustang'
+
+dbcode.c(2041)  [137]  bptid: 425  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  426 pt:  134 apt:  101 viv:          
+dbparts.c(914)Plymouth       AI 1970 Plymouth Mod Cuda  dbg:'1970 Cuda               '
+
+dbcode.c(2041)  [138]  bptid: 426  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  427 pt:  124 apt:  101 viv:          
+dbparts.c(914)Cadillac       AI 1947 Cadillac Series 62  dbg:'1947 Cadillac Series 62 Sedanette'
+
+dbcode.c(2041)  [139]  bptid: 427  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  428 pt:  114 apt:  101 viv:          
+dbparts.c(914)Chevrolet      AI 1957 Chevy Corvette    dbg:'1957 Chevrolet Corvette '
+
+dbcode.c(2041)  [140]  bptid: 428  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  429 pt:  115 apt:  101 viv:          
+dbparts.c(914)Chevrolet      1957 AI Chevrolet Nomad   dbg:'1957 Chevrolet Nomad Wagon'
+
+dbcode.c(2041)  [141]  bptid: 429  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  430 pt:  105 apt:  101 viv:          
+dbparts.c(914)Electronic Arts 1957 AI Ford Ranchero     dbg:'1957 Ford Ranchero      '
+
+dbcode.c(2041)  [142]  bptid: 430  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  431 pt:  128 apt:  101 viv:          
+dbparts.c(914)Pontiac        1966 AI Pontiac Mod GTO   dbg:'1966 Pontiac GTO        '
+
+dbcode.c(2041)  [143]  bptid: 431  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  432 pt:  101 apt:  101 viv:          
+dbparts.c(914)Ford           1932 AI Ford Coupe        dbg:'1932 Ford V-8 Coupe     '
+
+dbcode.c(2041)  [144]  bptid: 432  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  433 pt:  102 apt:  101 viv:          
+dbparts.c(914)Ford           1940 AI Ford Coupe        dbg:'1940 Ford Deluxe Coupe  '
+
+dbcode.c(2041)  [145]  bptid: 433  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  434 pt:  104 apt:  101 viv:          
+dbparts.c(914)Ford           1957 Ford Fairlane        dbg:'1957 Ford Fairlane 500  '
+
+dbcode.c(2041)  [146]  bptid: 434  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  435 pt:  106 apt:  101 viv:          
+dbparts.c(914)Ford           1957 AI Ford Thunderbird  dbg:'1957 Ford Thunderbird   '
+
+dbcode.c(2041)  [147]  bptid: 435  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  436 pt:  109 apt:  101 viv:          
+dbparts.c(914)Ford           1964 AI Ford Galaxie      dbg:'1964 Ford Galaxie 500   '
+
+dbcode.c(2041)  [148]  bptid: 436  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  437 pt:  211 apt:  101 viv:          
+dbparts.c(914)Ford           1969 AI Ford Torino Cobra  dbg:'1969 Ford Torino GT Cobra'
+
+dbcode.c(2041)  [149]  bptid: 437  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  438 pt:  111 apt:  101 viv:          
+dbparts.c(914)Ford           1970 AI Ford Boss 302     dbg:'1970 Ford Boss 302 Mustang'
+
+dbcode.c(2041)  [150]  bptid: 438  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  439 pt:  116 apt:  101 viv:          
+dbparts.c(914)Chevrolet      1964 AI Chevy Impala      dbg:'1964 Chevrolet Impala   '
+
+dbcode.c(2041)  [151]  bptid: 439  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  440 pt:  121 apt:  101 viv:          
+dbparts.c(914)Chevrolet      1970 AI Chevy Chevelle    dbg:'1970 Chevrolet Chevelle '
+
+dbcode.c(2041)  [152]  bptid: 440  Yr:-001  Price: 0.000000
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=0)
+dbparts.c(913)[ 0] bpt:  441 pt:  117 apt:  101 viv:          
+dbparts.c(914)Chevrolet      1963 AI Chevy Stingray    dbg:'1963 Chevrolet Corvette Stingray'
+
+dbcode.c(2041)  [153]  bptid: 441  Yr:-001  Price: 0.000000
+DBMem.cpp(238)DBMem_Free(node:0x02B58B20,buf:0x05264C90,size:360900, dbcode.c(2105))
+DBMem.cpp(238)DBMem_Free(node:0x02B58DE0,buf:0x051E48F0,size:    24, dbcode.c(2113))
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 340,MC_TW_JOIN_REQUEST
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:340,MC_TW_JOIN_REQUEST
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 358,MC_TW_INVITEE_JOINED
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:358,MC_TW_INVITEE_JOINED
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 359,MC_TW_SESSION_CANCELED_BY_PARTNER
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:359,MC_TW_SESSION_CANCELED_BY_PARTNER
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 347,MC_TW_OTHER_PARTY_STATUS_CHANGE
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:347,MC_TW_OTHER_PARTY_STATUS_CHANGE
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 360,MC_TW_COMPLETION_BY_INITIATOR
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:360,MC_TW_COMPLETION_BY_INITIATOR
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 352,MC_TW_ITEM_LIST
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:352,MC_TW_ITEM_LIST
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 419,MC_ALERT_REFRESH_PERSONA
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:419,MC_ALERT_REFRESH_PERSONA
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 420,MC_ALERT_REFRESH_INVENTORY
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:420,MC_ALERT_REFRESH_INVENTORY
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 421,MC_ALERT_REFRESH_CARLIST
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:421,MC_ALERT_REFRESH_CARLIST
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 422,MC_ALERT_REFRESH_CAR
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:422,MC_ALERT_REFRESH_CAR
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 472,Unknwn Msg#472
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:472,Unknwn Msg#472
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 415,MC_CLUB_YOU_HAVE_BEEN_EJECTED
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:415,MC_CLUB_YOU_HAVE_BEEN_EJECTED
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 416,MC_CLUB_YOU_HAVE_BEEN_PROMOTED
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:416,MC_CLUB_YOU_HAVE_BEEN_PROMOTED
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 417,MC_CLUB_YOU_HAVE_BEEN_DEMOTED
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:417,MC_CLUB_YOU_HAVE_BEEN_DEMOTED
+DBAsyncEvent.C(148) DBAsyncEvent_QUpHandler() for msgNo = 418,MC_CLUB_YOUR_CLUB_IS_DISBANDED
+DBAsyncEvent.C(181)DBAsyncEvent_RemoveHandler() for msgNo:418,MC_CLUB_YOUR_CLUB_IS_DISBANDED
+DBResultQ.C(2601) DB_Tracking
+DBHandlers.c(1325) DBServiceRequestQ: request #440 MC_TRACKING_MSG
+
+DBResultQ.C(2567) DBREQ_Tracking
+DBResultQ.C(1023) Starting ResultQ!!!!!
+dbcode.c(1513) DB_ChangeModeToSingleRace
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 0
+DBResultQ.C(1979) ERROR:  Disconnected in DBResultQ_Send()!!!
+DBHandlers.c(1325) DBServiceRequestQ: request #704 DBT_GO_SINGLERACE
+
+dbcode.c(1479) DBREQ_ChangeMode
+dbcode.c(1383) DBCode_ChangeMode
+DBHandlers.c(1325) DBServiceRequestQ: request #701 DBT_DISCONNECT
+
+DBResultQ.C(963) DBREQ_Disconnect
+DBResultQ.C(924) DBResultQ_Disconnect
+DBHandlers.c(1325) DBServiceRequestQ: request #701 DBT_DISCONNECT
+
+DBResultQ.C(963) DBREQ_Disconnect
+DBResultQ.C(924) DBResultQ_Disconnect
+DBHandlers.c(1325) DBServiceRequestQ: request #701 DBT_DISCONNECT
+
+DBResultQ.C(963) DBREQ_Disconnect
+DBResultQ.C(924) DBResultQ_Disconnect
+DBHandlers.c(1325) DBServiceRequestQ: request #701 DBT_DISCONNECT
+
+DBResultQ.C(963) DBREQ_Disconnect
+DBResultQ.C(924) DBResultQ_Disconnect
+DBResultQ.C(1898)DB_AttachAndLogin(5551212,21)
+DBHandlers.c(1325) DBServiceRequestQ: request #700 DBT_ATTACH_AND_LOGIN
+
+DBResultQ.C(1753)DBResultQ_AttachAndLogin(21)
+DBResultQ.C(1193)DBResultQ_EnsureServerID()
+DBResultQ.C(1138)DBResultQ_EnsureServerID(rusty-motors.com)
+DBResultQ.C(1143) 
+DBResultQ.C(1173) Connected to master MCOTS
+DBResultQ.C(1177) Got MCOTS serverID. Communicate at will!
+'COMM_SUCCESS' DBLayer: Connected! Attaching...
+ DB_TASK_EXECUTING DBResultQ.C(1792)
+DBResultQ.C(1341)DBResultQ_Attach(21)
+DBResultQ.C(1193)DBResultQ_EnsureServerID()
+DBResultQ.C(1138)DBResultQ_EnsureServerID(rusty-motors.com)
+DBResultQ.C(1392) Already connected
+DBResultQ.C(1415) DBLayer: Connected!
+
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 1
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:1), msgNo = 438
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 438 MC_CLIENT_CONNECT_MSG  seq:1
+DBHandlers.c(1239)DBServiceResultQ msg #101 MC_SUCCESS Seq:1
+
+DBHandlers.c(1173)DBRES_MatchToSequence msg =101(MC_SUCCESS) Reply:438(MC_CLIENT_CONNECT_MSG) .seq:1
+
+DBResultQ.C(2418)DBOutstandingQ_PeekAtOriginalMsg(1)
+DBResultQ.C(2436)    Found it
+
+DBResultQ.C(1214) DBRES_Attach()
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(1)
+DBResultQ.C(2266) found it
+
+DBResultQ.C(1309)SessionKey: d6 f4 3a 44 87 9d 0c cd
+
+dbcode.c(1383) DBCode_ChangeMode
+DBResultQ.C(1836)  Attached!
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 3
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:3), msgNo = 105
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 105 MC_LOGIN  seq:3
+DBHandlers.c(1239)DBServiceResultQ msg #213 MC_LOGIN_COMPLETE Seq:3
+
+DBResultQ.C(1602)msgNo:213 seq:3 Success  ServerVersion:0x0 - 0x0   FirstLogin:1  PayCheckWaiting: 0
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(3)
+DBResultQ.C(2266) found it
+
+dbtest.c(2618)   O n l i n e   T e s t i n g
+
+dbtest.c(2626) found '\online_test.txt'; simulating environment var...
+dbtest.c(2627)ONLINE_TEST=1
+
+dbtest.c(2628) doing putenv()...
+dbtest.c(2633) ONLINE_TEST:       1
+
+dbtest.c(2634) Logged In Persona: 21
+dbtest.c(2654)def body flags= 0x00047321
+DBMiscInfo.cpp(1529) DB_GetFeePurseInfo
+DBMiscInfo.cpp(217) DB_GetLobbyList
+DBHandlers.c(1325) DBServiceRequestQ: request #408 MC_ENTRYFEE_PURSE_INFO
+
+DBMiscInfo.cpp(1498) DBREQ_GetFeePurseInfo
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:0), msgNo = 408
+DBHandlers.c(1325) DBServiceRequestQ: request #324 MC_GET_LOBBIES
+
+DBMiscInfo.cpp(201) DBREQ_GetLobbyList
+DBMiscInfo.cpp(162) DBMiscInfo_GetLobbyList
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 5
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:5), msgNo = 324
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 324 MC_GET_LOBBIES  seq:5
+DBHandlers.c(1239)DBServiceResultQ msg #325 MC_LOBBIES Seq:5
+
+DBMiscInfo.cpp(44) DBRES_GetLobbyList
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(5)
+DBResultQ.C(2266) found it
+
+DBMiscInfo.cpp(81)You've got your 1st batch of 1 lobbies, moretocome: 0
+
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58DE0,buf:0x051E48F0,size:    20, DBMiscInfo.cpp(83))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58E20,buf:0x051E40B8,size:   569, DBMiscInfo.cpp(99))
+DBMiscInfo.cpp(420) DB_GetArcadeCarList
+DBHandlers.c(1325) DBServiceRequestQ: request #322 MC_GET_ARCADE_CARS
+
+DBMiscInfo.cpp(404) DBREQ_GetArcadeCarList
+DBMiscInfo.cpp(366) DBMiscInfo_GetArcadeCarList
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 8
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:8), msgNo = 322
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 322 MC_GET_ARCADE_CARS  seq:8
+DBHandlers.c(1239)DBServiceResultQ msg #408 MC_ENTRYFEE_PURSE_INFO Seq:5
+
+DBMiscInfo.cpp(1425) DBRES_GetFeePurseInfo
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58E60,buf:0x051E3880,size:    20, DBMiscInfo.cpp(1443))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58EA0,buf:0x051E3048,size:     8, DBMiscInfo.cpp(1456))
+DBResultQ.C(2288)DBOutstandingQ_FindByTask(408)
+DBResultQ.C(2308) found it
+
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58EE0,buf:0x051E2810,size:    20, DBMiscInfo.cpp(1400))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58F20,buf:0x051E1FD8,size:     8, DBMiscInfo.cpp(1410))
+DBHandlers.c(1239)DBServiceResultQ msg #323 MC_ARCADE_CARS Seq:8
+
+DBMiscInfo.cpp(265) DBRES_GetArcadeCarList
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(8)
+DBResultQ.C(2266) found it
+
+DBMiscInfo.cpp(300)You've got your 1st batch of 1 arcade cars, moretocome: 0
+
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58F60,buf:0x051E17A0,size:    24, DBMiscInfo.cpp(301))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58FA0,buf:0x051E0F68,size:   400, DBMiscInfo.cpp(317))
+DBMiscInfo.cpp(696) DB_GetUrlInfo
+DBHandlers.c(1325) DBServiceRequestQ: request #363 MC_GET_GAME_URLS
+
+DBMiscInfo.cpp(680) DBREQ_GetUrlInfo
+DBMiscInfo.cpp(643) DBMiscInfo_GetUrlInfo
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 10
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:10), msgNo = 363
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 363 MC_GET_GAME_URLS  seq:10
+DBHandlers.c(1239)DBServiceResultQ msg #364 MC_GAME_URLS Seq:10
+
+DBMiscInfo.cpp(538) DBRES_GetUrlInfo
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(10)
+DBResultQ.C(2266) found it
+
+DBMiscInfo.cpp(575)You've got your 1st batch of 1 URLs, moretocome: 0
+
+DBMem.cpp(295)DBMem_Alloc(node:0x02B58FE0,buf:0x051E0730,size:    20, DBMiscInfo.cpp(577))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57100,buf:0x051DFEF8,size:   516, DBMiscInfo.cpp(593))
+DBMiscInfo.cpp(870) DB_GetTunables
+DBHandlers.c(1325) DBServiceRequestQ: request #389 MC_GET_MCO_TUNABLES
+
+DBMiscInfo.cpp(854) DBREQ_GetTunables
+DBMiscInfo.cpp(818) DBMiscInfo_GetTunables
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 12
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:12), msgNo = 389
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 389 MC_GET_MCO_TUNABLES  seq:12
+DBHandlers.c(1239)DBServiceResultQ msg #390 MC_MCO_TUNABLES Seq:12
+
+DBMiscInfo.cpp(762) DBRES_GetTunables
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(12)
+DBResultQ.C(2266) found it
+
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57140,buf:0x051DF6C0,size:   124, DBMiscInfo.cpp(793))
+dbcode.c(2643) DB_GetCarIDsByOwner
+DBHandlers.c(1325) DBServiceRequestQ: request #172 MC_GET_OWNED_VEHICLES
+
+dbcode.c(2499) Dbcode_GetCarIdsByOwner
+dbcode.c(2445)DB_GetCarIdsByOwnerOnline(21)
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 14
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:14), msgNo = 172
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 172 MC_GET_OWNED_VEHICLES  seq:14
+DBHandlers.c(1239)DBServiceResultQ msg #173 MC_OWNED_VEHICLES_LIST Seq:14
+
+dbcode.c(2511) DBRES_GetCarIdsByOwner
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(14)
+DBResultQ.C(2266) found it
+
+dbcode.c(2543)  Vehicle count = 1
+
+dbcode.c(2557)     85 bpt:  104
+dbparts.c(7100) Inserting Partd      85 w/BPT:     104  parentID:0
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57180,buf:0x051DEE88,size:    20, dbcode.c(2569))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B571C0,buf:0x051DE650,size:  1596, dbcode.c(2589))
+dbparts.c(4702)DBParts_GetPartDefInfo(num:1)
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=1)
+dbparts.c(913)[ 0] bpt:  104 pt:  104 apt:  101 viv:          
+dbparts.c(914)Ford           Fairlane                  dbg:'1957 Ford Fairlane 500  '
+
+dbparts.c(4773) [ 0] ID: 85  bpt: 104  ptid:  104  APT:101  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)''57 Ford Fairlane' viv:'         '  extra:'a/t'
+
+dbparts.c(4798) 
+
+dbperson.c(1287) DB_GetPersonaInfo
+DBHandlers.c(1325) DBServiceRequestQ: request #108 MC_GET_PLAYER_INFO
+
+dbperson.c(1274) DBREQ_GetPersonaInfo
+dbperson.c(1131) DBPersona_GetPersonaInfo
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 16
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:16), msgNo = 108
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 108 MC_GET_PLAYER_INFO  seq:16
+DBHandlers.c(1239)DBServiceResultQ msg #108 MC_GET_PLAYER_INFO Seq:16
+
+dbperson.c(1031) DBRES_GetPersonaInfo
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(16)
+DBResultQ.C(2266) found it
+
+dbperson.c(1066) Got playerinfo! PersonaID: 21
+
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57200,buf:0x051DDE18,size:   456, dbperson.c(1092))
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 18
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:18), msgNo = 264
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 264 MC_GET_PLAYER_PHYSICAL  seq:18
+DBHandlers.c(1239)DBServiceResultQ msg #265 MC_PLAYER_PHYSICAL_INFO Seq:18
+
+dbperson.c(2307) DBRES_GetPersonaPhysical
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(18)
+DBResultQ.C(2266) found it
+
+dbperson.c(2363) Got player physical! PersonaID: 21
+
+dbperson.c(2366)  bodyType = 5 hair = 0xffac450d skin = 0xffffcea5 shirt = 0xffffffff pants = 0xffffd800
+
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57240,buf:0x051DD5E0,size:    32, dbperson.c(2374))
+DBMem.cpp(238)DBMem_Free(node:0x02B57240,buf:0x051DD5E0,size:    32, dbperson.c(2293))
+dbparts.c(3375)DB_GetCarPartsList(85)
+DBResultQ.C(2601) DB_Tracking
+DBHandlers.c(1325) DBServiceRequestQ: request #174 MC_GET_OWNED_PARTS
+
+dbparts.c(9519) DBParts_GetInventoryPartList
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 20
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:20), msgNo = 174
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 174 MC_GET_OWNED_PARTS  seq:20
+dbparts.c(8969) DBParts_PurgeLooseParts
+dbparts.c(9348) DBParts_GetInventoryPartListCache
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57240,buf:0x051DD5E0,size:    24, dbparts.c(9364))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B6A210,buf:0x152C0068,size: 79800, dbparts.c(9400))
+DBMem.cpp(238)DBMem_Free(node:0x02B6A210,buf:0x152C0068,size: 79800, dbparts.c(7704))
+DBMem.cpp(238)DBMem_Free(node:0x02B57240,buf:0x051DD5E0,size:    24, dbparts.c(7712))
+DBHandlers.c(1325) DBServiceRequestQ: request #163 MC_UPDATE_CACHED_VEHICLE
+
+dbperson.c(1702) DBREQ_UserVehicleChange
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 22
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 163 MC_UPDATE_CACHED_VEHICLE  seq:22
+DBHandlers.c(1325) DBServiceRequestQ: request #145 MC_GET_COMPLETE_VEHICLE_INFO
+
+dbparts.c(3179)DBParts_GetCarPartsListOnline(85)
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 23
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:23), msgNo = 145
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 145 MC_GET_COMPLETE_VEHICLE_INFO  seq:23
+DBHandlers.c(1325) DBServiceRequestQ: request #440 MC_TRACKING_MSG
+
+DBResultQ.C(2567) DBREQ_Tracking
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 24
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 440 MC_TRACKING_MSG  seq:24
+DBHandlers.c(1239)DBServiceResultQ msg #175 MC_OWNED_PARTS_LIST Seq:20
+
+dbparts.c(9598) DBRES_GetInventoryPartList
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(20)
+DBResultQ.C(2266) found it
+
+dbparts.c(9638) You've got (0) loose parts!
+dbparts.c(9348) DBParts_GetInventoryPartListCache
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57240,buf:0x051DD5E0,size:    24, dbparts.c(9364))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B6A0F0,buf:0x052A9A18,size: 79800, dbparts.c(9400))
+DBResultQ.C(2601) DB_Tracking
+DBHandlers.c(1325) DBServiceRequestQ: request #440 MC_TRACKING_MSG
+
+DBResultQ.C(2567) DBREQ_Tracking
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 25
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 440 MC_TRACKING_MSG  seq:25
+DBHandlers.c(1239)DBServiceResultQ msg #123 MC_VEHICLE_INFO Seq:23
+
+dbparts.c(3231) DBRES_GetCarPartsList
+DBResultQ.C(2247)DBOutstandingQ_FindBySeq(23)
+DBResultQ.C(2266) found it
+
+dbparts.c(6922)DBParts_DisassociateParts(85)
+
+dbparts.c(4467) DBParts_GetPartsOffline
+DBMem.cpp(295)DBMem_Alloc(node:0x02B6BE50,buf:0x152C0068,size:159600, dbparts.c(4508))
+dbparts.c(4702)DBParts_GetPartDefInfo(num:1)
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=1)
+dbparts.c(4773) [ 0] ID: 85  bpt: 104  ptid:  104  APT:101  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)''57 Ford Fairlane' viv:'         '  extra:'a/t'
+
+dbparts.c(4798) 
+
+dbparts.c(4702)DBParts_GetPartDefInfo(num:1)
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=1)
+dbparts.c(4773) [ 0] ID: 85  bpt: 104  ptid:  104  APT:101  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)''57 Ford Fairlane' viv:'         '  extra:'a/t'
+
+dbparts.c(4798) 
+
+DBPartDef.c(880) DBPartDef_SetupPartHierarchyFromAPT
+DBPartDef.c(928) APT = 101
+DBPartDef.c(973) Topnode APT = 101
+
+DBPartDef.c(993) DBPartDef_SetupDependsOnHierarchyFromAPT
+DBPartDef.c(1008) APT = 101
+DBPartDef.c(783)** 
+dbparts.c(6908) DBParts_UnhookChildren
+DBMem.cpp(238)DBMem_Free(node:0x02B6BE50,buf:0x152C0068,size:159600, dbparts.c(6949))
+dbparts.c(3317)  You've got 40 parts on your car (85)!
+dbparts.c(7100) Inserting Partd      86 w/BPT:    1001  parentID:0
+dbparts.c(7100) Inserting Partd      87 w/BPT:    2001  parentID:0
+dbparts.c(7100) Inserting Partd      88 w/BPT:    4001  parentID:0
+dbparts.c(7100) Inserting Partd      89 w/BPT:    5001  parentID:0
+dbparts.c(7100) Inserting Partd      90 w/BPT:    6001  parentID:0
+dbparts.c(7100) Inserting Partd      97 w/BPT:   15001  parentID:0
+dbparts.c(7100) Inserting Partd     101 w/BPT:   36001  parentID:0
+dbparts.c(7100) Inserting Partd     102 w/BPT:   37001  parentID:0
+dbparts.c(7100) Inserting Partd      93 w/BPT:   11004  parentID:0
+dbparts.c(7100) Inserting Partd      94 w/BPT:   11004  parentID:0
+dbparts.c(7100) Inserting Partd      95 w/BPT:   12010  parentID:0
+dbparts.c(7100) Inserting Partd      96 w/BPT:   12022  parentID:0
+dbparts.c(7100) Inserting Partd      98 w/BPT:   20104  parentID:0
+dbparts.c(7100) Inserting Partd     108 w/BPT:  130047  parentID:0
+dbparts.c(7100) Inserting Partd     109 w/BPT:  140007  parentID:0
+dbparts.c(7100) Inserting Partd      91 w/BPT:   10001  parentID:0
+dbparts.c(7100) Inserting Partd      92 w/BPT:   10004  parentID:0
+dbparts.c(7100) Inserting Partd      99 w/BPT:   22014  parentID:0
+dbparts.c(7100) Inserting Partd     100 w/BPT:   31153  parentID:0
+dbparts.c(7100) Inserting Partd     103 w/BPT:   40006  parentID:0
+dbparts.c(7100) Inserting Partd     104 w/BPT:  100006  parentID:0
+dbparts.c(7100) Inserting Partd     105 w/BPT:  100006  parentID:0
+dbparts.c(7100) Inserting Partd     106 w/BPT:  110021  parentID:0
+dbparts.c(7100) Inserting Partd     107 w/BPT:  110021  parentID:0
+dbparts.c(7100) Inserting Partd     110 w/BPT:  160026  parentID:0
+dbparts.c(7100) Inserting Partd     111 w/BPT:  180018  parentID:0
+dbparts.c(7100) Inserting Partd     112 w/BPT:  190077  parentID:0
+dbparts.c(7100) Inserting Partd     113 w/BPT:  200066  parentID:0
+dbparts.c(7100) Inserting Partd     114 w/BPT:  230001  parentID:0
+dbparts.c(7100) Inserting Partd     115 w/BPT:  240001  parentID:0
+dbparts.c(7100) Inserting Partd     116 w/BPT:  250030  parentID:0
+dbparts.c(7100) Inserting Partd     117 w/BPT:  280030  parentID:0
+dbparts.c(7100) Inserting Partd     120 w/BPT:  320098  parentID:0
+dbparts.c(7100) Inserting Partd     121 w/BPT:  330020  parentID:0
+dbparts.c(7100) Inserting Partd     122 w/BPT:  340002  parentID:0
+dbparts.c(7100) Inserting Partd     123 w/BPT: 1000001  parentID:0
+dbparts.c(7100) Inserting Partd     124 w/BPT: 1100119  parentID:0
+dbparts.c(7100) Inserting Partd     125 w/BPT: 1200048  parentID:0
+dbparts.c(7100) Inserting Partd     118 w/BPT:  290001  parentID:0
+dbparts.c(7100) Inserting Partd     119 w/BPT:  300001  parentID:0
+dbparts.c(10790)DBPart_ModelData_PUTCACHE: veh: 85 EMPTY 
+
+dbparts.c(3078)DBParts_GetCarPartsListOffline(partID:85)
+dbparts.c(4467) DBParts_GetPartsOffline
+DBMem.cpp(295)DBMem_Alloc(node:0x02B6DDA0,buf:0x152C0068,size:159600, dbparts.c(4508))
+dbparts.c(4583)  part id = 86
+dbparts.c(4583)  part id = 87
+dbparts.c(4583)  part id = 88
+dbparts.c(4583)  part id = 89
+dbparts.c(4583)  part id = 90
+dbparts.c(4583)  part id = 97
+dbparts.c(4583)  part id = 101
+dbparts.c(4583)  part id = 102
+dbparts.c(4583)  part id = 93
+dbparts.c(4583)  part id = 94
+dbparts.c(4583)  part id = 95
+dbparts.c(4583)  part id = 96
+dbparts.c(4583)  part id = 98
+dbparts.c(4583)  part id = 108
+dbparts.c(4583)  part id = 109
+dbparts.c(4583)  part id = 91
+dbparts.c(4583)  part id = 92
+dbparts.c(4583)  part id = 99
+dbparts.c(4583)  part id = 100
+dbparts.c(4583)  part id = 103
+dbparts.c(4583)  part id = 104
+dbparts.c(4583)  part id = 105
+dbparts.c(4583)  part id = 106
+dbparts.c(4583)  part id = 107
+dbparts.c(4583)  part id = 110
+dbparts.c(4583)  part id = 111
+dbparts.c(4583)  part id = 112
+dbparts.c(4583)  part id = 113
+dbparts.c(4583)  part id = 114
+dbparts.c(4583)  part id = 115
+dbparts.c(4583)  part id = 116
+dbparts.c(4583)  part id = 117
+dbparts.c(4583)  part id = 120
+dbparts.c(4583)  part id = 121
+dbparts.c(4583)  part id = 122
+dbparts.c(4583)  part id = 123
+dbparts.c(4583)  part id = 124
+dbparts.c(4583)  part id = 125
+dbparts.c(4583)  part id = 118
+dbparts.c(4583)  part id = 119
+dbparts.c(4702)DBParts_GetPartDefInfo(num:1)
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:1, getphys=1)
+dbparts.c(4773) [ 0] ID: 85  bpt: 104  ptid:  104  APT:101  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)''57 Ford Fairlane' viv:'         '  extra:'a/t'
+
+dbparts.c(4798) 
+
+dbparts.c(4702)DBParts_GetPartDefInfo(num:41)
+dbparts.c(749)DBParts_GetBrandedPartDefInfo[phys](numParts:41, getphys=1)
+dbparts.c(913)[ 1] bpt: 1001 pt: 1001 apt: 1001 viv:     SUSP 
+dbparts.c(914)EA             Generic Suspension        dbg:'Generic Chassis Suspension'
+
+dbparts.c(913)[ 2] bpt: 2001 pt: 2001 apt: 2001 viv:          
+dbparts.c(914)EA             Generic                   dbg:'Generic Chassis Body    '
+
+dbparts.c(913)[ 3] bpt: 4001 pt: 4001 apt: 4001 viv:          
+dbparts.c(914)EA             Generic Driveline         dbg:'Generic Driveline Assembly'
+
+dbparts.c(913)[ 4] bpt: 5001 pt: 5001 apt: 5001 viv:          
+dbparts.c(914)EA             Generic Brake Set         dbg:'Generic Brake Set       '
+
+dbparts.c(913)[ 5] bpt: 6001 pt: 6001 apt: 6001 viv:          
+dbparts.c(914)AC Delco       Generic Visible Parts Assembly  dbg:'Generic Visible Parts Assembly'
+
+dbparts.c(913)[ 6] bpt:15001 pt:15001 apt:15001 viv:          
+dbparts.c(914)EA             Generic Wheels            dbg:'Wheel Assembly          '
+
+dbparts.c(913)[ 7] bpt:36001 pt:36002 apt:36001 viv:          
+dbparts.c(914)EA             Generic Engine            dbg:'Engine Assembly         '
+
+dbparts.c(913)[ 8] bpt:37001 pt:37001 apt:37001 viv:          
+dbparts.c(914)EA             Generic Exh Assembly      dbg:'Generic Exh Assembly    '
+
+dbparts.c(913)[ 9] bpt:11004 pt:11004 apt:11001 viv:          
+dbparts.c(914)Pro - Formance ND (0.3)                  dbg:'ND (0.3) Shock          '
+
+dbparts.c(913)[11] bpt:12010 pt:12010 apt:12001 viv:          
+dbparts.c(914)Gifford        160 lb/in Coil            dbg:'160 lb/in coil spring   '
+
+dbparts.c(913)[12] bpt:12022 pt:12022 apt:12001 viv:          
+dbparts.c(914)Gifford        150 lb/in Leaf            dbg:'150 lb/in leaf spring   '
+
+dbparts.c(913)[13] bpt:20104 pt:20104 apt:20001 viv:   57fair 
+dbparts.c(914)Ford           Fairlane                  dbg:'1957 Ford Fairlane      '
+
+dbparts.c(913)[14] bpt:130047 pt:130048 apt:130001 viv:          
+dbparts.c(914)Ford           Ford-o-matic Auto.        dbg:'Ford-o-matic Auto (1.76/1)'
+
+dbparts.c(913)[15] bpt:140007 pt:140007 apt:140001 viv:          
+dbparts.c(914)Dana           3.50 Locking              dbg:'Rear Differential (3.50)'
+
+dbparts.c(913)[16] bpt:10001 pt:10001 apt:10001 viv:          
+dbparts.c(914)AC Delco       10 x 2 Org Disk           dbg:'10 x 2 Organic Disc Brake'
+
+dbparts.c(913)[17] bpt:10004 pt:10004 apt:10001 viv:          
+dbparts.c(914)AC Delco       9 x 2 Organic Disk        dbg:'9 x 2 Organic Disc Brake'
+
+dbparts.c(913)[18] bpt:22014 pt:22015 apt:22001 viv:          
+dbparts.c(914)Ford           64 Ford Mustang           dbg:'Mustang                 '
+
+dbparts.c(913)[19] bpt:31153 pt:31166 apt:31001 viv:          
+dbparts.c(914)EA             Hardtop                   dbg:'Hardtop                 '
+
+dbparts.c(913)[20] bpt:40006 pt:40006 apt:40001 viv: .bodymod 
+dbparts.c(914)Ford           57 Fairlane 500 Hood      dbg:'57 Fairlane             '
+
+dbparts.c(913)[21] bpt:100006 pt:100006 apt:100001 viv:     HC00 
+dbparts.c(914)Kelsey - Hayes 47 Cadillac               dbg:'HS-00                   '
+
+dbparts.c(913)[23] bpt:110021 pt:110021 apt:110001 viv: TIREBLAC 
+dbparts.c(914)Monarch        210/92/16 Bias Ply        dbg:'210/92/16 Bias Ply      '
+
+dbparts.c(913)[25] bpt:160026 pt:160027 apt:160001 viv:   ENGINE 
+dbparts.c(914)Ford           292-V8                    dbg:'Ford V8 292             '
+
+dbparts.c(913)[26] bpt:180018 pt:180011 apt:180001 viv:          
+dbparts.c(914)Ford           Stock                     dbg:'Ford Y Stock Crankshaft '
+
+dbparts.c(913)[27] bpt:190077 pt:190076 apt:190001 viv:          
+dbparts.c(914)Ford           Stock                     dbg:'Ford Y Stock Rods       '
+
+dbparts.c(913)[28] bpt:200066 pt:200065 apt:200001 viv:          
+dbparts.c(914)Ford           Stock                     dbg:'Ford Y Stock CA Piston  '
+
+dbparts.c(913)[29] bpt:230001 pt:230001 apt:230001 viv:          
+dbparts.c(914)US Radiator    Stock                     dbg:'Normal Duty Cooling System'
+
+dbparts.c(913)[30] bpt:240001 pt:240001 apt:240001 viv:          
+dbparts.c(914)Marinn         Stock                     dbg:'Marinn Normal Duty Electrical System'
+
+dbparts.c(913)[31] bpt:250030 pt:250023 apt:250001 viv:          
+dbparts.c(914)Ford           Y Block Stock             dbg:'Ford Y Block Stock Lubrication System'
+
+dbparts.c(913)[32] bpt:280030 pt:280030 apt:280001 viv:          
+dbparts.c(914)Ford           Stock 312                 dbg:'Ford Y 1957 Manifold    '
+
+dbparts.c(913)[33] bpt:320098 pt:320097 apt:320001 viv: MANIDUAL 
+dbparts.c(914)Ford           Stock Economy Dual Plane  dbg:'Ford Y Stock IM         '
+
+dbparts.c(913)[34] bpt:330020 pt:330021 apt:330001 viv: CARBSING 
+dbparts.c(914)Carter         AFB 4V (400 cfm)          dbg:'Carter AFB 4V (400 cfm) '
+
+dbparts.c(913)[35] bpt:340002 pt:340002 apt:340001 viv: airsnork 
+dbparts.c(914)AC Delco       Stock                     dbg:'Normal Duty Air Cleaner '
+
+dbparts.c(913)[36] bpt:1000001 pt:1000001 apt:1000001 viv:          
+dbparts.c(914)Ford           Stock (9.0)               dbg:'Ford Y (9.0) 1.925i/1.51e Stock CH'
+
+dbparts.c(913)[37] bpt:1100119 pt:1100121 apt:1100001 viv:          
+dbparts.c(914)Ford           Stock                     dbg:'Ford Y Stock Camshaft   '
+
+dbparts.c(913)[38] bpt:1200048 pt:1200048 apt:1200001 viv:          
+dbparts.c(914)Ford           Stock Solid               dbg:'Ford Y Stock Solid Valvetrain'
+
+dbparts.c(913)[39] bpt:290001 pt:290001 apt:290001 viv:          
+dbparts.c(914)Manley         1.625" Treated Iron Single  dbg:'1.625" Treated Iron Single Exhaust Pipe'
+
+dbparts.c(913)[40] bpt:300001 pt:300001 apt:300001 viv:          
+dbparts.c(914)Coatili        Stock                     dbg:'Midas Stock Muffler     '
+
+dbparts.c(4773) [ 0] ID: 85  bpt: 104  ptid:  104  APT:101  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)''57 Ford Fairlane' viv:'         '  extra:'a/t'
+
+dbparts.c(4773) [ 1] ID: 86  bpt:1001  ptid: 1001  APT:1001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic Suspension' viv:'     SUSP'  extra:'Generic Suspension'
+
+dbparts.c(4773) [ 2] ID: 87  bpt:2001  ptid: 2001  APT:2001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic' viv:'         '  extra:'Generic Body'
+
+dbparts.c(4773) [ 3] ID: 88  bpt:4001  ptid: 4001  APT:4001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic Driveline' viv:'         '  extra:'Generic Driveline'
+
+dbparts.c(4773) [ 4] ID: 89  bpt:5001  ptid: 5001  APT:5001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic Brake Set' viv:'         '  extra:'Generic Brake Set'
+
+dbparts.c(4773) [ 5] ID: 90  bpt:6001  ptid: 6001  APT:6001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic Visible Parts Assembly' viv:'         '  extra:''
+
+dbparts.c(4773) [ 6] ID: 97  bpt:15001  ptid:15001  APT:15001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic Wheels' viv:'         '  extra:'Generic Wheels'
+
+dbparts.c(4773) [ 7] ID:101  bpt:36001  ptid:36002  APT:36001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic Engine' viv:'         '  extra:'Generic Engine'
+
+dbparts.c(4773) [ 8] ID:102  bpt:37001  ptid:37001  APT:37001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Generic Exh Assembly' viv:'         '  extra:''
+
+dbparts.c(4773) [ 9] ID: 93  bpt:11004  ptid:11004  APT:11001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Pro - Formance ND (0.3)' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 93, found 0 s/b 151
+
+dbparts.c(4773) [10] ID: 94  bpt:11004  ptid:11004  APT:11001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Pro - Formance ND (0.3)' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 94, found 0 s/b 151
+
+dbparts.c(4773) [11] ID: 95  bpt:12010  ptid:12010  APT:12001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Gifford 160 lb/in Coil' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 95, found 0 s/b 666
+
+dbparts.c(4773) [12] ID: 96  bpt:12022  ptid:12022  APT:12001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Gifford 150 lb/in Leaf' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 96, found 0 s/b 378
+
+dbparts.c(4773) [13] ID: 98  bpt:20104  ptid:20104  APT:20001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Fairlane' viv:'   57fair'  extra:'a/t'
+
+dbparts.c(4779) BodyPart scrap value: 300001, $3607 + 0.000000 * 3.600000
+
+dbparts.c(4773) [14] ID:108  bpt:130047  ptid:130048  APT:130001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Ford-o-matic Auto.' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 108, found 0 s/b 3719
+
+dbparts.c(4773) [15] ID:109  bpt:140007  ptid:140007  APT:140001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Dana 3.50 Locking' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 109, found 0 s/b 3280
+
+dbparts.c(4773) [16] ID: 91  bpt:10001  ptid:10001  APT:10001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'AC Delco 10 x 2 Org Disk' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 91, found 0 s/b 497
+
+dbparts.c(4773) [17] ID: 92  bpt:10004  ptid:10004  APT:10001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'AC Delco 9 x 2 Organic Disk' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 92, found 0 s/b 385
+
+dbparts.c(4773) [18] ID: 99  bpt:22014  ptid:22015  APT:22001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford 64 Ford Mustang' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 99, found 0 s/b 90
+
+dbparts.c(4773) [19] ID:100  bpt:31153  ptid:31166  APT:31001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'EA Hardtop' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 100, found 0 s/b 180
+
+dbparts.c(4773) [20] ID:103  bpt:40006  ptid:40006  APT:40001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford 57 Fairlane 500 Hood' viv:' .bodymod'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 103, found 0 s/b 108
+
+dbparts.c(4773) [21] ID:104  bpt:100006  ptid:100006  APT:100001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Kelsey - Hayes 47 Cadillac' viv:'     HC00'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 104, found 0 s/b 130
+
+dbparts.c(4773) [22] ID:105  bpt:100006  ptid:100006  APT:100001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Kelsey - Hayes 47 Cadillac' viv:'     HC00'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 105, found 0 s/b 130
+
+dbparts.c(4773) [23] ID:106  bpt:110021  ptid:110021  APT:110001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Monarch 210/92/16 Bias Ply' viv:' TIREBLAC'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 106, found 0 s/b 572
+
+dbparts.c(4773) [24] ID:107  bpt:110021  ptid:110021  APT:110001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Monarch 210/92/16 Bias Ply' viv:' TIREBLAC'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 107, found 0 s/b 572
+
+dbparts.c(4773) [25] ID:110  bpt:160026  ptid:160027  APT:160001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford 292-V8' viv:'   ENGINE'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 110, found 0 s/b 4201
+
+dbparts.c(4773) [26] ID:111  bpt:180018  ptid:180011  APT:180001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 111, found 0 s/b 461
+
+dbparts.c(4773) [27] ID:112  bpt:190077  ptid:190076  APT:190001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 112, found 0 s/b 450
+
+dbparts.c(4773) [28] ID:113  bpt:200066  ptid:200065  APT:200001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 113, found 0 s/b 180
+
+dbparts.c(4773) [29] ID:114  bpt:230001  ptid:230001  APT:230001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'US Radiator Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 114, found 0 s/b 871
+
+dbparts.c(4773) [30] ID:115  bpt:240001  ptid:240001  APT:240001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Marinn Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 115, found 0 s/b 626
+
+dbparts.c(4773) [31] ID:116  bpt:250030  ptid:250023  APT:250001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Y Block Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 116, found 0 s/b 644
+
+dbparts.c(4773) [32] ID:117  bpt:280030  ptid:280030  APT:280001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock 312' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 117, found 0 s/b 385
+
+dbparts.c(4773) [33] ID:120  bpt:320098  ptid:320097  APT:320001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock Economy Dual Plane' viv:' MANIDUAL'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 120, found 0 s/b 688
+
+dbparts.c(4773) [34] ID:121  bpt:330020  ptid:330021  APT:330001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Carter AFB 4V (400 cfm)' viv:' CARBSING'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 121, found 0 s/b 900
+
+dbparts.c(4773) [35] ID:122  bpt:340002  ptid:340002  APT:340001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'AC Delco Stock' viv:' airsnork'  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 122, found 0 s/b 202
+
+dbparts.c(4773) [36] ID:123  bpt:1000001  ptid:1000001  APT:1000001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock (9.0)' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 123, found 0 s/b 1984
+
+dbparts.c(4773) [37] ID:124  bpt:1100119  ptid:1100121  APT:1100001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 124, found 0 s/b 1426
+
+dbparts.c(4773) [38] ID:125  bpt:1200048  ptid:1200048  APT:1200001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Ford Stock Solid' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 125, found 0 s/b 1822
+
+dbparts.c(4773) [39] ID:118  bpt:290001  ptid:290001  APT:290001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Manley 1.625" Treated Iron Single' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 118, found 0 s/b 158
+
+dbparts.c(4773) [40] ID:119  bpt:300001  ptid:300001  APT:300001  dam:  0  rep:   0  scrp:   0
+dbparts.c(4774)'Coatili Stock' viv:'         '  extra:''
+
+dbparts.c(4785) local discrepancy in scrapValue for part 119, found 0 s/b 176
+
+dbparts.c(4798) 
+
+dbparts.c(4020)  missing part APT=  13001  AP:F   
+dbparts.c(4020)  missing part APT=  13001  AP:R   
+dbparts.c(4020)  missing part APT=  14001  AP:F   
+dbparts.c(4020)  missing part APT=  14001  AP:R   
+dbparts.c(4020)  missing part APT=  29001  AP:    
+dbparts.c(4020)  missing part APT=  30001  AP:    
+dbparts.c(4020)  missing part APT= 150001  AP:    
+dbparts.c(4020)  missing part APT=  16001  AP:    
+dbparts.c(4020)  missing part APT=  17001  AP:    
+dbparts.c(4020)  missing part APT=  18001  AP:    
+dbparts.c(4020)  missing part APT=  21001  AP:    
+dbparts.c(4020)  missing part APT=  23001  AP:    
+dbparts.c(4040) not adding empty node apt 23001 to non-32 coupe!
+
+dbparts.c(4020)  missing part APT=  26001  AP:    
+dbparts.c(4020)  missing part APT=  32001  AP:    
+dbparts.c(4020)  missing part APT=  34001  AP:    
+dbparts.c(4040) not adding empty node apt 34001 to non-32 coupe!
+
+dbparts.c(4020)  missing part APT=  35001  AP:    
+dbparts.c(4040) not adding empty node apt 35001 to non-32 coupe!
+
+dbparts.c(4020)  missing part APT= 120001  AP:    
+dbparts.c(4020)  missing part APT= 310001  AP:    
+dbparts.c(4020)  missing part APT= 340333  AP:    
+dbparts.c(4020)  missing part APT= 340666  AP:    
+dbparts.c(4020)  missing part APT= 350001  AP:    
+dbparts.c(4020)  missing part APT= 350666  AP:    
+dbparts.c(4020)  missing part APT= 360001  AP:    
+dbparts.c(4400) DBParts_SortInstanceNodes
+DBMem.cpp(295)DBMem_Alloc(node:0x02B6D560,buf:0x152E7010,size: 90972, dbparts.c(4406))
+DBMem.cpp(238)DBMem_Free(node:0x02B6DDA0,buf:0x152C0068,size:159600, dbparts.c(4454))
+DBPartDef.c(880) DBPartDef_SetupPartHierarchyFromAPT
+DBPartDef.c(928) APT = 101
+DBPartDef.c(928) APT = 1001
+DBPartDef.c(928) APT = 11001
+DBPartDef.c(928) APT = 11001
+DBPartDef.c(928) APT = 12001
+DBPartDef.c(928) APT = 12001
+DBPartDef.c(928) APT = 13001
+DBPartDef.c(928) APT = 13001
+DBPartDef.c(928) APT = 14001
+DBPartDef.c(928) APT = 14001
+DBPartDef.c(928) APT = 2001
+DBPartDef.c(928) APT = 20001
+DBPartDef.c(928) APT = 29001
+DBPartDef.c(928) APT = 30001
+DBPartDef.c(928) APT = 4001
+DBPartDef.c(928) APT = 130001
+DBPartDef.c(928) APT = 140001
+DBPartDef.c(928) APT = 150001
+DBPartDef.c(928) APT = 5001
+DBPartDef.c(928) APT = 10001
+DBPartDef.c(928) APT = 10001
+DBPartDef.c(928) APT = 6001
+DBPartDef.c(928) APT = 16001
+DBPartDef.c(928) APT = 17001
+DBPartDef.c(928) APT = 18001
+DBPartDef.c(928) APT = 21001
+DBPartDef.c(928) APT = 22001
+DBPartDef.c(928) APT = 26001
+DBPartDef.c(928) APT = 31001
+DBPartDef.c(928) APT = 32001
+DBPartDef.c(928) APT = 40001
+DBPartDef.c(928) APT = 120001
+DBPartDef.c(928) APT = 310001
+DBPartDef.c(928) APT = 15001
+DBPartDef.c(928) APT = 100001
+DBPartDef.c(928) APT = 100001
+DBPartDef.c(928) APT = 110001
+DBPartDef.c(928) APT = 110001
+DBPartDef.c(928) APT = 36001
+DBPartDef.c(928) APT = 160001
+DBPartDef.c(928) APT = 180001
+DBPartDef.c(928) APT = 190001
+DBPartDef.c(928) APT = 200001
+DBPartDef.c(928) APT = 230001
+DBPartDef.c(928) APT = 240001
+DBPartDef.c(928) APT = 250001
+DBPartDef.c(928) APT = 280001
+DBPartDef.c(928) APT = 320001
+DBPartDef.c(928) APT = 330001
+DBPartDef.c(928) APT = 340001
+DBPartDef.c(928) APT = 350666
+DBPartDef.c(928) APT = 1000001
+DBPartDef.c(928) APT = 1100001
+DBPartDef.c(928) APT = 1200001
+DBPartDef.c(928) APT = 37001
+DBPartDef.c(928) APT = 290001
+DBPartDef.c(928) APT = 300001
+DBPartDef.c(973) Topnode APT = 101
+
+DBPartDef.c(993) DBPartDef_SetupDependsOnHierarchyFromAPT
+DBPartDef.c(1008) APT = 101
+DBPartDef.c(1008) APT = 1001
+DBPartDef.c(1008) APT = 11001
+DBPartDef.c(1008) APT = 11001
+DBPartDef.c(1008) APT = 12001
+DBPartDef.c(1008) APT = 12001
+DBPartDef.c(1008) APT = 13001
+DBPartDef.c(1008) APT = 13001
+DBPartDef.c(1008) APT = 14001
+DBPartDef.c(1008) APT = 14001
+DBPartDef.c(1008) APT = 2001
+DBPartDef.c(1008) APT = 20001
+DBPartDef.c(1008) APT = 29001
+DBPartDef.c(1008) APT = 30001
+DBPartDef.c(1008) APT = 4001
+DBPartDef.c(1008) APT = 130001
+DBPartDef.c(1008) APT = 140001
+DBPartDef.c(1008) APT = 150001
+DBPartDef.c(1008) APT = 5001
+DBPartDef.c(1008) APT = 10001
+DBPartDef.c(1008) APT = 10001
+DBPartDef.c(1008) APT = 6001
+DBPartDef.c(1008) APT = 16001
+DBPartDef.c(1008) APT = 17001
+DBPartDef.c(1008) APT = 18001
+DBPartDef.c(1008) APT = 21001
+DBPartDef.c(1008) APT = 22001
+DBPartDef.c(1008) APT = 26001
+DBPartDef.c(1008) APT = 31001
+DBPartDef.c(1008) APT = 32001
+DBPartDef.c(1008) APT = 40001
+DBPartDef.c(1008) APT = 120001
+DBPartDef.c(1008) APT = 310001
+DBPartDef.c(1008) APT = 15001
+DBPartDef.c(1008) APT = 100001
+DBPartDef.c(1008) APT = 100001
+DBPartDef.c(1008) APT = 110001
+DBPartDef.c(1008) APT = 110001
+DBPartDef.c(1008) APT = 36001
+DBPartDef.c(1008) APT = 160001
+DBPartDef.c(1008) APT = 180001
+DBPartDef.c(1008) APT = 190001
+DBPartDef.c(1008) APT = 200001
+DBPartDef.c(1008) APT = 230001
+DBPartDef.c(1008) APT = 240001
+DBPartDef.c(1008) APT = 250001
+DBPartDef.c(1008) APT = 280001
+DBPartDef.c(1008) APT = 320001
+DBPartDef.c(1008) APT = 330001
+DBPartDef.c(1008) APT = 340001
+DBPartDef.c(1008) APT = 350666
+DBPartDef.c(1008) APT = 1000001
+DBPartDef.c(1008) APT = 1100001
+DBPartDef.c(1008) APT = 1200001
+DBPartDef.c(1008) APT = 37001
+DBPartDef.c(1008) APT = 290001
+DBPartDef.c(1008) APT = 300001
+DBPartDef.c(783)** 
+DBPartDef.c(767)** 86  <-- [93] $151  becomes $151
+DBPartDef.c(767)** 86  <-- [94] $151  becomes $302
+DBPartDef.c(767)** 86  <-- [95] $666  becomes $968
+DBPartDef.c(767)** 86  <-- [96] $378  becomes $1346
+DBPartDef.c(767)** 86  <-- [0] $0  becomes $1346
+DBPartDef.c(767)** 86  <-- [0] $0  becomes $1346
+DBPartDef.c(767)** 86  <-- [0] $0  becomes $1346
+DBPartDef.c(767)** 86  <-- [0] $0  becomes $1346
+DBPartDef.c(767)** 85  <-- [86] $1346  becomes $1346
+DBPartDef.c(767)** 87  <-- [98] $3607  becomes $3607
+DBPartDef.c(767)** 87  <-- [0] $0  becomes $3607
+DBPartDef.c(767)** 87  <-- [0] $0  becomes $3607
+DBPartDef.c(767)** 85  <-- [87] $3607  becomes $4953
+DBPartDef.c(767)** 88  <-- [108] $3719  becomes $3719
+DBPartDef.c(767)** 88  <-- [109] $3280  becomes $6999
+DBPartDef.c(767)** 88  <-- [0] $0  becomes $6999
+DBPartDef.c(767)** 85  <-- [88] $6999  becomes $11952
+DBPartDef.c(767)** 89  <-- [91] $497  becomes $497
+DBPartDef.c(767)** 89  <-- [92] $385  becomes $882
+DBPartDef.c(767)** 85  <-- [89] $882  becomes $12834
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $0
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $0
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $0
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $0
+DBPartDef.c(767)** 90  <-- [99] $90  becomes $90
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $90
+DBPartDef.c(767)** 90  <-- [100] $180  becomes $270
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $270
+DBPartDef.c(767)** 90  <-- [103] $108  becomes $378
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $378
+DBPartDef.c(767)** 90  <-- [0] $0  becomes $378
+DBPartDef.c(767)** 85  <-- [90] $378  becomes $13212
+DBPartDef.c(767)** 97  <-- [104] $130  becomes $130
+DBPartDef.c(767)** 97  <-- [105] $130  becomes $260
+DBPartDef.c(767)** 97  <-- [106] $572  becomes $832
+DBPartDef.c(767)** 97  <-- [107] $572  becomes $1404
+DBPartDef.c(767)** 85  <-- [97] $1404  becomes $14616
+DBPartDef.c(767)** 101  <-- [110] $4201  becomes $4201
+DBPartDef.c(767)** 101  <-- [111] $461  becomes $4662
+DBPartDef.c(767)** 101  <-- [112] $450  becomes $5112
+DBPartDef.c(767)** 101  <-- [113] $180  becomes $5292
+DBPartDef.c(767)** 101  <-- [114] $871  becomes $6163
+DBPartDef.c(767)** 101  <-- [115] $626  becomes $6789
+DBPartDef.c(767)** 101  <-- [116] $644  becomes $7433
+DBPartDef.c(767)** 101  <-- [117] $385  becomes $7818
+DBPartDef.c(767)** 101  <-- [120] $688  becomes $8506
+DBPartDef.c(767)** 101  <-- [121] $900  becomes $9406
+DBPartDef.c(767)** 101  <-- [122] $202  becomes $9608
+DBPartDef.c(767)** 101  <-- [0] $0  becomes $9608
+DBPartDef.c(767)** 101  <-- [123] $1984  becomes $11592
+DBPartDef.c(767)** 101  <-- [124] $1426  becomes $13018
+DBPartDef.c(767)** 101  <-- [125] $1822  becomes $14840
+DBPartDef.c(767)** 85  <-- [101] $14840  becomes $29456
+DBPartDef.c(767)** 102  <-- [118] $158  becomes $158
+DBPartDef.c(767)** 102  <-- [119] $176  becomes $334
+DBPartDef.c(767)** 85  <-- [102] $334  becomes $29790
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57280,buf:0x051DCDA8,size:    16, dbparts.c(3095))
+DBMem.cpp(295)DBMem_Alloc(node:0x02B6DDA0,buf:0x0523F1F0,size:  2996, dbparts.c(3109))
+dbparts.c(8261) DBParts_GetSkinDefInfo
+  ID: 40 bpt:  104  creator: 10, type:  1 '        tinted' viv': 57faitin'
+dbparts.c(7952)DBParts_BPT2CarEra(104)
+dbparts.c(8165) DBParts_FillVehicleInfo
+dbperson.c(2823) DB_GetPersonaRaceHistory
+DBHandlers.c(1325) DBServiceRequestQ: request #361 MC_GET_PLAYER_RACING_HISTORY
+
+dbperson.c(2813) DBREQ_GetPersonaRaceHistory
+dbperson.c(2750) DBPersona_GetPersonaRaceHistory
+DBMem.cpp(295)DBMem_Alloc(node:0x02B572C0,buf:0x051DC570,size:    20, dbperson.c(2770))
+DBResultQ.C(2040)DBResultQ_AllocMsg() seq: 27
+DBResultQ.C(2226) DBOutstandingQ_QUpItem(seq:27), msgNo = 361
+DBResultQ.C(2004)DBResultQ_Send: msgNo = 361 MC_GET_PLAYER_RACING_HISTORY  seq:27
+dbparts.c(8917)DB_GetSkinInfo(40)
+DBHandlers.c(1325) DBServiceRequestQ: request #730 DBT_GET_SKIN_INFO
+
+dbparts.c(8867) DBParts_GetSkinInfo
+DBMem.cpp(295)DBMem_Alloc(node:0x02B57300,buf:0x051DBD38,size:   420, dbparts.c(8872))
+dbparts.c(8261) DBParts_GetSkinDefInfo
+DBMem.cpp(238)DBMem_Free(node:0x02B57300,buf:0x051DBD38,size:   420, dbparts.c(8952))
+DBHandlers.c(1325) DBServiceRequestQ: request #215 MC_GET_BODY_DAMAGE_INFO
+
+dbparts.c(10884)DBPart_ModelData_GETCACHE: veh: 85 EMPTY 
+
+DBPhysics.c(774) Dbcode_DeinitDebugConnectionsToRemoteDB
+dbcode.c(1011) About to Dbcode_ReleaseDao
