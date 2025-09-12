@@ -5,7 +5,7 @@
 
 export function deserializeString(buffer: Buffer): string {
 	try {
-		const stringLength = buffer.readInt32BE(0);
+		const stringLength = buffer.readUInt32BE(0);
 		const stringBuffer = buffer.subarray(4, 4 + (stringLength - 1));
 
 		const string = stringBuffer.toString("utf8").trim();

@@ -40,10 +40,10 @@ export class ServerMessage extends SerializedBuffer {
 	}
 	override serialize() {
 		const buffer = Buffer.alloc(11 + this._data.length);
-		buffer.writeInt16LE(this._data.length + 9, 0);
+		buffer.writeUInt16LE(this._data.length + 9, 0);
 		buffer.write(this._signature, 2);
-		buffer.writeInt32LE(this._sequence, 6);
-		buffer.writeInt8(this._flags, 10);
+		buffer.writeUInt32LE(this._sequence, 6);
+		buffer.writeUInt8(this._flags, 10);
 		this._data.copy(buffer, 11);
 		return buffer;
 	}
@@ -56,8 +56,8 @@ export class ServerMessage extends SerializedBuffer {
 			throw Error(`Expected buffer of length ${length}, got ${buffer.length}`);
 		}
 		this._signature = buffer.toString("ascii", 2, 6);
-		this._sequence = buffer.readInt32LE(6);
-		this._flags = buffer.readInt8(10);
+		this._sequence = buffer.readUInt32LE(6);
+		this._flags = buffer.readUInt8(10);
 		this._data = buffer.subarray(11, 11 + length);
 		return this as unknown as T;
 	}

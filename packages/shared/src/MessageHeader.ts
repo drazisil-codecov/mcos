@@ -40,15 +40,15 @@ export class MessageHeader extends SerializedBufferOld {
 	 * @returns {MessageHeader}
 	 */
 	override deserialize(buffer: Buffer): MessageHeader {
-		this._messageId = buffer.readInt16BE(0);
-		this._messageLength = buffer.readInt16BE(2);
+		this._messageId = buffer.readUInt16BE(0);
+		this._messageLength = buffer.readUInt16BE(2);
 		return this;
 	}
 
 	override serialize() {
 		const buffer = Buffer.alloc(4);
-		buffer.writeInt16BE(this._messageId, 0);
-		buffer.writeInt16BE(this._messageLength, 2);
+		buffer.writeUInt16BE(this._messageId, 0);
+		buffer.writeUInt16BE(this._messageLength, 2);
 		return buffer;
 	}
 

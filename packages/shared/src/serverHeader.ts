@@ -41,10 +41,10 @@ export class serverHeader extends SerializableMixin(AbstractSerializable) {
 		}
 
 		try {
-			this.length = buffer.readInt16LE(0);
+			this.length = buffer.readUInt16LE(0);
 			this.mcoSig = buffer.toString("utf8", 2, 6);
-			this.sequence = buffer.readInt32LE(6);
-			this.flags = buffer.readInt8(10);
+			this.sequence = buffer.readUInt32LE(6);
+			this.flags = buffer.readUInt8(10);
 		} catch (error) {
 			const err = Error("Error deserializing buffer");
 			err.cause = error;
@@ -55,10 +55,10 @@ export class serverHeader extends SerializableMixin(AbstractSerializable) {
 
 	override _doSerialize() {
 		const buffer = Buffer.alloc(this._size);
-		buffer.writeInt16LE(this.length, 0);
+		buffer.writeUInt16LE(this.length, 0);
 		buffer.write(this.mcoSig, 2, 6, "utf8");
-		buffer.writeInt32LE(this.sequence, 6);
-		buffer.writeInt8(this.flags, 10);
+		buffer.writeUInt32LE(this.sequence, 6);
+		buffer.writeUInt8(this.flags, 10);
 		return buffer;
 	}
 

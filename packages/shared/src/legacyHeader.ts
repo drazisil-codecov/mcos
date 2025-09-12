@@ -35,8 +35,8 @@ export class legacyHeader extends SerializableMixin(AbstractSerializable) {
 		}
 	
 		try {
-			this.id = buffer.readInt16BE(0);
-			this.length = buffer.readInt16BE(2);
+			this.id = buffer.readUInt16BE(0);
+			this.length = buffer.readUInt16BE(2);
 		} catch (error) {
 			const err = Error("Error deserializing buffer");
 			err.cause = error;
@@ -47,8 +47,8 @@ export class legacyHeader extends SerializableMixin(AbstractSerializable) {
 
 	serialize() {
 		const buffer = Buffer.alloc(this._size);
-		buffer.writeInt16BE(this.id, 0);
-		buffer.writeInt16BE(this.length, 2);
+		buffer.writeUInt16BE(this.id, 0);
+		buffer.writeUInt16BE(this.length, 2);
 		return buffer;
 	}
 

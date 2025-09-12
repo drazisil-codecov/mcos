@@ -25,7 +25,7 @@ export class PartsAssemblyMessage extends SerializedBufferOld {
 		offset += 2; // offset is 2
 		buffer.writeUInt32LE(this._ownerId, offset);
 		offset += 4; // offset is 6
-		buffer.writeInt8(this._numberOfParts, offset);
+		buffer.writeUInt8(this._numberOfParts, offset);
 		offset += 1; // offset is 7
 		for (const part of this._partList) {
 			const partBuffer = part.serialize();

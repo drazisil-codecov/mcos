@@ -31,7 +31,7 @@ export class GenericRequestMessage extends MessageNode {
 	 */
 	override deserialize(buffer: Buffer) {
 		try {
-			this.msgNo = buffer.readInt16LE(0);
+			this.msgNo = buffer.readUInt16LE(0);
 		} catch (error) {
 			if (error instanceof RangeError) {
 				// This is likeley not an MCOTS packet, ignore
@@ -55,7 +55,7 @@ export class GenericRequestMessage extends MessageNode {
 	 */
 	override serialize(): Buffer {
 		const packet = Buffer.alloc(16);
-		packet.writeInt16LE(this.msgNo, 0);
+		packet.writeUInt16LE(this.msgNo, 0);
 		this.data.copy(packet, 2);
 		this.data2.copy(packet, 6);
 		return packet;

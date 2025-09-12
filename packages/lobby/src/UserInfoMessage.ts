@@ -141,7 +141,7 @@ export class UserInfo {
 
 	deserialize(buffer: Buffer) {
 		let offset = 0;
-		this._userId = buffer.readInt32BE(offset);
+		this._userId = buffer.readUInt32BE(offset);
 		offset += 4;
 		this._userName = deserializeString(buffer.subarray(offset));
 		offset += 4 + this._userName.length;
@@ -152,7 +152,7 @@ export class UserInfo {
 	serialize() {
 		const buffer = Buffer.alloc(this.size());
 		let offset = 0;
-		buffer.writeInt32BE(this._userId, offset);
+		buffer.writeUInt32BE(this._userId, offset);
 		offset += 4;
 		offset = serializeString(this._userName, buffer, offset);
 
@@ -191,7 +191,7 @@ export class UserInfoMessage extends LegacyMessage {
 		try {
 			this._header.deserialize(buffer);
 			let offset = this._header._size;
-			this._userId = buffer.readInt32BE(offset);
+			this._userId = buffer.readUInt32BE(offset);
 			offset += 4;
 			this._userName = deserializeString(buffer.subarray(offset));
 			offset += 4 + this._userName.length + 1;
@@ -217,7 +217,7 @@ export class UserInfoMessage extends LegacyMessage {
 			const buffer = Buffer.alloc(leangth8);
 			this._header.serialize().copy(buffer);
 			let offset = this._header._size;
-			buffer.writeInt32BE(this._userId, offset);
+			buffer.writeUInt32BE(this._userId, offset);
 			offset += 4;
 
 			const username = new BytableContainer();

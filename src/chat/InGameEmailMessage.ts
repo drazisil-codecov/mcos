@@ -80,7 +80,7 @@ export class InGameEmailMessage extends ChatMessage {
 		buffer.writeUInt16BE(this.messageId, 0);
 		buffer.writeUInt16BE(this.messageLength, 2);
 
-		buffer.writeInt32BE(this.mailId, 4);
+		buffer.writeUInt32BE(this.mailId, 4);
 		buffer.writeInt32BE(this.senderId, 8);
 
 		let offset = writeZeroTerminatedString(buffer, 12, this.senderName);

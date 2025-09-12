@@ -56,7 +56,7 @@ export class NPSUserStatus extends LegacyMessage {
 		this.sessionKey = "";
 
 		// Save the NPS opCode
-		this.opCode = packet.readInt16BE(0);
+		this.opCode = packet.readUInt16BE(0);
 
 		// Save the contextId
 		this.contextId = packet.subarray(14, 48).toString();
@@ -81,7 +81,7 @@ export class NPSUserStatus extends LegacyMessage {
 	extractSessionKeyFromPacket(rawPacket: Buffer): void {
 		this.log.debug("Extracting key");
 
-		const keyLength = rawPacket.readInt16LE(SESSION_KEY_START);
+		const keyLength = rawPacket.readUInt16LE(SESSION_KEY_START);
 
 		// Extract the session key which is 128 acsii characters (256 bytes)
 		const sessionKeyAsAscii = rawPacket.subarray(SESSION_KEY_START, SESSION_KEY_START + keyLength).toString("utf8");
@@ -157,7 +157,7 @@ export class NPSUserStatus extends LegacyMessage {
  */
 export function parseNPSSessionKey(buffer: Buffer): NPSSessionKey {
 try {
-		const sessionKeyLength = buffer.readInt16BE(0);
+		const sessionKeyLength = buffer.readUInt16BE(0);
 		const sessionKey = buffer.subarray(2, sessionKeyLength + 2).toString("hex");
 		const expires = buffer.readInt32BE(sessionKeyLength + 2);
 		return { sessionKeyLength, sessionKey, expires };

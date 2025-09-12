@@ -51,7 +51,7 @@ export class OwnedVehiclesMessage extends SerializedBufferOld {
 		let offset = 0; // offset is 0
 		buffer.writeUInt16LE(this._msgNo, offset);
 		offset += 2; // offset is 2
-		buffer.writeInt8(this._numberOfVehicles, offset);
+		buffer.writeUInt8(this._numberOfVehicles, offset);
 		offset += 1; // offset is 3
 		for (const vehicle of this._vehicleList) {
 			const vehicleBuffer = vehicle.serialize();

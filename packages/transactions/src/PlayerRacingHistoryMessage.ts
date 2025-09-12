@@ -28,13 +28,13 @@ export class PlayerRacingHistoryMessage extends SerializedBufferOld {
 
 	override deserialize(buffer: Buffer): PlayerRacingHistoryMessage {
 		let offset = 0;
-		this._msgId = buffer.readInt16LE(offset);
+		this._msgId = buffer.readUInt16LE(offset);
 		offset += 2;
-		this._userId = buffer.readInt32LE(offset);
+		this._userId = buffer.readUInt32LE(offset);
 		offset += 4;
-		const numRaces = buffer.readInt16LE(offset);
+		const numRaces = buffer.readUInt16LE(offset);
 		offset += 2;
-		this._expectMore = buffer.readInt8(offset) === 1;
+		this._expectMore = buffer.readUInt8(offset) === 1;
 		offset += 1;
 		for (let i = 0; i < this._numRaces; i++) {
 			const record = new RacingHistoryRecordEntry();
@@ -54,11 +54,11 @@ export class PlayerRacingHistoryMessage extends SerializedBufferOld {
 	override serialize(): Buffer {
 		const buffer = Buffer.alloc(this.size());
 		let offset = 0;
-		buffer.writeInt16LE(this._msgId, offset);
+		buffer.writeUInt16LE(this._msgId, offset);
 		offset += 2;
-		buffer.writeInt32LE(this._userId, offset);
+		buffer.writeUInt32LE(this._userId, offset);
 		offset += 4;
-		buffer.writeInt16LE(this._numRaces, offset);
+		buffer.writeUInt16LE(this._numRaces, offset);
 		offset += 2;
 		buffer.writeInt8(this._expectMore ? 1 : 0, offset);
 		offset += 1;
@@ -117,19 +117,19 @@ export class RacingHistoryRecordEntry extends SerializedBufferOld {
 		let offset = 0;
 		buffer.writeInt32LE(this.raceType, offset);
 		offset += 4;
-		buffer.writeInt32LE(this.numberOfRacesEntered, offset);
+		buffer.writeUInt32LE(this.numberOfRacesEntered, offset);
 		offset += 4;
-		buffer.writeInt32LE(this.numberOfRacesFinished, offset);
+		buffer.writeUInt32LE(this.numberOfRacesFinished, offset);
 		offset += 4;
-		buffer.writeInt32LE(this.numberOfRacesWon, offset);
+		buffer.writeUInt32LE(this.numberOfRacesWon, offset);
 		offset += 4;
-		buffer.writeInt32LE(this.numberOfCarsWon, offset);
+		buffer.writeUInt32LE(this.numberOfCarsWon, offset);
 		offset += 4;
-		buffer.writeInt32LE(this.numberOfCarsLost, offset);
+		buffer.writeUInt32LE(this.numberOfCarsLost, offset);
 		offset += 4;
-		buffer.writeInt32LE(this.numberOfChampionshipsWon, offset);
+		buffer.writeUInt32LE(this.numberOfChampionshipsWon, offset);
 		offset += 4;
-		buffer.writeInt32LE(this.cashWon, offset);
+		buffer.writeUInt32LE(this.cashWon, offset);
 		// total: 8 * 4 = 32 bytes
 
 		return buffer;
@@ -137,21 +137,21 @@ export class RacingHistoryRecordEntry extends SerializedBufferOld {
 
 	override deserialize(buffer: Buffer): RacingHistoryRecordEntry {
 		let offset = 0;
-		this.raceType = buffer.readInt32LE(offset);
+		this.raceType = buffer.readUInt32LE(offset);
 		offset += 4;
-		this.numberOfRacesEntered = buffer.readInt32LE(offset);
+		this.numberOfRacesEntered = buffer.readUInt32LE(offset);
 		offset += 4;
-		this.numberOfRacesFinished = buffer.readInt32LE(offset);
+		this.numberOfRacesFinished = buffer.readUInt32LE(offset);
 		offset += 4;
-		this.numberOfRacesWon = buffer.readInt32LE(offset);
+		this.numberOfRacesWon = buffer.readUInt32LE(offset);
 		offset += 4;
-		this.numberOfCarsWon = buffer.readInt32LE(offset);
+		this.numberOfCarsWon = buffer.readUInt32LE(offset);
 		offset += 4;
-		this.numberOfCarsLost = buffer.readInt32LE(offset);
+		this.numberOfCarsLost = buffer.readUInt32LE(offset);
 		offset += 4;
-		this.numberOfChampionshipsWon = buffer.readInt32LE(offset);
+		this.numberOfChampionshipsWon = buffer.readUInt32LE(offset);
 		offset += 4;
-		this.cashWon = buffer.readInt32LE(offset);
+		this.cashWon = buffer.readUInt32LE(offset);
 		// total: 8 * 4 = 32 bytes
 
 		return this;

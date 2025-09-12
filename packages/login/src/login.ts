@@ -83,9 +83,9 @@ export async function login({
 	offset += 4;
 	dataBuffer.writeInt8(0, offset); // isCacheHit
 	offset += 1;
-	dataBuffer.writeInt8(0, offset); // ban
+	dataBuffer.writeUInt8(0, offset); // ban
 	offset += 1;
-	dataBuffer.writeInt8(0, offset); // gag
+	dataBuffer.writeUInt8(0, offset); // gag
 	offset += 1;
 	dataBuffer.write(sessionKey ?? "", offset, 12, "ascii");
 

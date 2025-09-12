@@ -24,16 +24,16 @@ export class GameMessageHeader extends legacyHeader {
 		return 8;
 	}
 
-	deserialize(buffer: Buffer) {
+	override deserialize(buffer: Buffer) {
 		if (buffer.length < 8) {
 			throw Error(`Buffer length ${buffer.length} is too short to deserialize`);
 		}
 
 		try {
-			this.id = buffer.readInt16BE(0);
-			this.length = buffer.readInt16BE(2);
-			this._gameMessageId = buffer.readInt16BE(4);
-			this._gameMessageLength = buffer.readInt16BE(6);
+			this.id = buffer.readUInt16BE(0);
+			this.length = buffer.readUInt16BE(2);
+			this._gameMessageId = buffer.readUInt16BE(4);
+			this._gameMessageLength = buffer.readUInt16BE(6);
 		} catch (error) {
 			const err = new Error(`Error deserializing buffer: ${String(error)}`);
 			err.cause = error;
@@ -44,10 +44,10 @@ export class GameMessageHeader extends legacyHeader {
 
 	serialize() {
 		const buffer = Buffer.alloc(8);
-		buffer.writeInt16BE(this.id, 0);
-		buffer.writeInt16BE(this.length, 2);
-		buffer.writeInt16BE(this._gameMessageId, 4);
-		buffer.writeInt16BE(this._gameMessageLength, 6);
+		buffer.writeUInt16BE(this.id, 0);
+		buffer.writeUInt16BE(this.length, 2);
+		buffer.writeUInt16BE(this._gameMessageId, 4);
+		buffer.writeUInt16BE(this._gameMessageLength, 6);
 		return buffer;
 	}
 }

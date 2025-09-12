@@ -32,7 +32,7 @@ export class OldServerMessage extends SerializedBufferOld implements IServerMess
 		this._header._doDeserialize(buffer);
 		this.setBuffer(buffer.subarray(this._header._size));
 		if (this.data.length > 2) {
-			this._msgNo = this.data.readInt16LE(0);
+			this._msgNo = this.data.readUInt16LE(0);
 		}
 		return this;
 	}
@@ -65,7 +65,7 @@ export class OldServerMessage extends SerializedBufferOld implements IServerMess
 	 * @deprecated
 	 */
 	updateMsgNo() {
-		this._msgNo = this.data.readInt16LE(0);
+		this._msgNo = this.data.readUInt16LE(0);
 	}
 
 	override toString() {

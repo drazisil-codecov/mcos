@@ -31,7 +31,7 @@ export class PlayerPhysicalMessage extends SerializedBufferOld {
 		offset += 2;
 		buffer.writeUInt32LE(this._playerId, offset);
 		offset += 4;
-		buffer.writeUInt32LE(this._bodytype, offset);
+		buffer.writeInt32LE(this._bodytype, offset);
 		offset += 4;
 		buffer.writeInt32LE(this._hairColor, offset);
 		offset += 4;

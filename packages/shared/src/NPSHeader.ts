@@ -40,8 +40,8 @@ export class NPSHeader extends SerializableMixin(AbstractSerializable) {
 		}
 
 		try {
-			this.id = buffer.readInt16BE(0);
-			this.length = buffer.readInt16BE(2);
+			this.id = buffer.readUInt16BE(0);
+			this.length = buffer.readUInt16BE(2);
 		} catch (error) {
 			throw Error(`Error deserializing buffer: ${String(error)}`);
 		}
@@ -50,11 +50,11 @@ export class NPSHeader extends SerializableMixin(AbstractSerializable) {
 
 	override _doSerialize() {
 		const buffer = Buffer.alloc(this._size);
-		buffer.writeInt16BE(this.id, 0);
-		buffer.writeInt16BE(this.length, 2);
-		buffer.writeInt16BE(this.version, 4);
-		buffer.writeInt16BE(this.reserved, 6);
-		buffer.writeInt32BE(this.checksum, 8);
+		buffer.writeUInt16BE(this.id, 0);
+		buffer.writeUInt16BE(this.length, 2);
+		buffer.writeUInt16BE(this.version, 4);
+		buffer.writeUInt16BE(this.reserved, 6);
+		buffer.writeUInt32BE(this.checksum, 8);
 		return buffer;
 	}
 

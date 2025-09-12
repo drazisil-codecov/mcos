@@ -67,7 +67,7 @@ export class PartStruct {
         try {
             const buffer = Buffer.alloc(this.size());
             log.debug(`Writing partId: ${this.partId}`);
-            buffer.writeInt32LE(this.partId, 0);
+            buffer.writeUInt32LE(this.partId, 0);
             log.debug(`Writing parentPartId: ${this.parentPartId}`);
             buffer.writeInt32LE(this.parentPartId ?? 0, 4);
             log.debug(`Writing brandedPartId: ${this.brandedPartId}`);
@@ -114,13 +114,13 @@ class CarInfoStruct {
 
             const buffer = Buffer.alloc(neededSize);
             log.debug(`Writing msgNo: ${this.msgNo}`);
-            buffer.writeInt16LE(this.msgNo, 0);
+            buffer.writeUInt16LE(this.msgNo, 0);
             log.debug(`Writing playerId: ${this.playerId}`);
-            buffer.writeInt32LE(this.playerId, 2);
+            buffer.writeUInt32LE(this.playerId, 2);
             log.debug(`Serializing vehicle`);
             this.vehicle.serialize().copy(buffer, 6);
             log.debug(`Writing noOfParts: ${this.noOfParts}`);
-            buffer.writeInt16LE(this.noOfParts, 6 + this.vehicle.size());
+            buffer.writeUInt16LE(this.noOfParts, 6 + this.vehicle.size());
             let offset = 8 + this.vehicle.size();
             for (const part of this.parts) {
                 log.debug(`Serializing part: ${part}`);
@@ -170,8 +170,8 @@ export async function _getCompleteVehicleInfo({
 
     log.debug(`Received Message: ${getCompleteVehicleInfoMessage.toString()}`);
 
-    const vehicleId = getCompleteVehicleInfoMessage.data.readInt32LE();
-    const delta = getCompleteVehicleInfoMessage.data2.readInt32LE();
+    const vehicleId = getCompleteVehicleInfoMessage.data.readUInt32LE();
+    const delta = getCompleteVehicleInfoMessage.data2.readUInt32LE();
 
     log.debug(`Requesting vehicleId: ${vehicleId} delta: ${delta}`);
 

@@ -23,10 +23,16 @@ export async function _getGameUrls({
 	const gameUrlsMessage = new GameUrlsMessage();
 	gameUrlsMessage._msgNo = 364;
 
-	const url1 = new GameUrl();
-	url1._urlId = 1;
-	url1.urlRef = "http://localhost:8080";
-	gameUrlsMessage.addURL(url1);
+	
+	for (let i = 0; i < 67; i++) {
+		const url = new GameUrl();
+		url._urlId = i;
+		url.urlRef = `http://rusty-motors.com/urls?id=${i}`;
+		gameUrlsMessage.addURL(url);
+	}
+
+	log.debug(gameUrlsMessage.toString())
+	
 
 	const responsePacket = new OldServerMessage();
 	responsePacket._header.sequence = packet.sequenceNumber;

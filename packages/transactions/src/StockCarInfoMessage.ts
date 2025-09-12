@@ -68,11 +68,11 @@ export class StockCarInfoMessage extends MessageNode {
 	override serialize(): Buffer {
 		// This does not count the StockCar array
 		const packet = Buffer.alloc((17 + 9) * this.StockCarList.length);
-		packet.writeInt16LE(this.msgNo, 0);
+		packet.writeUInt16LE(this.msgNo, 0);
 		packet.writeInt32LE(this.starterCash, 2);
 		packet.writeInt32LE(this.dealerId, 6);
 		packet.writeInt32LE(this.brand, 10);
-		packet.writeInt16LE(this.noCars, 14);
+		packet.writeUInt16LE(this.noCars, 14);
 		packet.writeInt8(this.moreToCome ? 1 : 0, 16);
 		if (this.StockCarList.length > 0) {
 			for (let i = 0; i < this.StockCarList.length; i++) {

@@ -11,7 +11,7 @@ export function parseNPSSessionKey(buffer: Buffer): {
 	expires: number;
 } {
 	try {
-		const sessionKeyLength = buffer.readInt16BE(0);
+		const sessionKeyLength = buffer.readUInt16BE(0);
 		const sessionKey = buffer.subarray(2, sessionKeyLength + 2).toString("hex");
 		const expires = buffer.readInt32BE(sessionKeyLength + 2);
 		return { sessionKeyLength, sessionKey, expires };

@@ -36,7 +36,7 @@ export class StockCar {
 	 */
 	serialize(): Buffer {
 		const packet = Buffer.alloc(10);
-		packet.writeInt32LE(this.brandedPartId, 0);
+		packet.writeUInt32LE(this.brandedPartId, 0);
 		packet.writeInt32LE(this.retailPrice, 4);
 		packet.writeInt16LE(this.bIsDealOfTheDay ? 1 : 0, 8);
 		return packet;

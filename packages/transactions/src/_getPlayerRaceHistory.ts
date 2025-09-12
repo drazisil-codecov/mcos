@@ -23,7 +23,7 @@ export async function _getPlayerRaceHistory({
 
 	log.debug(`Received Message: ${getPlayerRaceHistoryMessage.toString()}`);
 
-	const playerId = getPlayerRaceHistoryMessage.data.readInt32LE(0);
+	const playerId = getPlayerRaceHistoryMessage.data.readUInt32LE(0);
 
 	log.debug(`Player ID: ${playerId}`);
 

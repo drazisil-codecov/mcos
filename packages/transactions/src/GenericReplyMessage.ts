@@ -33,8 +33,8 @@ export class GenericReply extends SerializedBufferOld {
 
 	override serialize() {
 		this.rawBuffer = Buffer.alloc(16);
-		this.rawBuffer.writeInt16LE(this.msgNo, 0);
-		this.rawBuffer.writeInt16LE(this.msgReply, 2);
+		this.rawBuffer.writeUInt16LE(this.msgNo, 0);
+		this.rawBuffer.writeUInt16LE(this.msgReply, 2);
 		this.result.copy(this.rawBuffer, 4);
 		this.data.copy(this.rawBuffer, 8);
 		this.data2.copy(this.rawBuffer, 12);
@@ -110,7 +110,7 @@ export class GenericReplyMessage extends SerializedBufferOld {
 		const node = new GenericReplyMessage();
 		node.rawBuffer = buffer;
 		try {
-			node.msgNo = buffer.readInt16LE(0);
+			node.msgNo = buffer.readUInt16LE(0);
 		} catch (error) {
 			if (error instanceof RangeError) {
 				// This is likeley not an MCOTS packet, ignore
@@ -124,7 +124,7 @@ export class GenericReplyMessage extends SerializedBufferOld {
 			}
 		}
 
-		node.msgReply = buffer.readInt16LE(2);
+		node.msgReply = buffer.readUInt16LE(2);
 		node.result = buffer.subarray(4, 8);
 		node.setBuffer(buffer.subarray(8, 12));
 		node.data2 = buffer.subarray(12);
@@ -138,9 +138,9 @@ export class GenericReplyMessage extends SerializedBufferOld {
 	override serialize(): Buffer {
 		const packet = Buffer.alloc(114); // 16 bytes
 		let offset = 0;
-		packet.writeInt16LE(this.msgNo, offset);
+		packet.writeUInt16LE(this.msgNo, offset);
 		offset += 2;
-		packet.writeInt16LE(this.msgReply, offset);
+		packet.writeUInt16LE(this.msgReply, offset);
 		offset += 2;
 		this.result.copy(packet, offset);
 		offset += 4;
@@ -178,6 +178,6 @@ export class GenericReplyMessage extends SerializedBufferOld {
 	 * @return {string}
 	 */
 	override toString(): string {
-		return `GenericReplyMessage: msgNo=${this.msgNo} msgReply=${this.msgReply} result=${this.result.readInt32LE()} data=${this.data.readInt32LE()} data2=${this.data2.readInt32LE()}`;
+		return `GenericReplyMessage: msgNo=${this.msgNo} msgReply=${this.msgReply} result=${this.result.readUInt32LE()} data=${this.data.readUInt32LE()} data2=${this.data2.readUInt32LE()}`;
 	}
 }

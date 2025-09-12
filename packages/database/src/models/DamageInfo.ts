@@ -41,7 +41,7 @@ export class DamageInfo {
     serialize() {
         try {
             const buffer = Buffer.alloc(this.size());
-            buffer.writeInt16LE(this._versionNumber, 0); // offset 0
+            buffer.writeUInt16LE(this._versionNumber, 0); // offset 0
             buffer.writeInt16LE(this._compressed ? 1 : 0, 2); // offset 2
             buffer.writeInt32LE(this._datasizeCompressed, 4); // offset 4
             buffer.writeInt32LE(this._datasizeUncompressed, 8); // offset 8

@@ -30,7 +30,7 @@ export class MessageNode {
 		messageNode.deserialize(rawMessage.serialize());
 
 		if (messageNode.data.length > 2) {
-			messageNode.msgNo = messageNode.data.readInt16LE(0);
+			messageNode.msgNo = messageNode.data.readUInt16LE(0);
 		}
 
 		return messageNode;
@@ -45,7 +45,7 @@ export class MessageNode {
 	 * @param {Buffer} packet
 	 */
 	deserialize(packet: Buffer) {
-		const length = packet.readInt16LE(0);
+		const length = packet.readUInt16LE(0);
 		if (length !== packet.length) {
 			throw Error(
 				`[MessageNode] Length of packet ${length.toString()} does not match length of buffer ${packet.length.toString()}`,
@@ -55,13 +55,13 @@ export class MessageNode {
 		let offset = 2;
 		this.header.mcoSig = packet.subarray(offset, offset + 4).toString();
 		offset += 4;
-		this.seq = packet.readInt16LE(offset);
+		this.seq = packet.readUInt16LE(offset);
 		offset += 2;
-		this.flags = packet.readInt8(offset);
+		this.flags = packet.readUInt8(offset);
 		offset += 1; // offset = 9
 		this.data = packet.subarray(offset, offset + length - 9);
 		if (this.data.length > 2) {
-			this.msgNo = this.data.readInt16LE(0);
+			this.msgNo = this.data.readUInt16LE(0);
 		}
 	}
 
@@ -72,13 +72,13 @@ export class MessageNode {
 	serialize(): Buffer {
 		const packet = Buffer.alloc(this.header.length);
 		let offset = 0;
-		packet.writeInt16LE(this.header.length, offset);
+		packet.writeUInt16LE(this.header.length, offset);
 		offset += 2;
 		packet.write(this.header.mcoSig, offset, 4);
 		offset += 4;
-		packet.writeInt16LE(this.seq, offset);
+		packet.writeUInt16LE(this.seq, offset);
 		offset += 2;
-		packet.writeInt8(this.flags, offset);
+		packet.writeUInt8(this.flags, offset);
 		offset += 1;
 		if (typeof this.data === "undefined") {
 			throw Error("MessageNode data is undefined");

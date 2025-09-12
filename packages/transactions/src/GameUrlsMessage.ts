@@ -41,15 +41,15 @@ export class GameUrlsMessage extends SerializedBufferOld {
 
 	/**
 	 * Add a lobby to the list
-	 * @param {GameUrl} lobby
+	 * @param {GameUrl} url
 	 */
-	addURL(lobby: GameUrl) {
-		this._urlList.push(lobby);
+	addURL(url: GameUrl) {
+		this._urlList.push(url);
 		this._urlCount++;
 	}
 
 	override serialize() {
-		const neededSize = 4 + this._urlList.length * 563;
+		const neededSize = 4 + this._urlList.length * 516;
 		const buffer = Buffer.alloc(neededSize);
 		let offset = 0; // offset is 0
 		buffer.writeUInt16LE(this._msgNo, offset);
@@ -62,7 +62,7 @@ export class GameUrlsMessage extends SerializedBufferOld {
 			url.serialize().copy(buffer, offset);
 			offset += url.size();
 		}
-		// offset is now 4 + this._lobbyList.length * 563
+		// offset is now 4 + this._lobbyList.length * 516
 		return buffer;
 	}
 
@@ -81,7 +81,7 @@ export class GameUrl extends SerializedBufferOld {
 	}
 
 	override size() {
-		return 8 + this.urlRef.length;
+		return 4 + 512;
 	}
 
 	override serialize() {
@@ -89,7 +89,7 @@ export class GameUrl extends SerializedBufferOld {
 		let offset = 0; // offset is 0
 		buffer.writeUInt32LE(this._urlId, offset);
 		offset += 4; // offset is 4
-		serializeString(this.urlRef, buffer, offset);
+		buffer.write(this.urlRef, offset, "utf8");
 
 		return buffer;
 	}
