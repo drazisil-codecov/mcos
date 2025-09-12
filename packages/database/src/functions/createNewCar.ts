@@ -1,7 +1,8 @@
-import type { DatabaseTransactionConnection } from 'slonik';
+import type { DatabasePool } from 'slonik';
 import { getDatabase } from '../services/database.js';
 import * as Sentry from '@sentry/node';
 import { getServerLogger } from 'rusty-motors-shared';
+import { buildVehiclePartTree, saveVehicle, saveVehiclePartTree } from '../cache.js';
 
 const { slonik, sql } = await getDatabase();
 const log = getServerLogger('createNewCar');
@@ -43,7 +44,7 @@ async function skinExists(skinId: number): Promise<boolean> {
 }
 
 async function getAbstractPartTypeIDForBrandedPartID(
-    connection: DatabaseTransactionConnection,
+    connection: DatabasePool,
     brandedPartId: number,
 ): Promise<number> {
     const abstractPartTypeId = await Sentry.startSpan(
@@ -109,11 +110,11 @@ export async function createNewCar(
 
     if (abstractPartTypeId !== 101) {
         log.error(
+            'branded part is not a vehicle',
             {
                 brandedPartId,
                 abstractPartTypeId,
             },
-            'branded part is not a vehicle',
         );
         throw new Error(
             `branded part with id ${brandedPartId} and abstract part type id ${abstractPartTypeId} is not a vehicle`,
@@ -129,7 +130,10 @@ export async function createNewCar(
     });
     
 
-    log.debug({ vehicle }, 'vehicle');
+    log.debug(
+        'vehicle',
+        { vehicle }, 
+    );
 
     await saveVehicle(vehicle);
     await saveVehiclePartTree(vehicle);

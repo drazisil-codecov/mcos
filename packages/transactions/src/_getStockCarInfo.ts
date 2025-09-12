@@ -26,7 +26,7 @@ export async function _getStockCarInfo({
 	stockCarInfoMessage.dealerId = 8;
 	stockCarInfoMessage.brand = 105;
 
-	stockCarInfoMessage.addStockCar(new StockCar(113, 20, false)); // Bel-air
+	stockCarInfoMessage.addStockCar(new StockCar(113, 7394, false)); // Bel-air
 	stockCarInfoMessage.addStockCar(new StockCar(104, 15, true)); // Fairlane - Deal of the day
 	stockCarInfoMessage.addStockCar(new StockCar(402, 20, false)); // Century
 
