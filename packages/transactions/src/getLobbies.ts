@@ -45,12 +45,13 @@ async function _getLobbies({
 	const lobby1 = new LobbyInfo();
 	lobby1._lobbyId = 3;
 	lobby1._lobbyName = "LOBBY1";
-	lobby1._raceTypeId = 25; // TT
+	lobby1._raceTypeId = 16; // TT
 	lobby1._elementId = 25 // TrackId
 	lobby1._turfName = "Crash N Burn"
 	lobby1._topDog = "Drazi Crendraven";
 	lobby1._maxNumberPlayers = 8;
 	lobby1._defaultNight = 1
+	lobby1._minLevel = 1
 
 	defaultLogger.debug(`[${connectionId}] Sending lobby: ${lobby1.toString()}`);
 

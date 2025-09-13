@@ -31,7 +31,7 @@ export async function handleGetMiniUserList({
 		log.debug(`[${connectionId}] Requested commId: ${requestedCommId}`);
 
 		const commId = 1;
-		const userCount = 1;
+		const userCount = 2;
 
 		const channelCountRecord = Buffer.alloc(8);
 		channelCountRecord.writeUInt32BE(commId, 0); // commId
@@ -43,9 +43,16 @@ export async function handleGetMiniUserList({
 
 		log.debug(`[${connectionId}] User1: ${user1.toString()}`);
 
+		const user2 = new MiniUserInfo();
+		user2.setFieldValueByName("userId", 88);
+		user2.setFieldValueByName("userName", "Marty");		
+
+		log.debug(`[${connectionId}] User2: ${user2.toString()}`);
+
 		const realData = Buffer.concat([
 			channelCountRecord,
 			user1.serialize(),
+			user2.serialize(),
 		]);
 
 		const align8Padding = 8 - (realData.length % 8);
