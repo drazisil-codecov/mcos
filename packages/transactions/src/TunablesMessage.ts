@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import { BytableMessage } from "@rustymotors/binary";
 import { SerializedBufferOld } from "rusty-motors-shared";
 
 /**
@@ -53,7 +54,7 @@ import { SerializedBufferOld } from "rusty-motors-shared";
  * @method serialize - Serializes the message properties into a Buffer.
  * @method toString - Returns a string representation of the message.
  */
-export class TunablesMessage extends SerializedBufferOld {
+export class TunablesMessage extends BytableMessage {
 	_msgNo: number;
 	_clubCreationCost: number;
 	_clubCreationRequiredLevel: number;
@@ -113,7 +114,7 @@ export class TunablesMessage extends SerializedBufferOld {
 		// total: 118 bytes
 	}
 
-	override size() {
+	size() {
 		return 118; // This needs to 124 bytes, but the last 6 bytes are unknown
 	}
 
