@@ -32,14 +32,30 @@ async function _getLobbies({
 	lobby._lobbyId = 2;
 	lobby._lobbyName = "LOBBY";
 	lobby._raceTypeId = 14; // TESTDRIVE
-	lobby._elementId = 25 
+	lobby._elementId = 25 // TrackId
 	lobby._turfName = "Hillvally Punks"
 	lobby._topDog = "Drazi Crendraven";
 	lobby._maxNumberPlayers = 8;
+	lobby._defaultNight = 1
 
 	defaultLogger.debug(`[${connectionId}] Sending lobby: ${lobby.toString()}`);
 
 	lobbyResponse.addLobby(lobby);
+
+	const lobby1 = new LobbyInfo();
+	lobby1._lobbyId = 3;
+	lobby1._lobbyName = "LOBBY1";
+	lobby1._raceTypeId = 25; // TT
+	lobby1._elementId = 25 // TrackId
+	lobby1._turfName = "Crash N Burn"
+	lobby1._topDog = "Drazi Crendraven";
+	lobby1._maxNumberPlayers = 8;
+	lobby1._defaultNight = 1
+
+	defaultLogger.debug(`[${connectionId}] Sending lobby: ${lobby1.toString()}`);
+
+	lobbyResponse.addLobby(lobby1);
+
 
 	defaultLogger.debug(`[${connectionId}] Sending lobbyResponse: ${lobbyResponse.toString()}`
 	);
