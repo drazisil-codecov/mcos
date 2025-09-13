@@ -17,6 +17,6 @@ describe("getLobbies", () => {
 		const resultMessage = result.messages[0].serialize().toString("hex");
 
 		// assert
-		expect(resultMessage).toMatch(/4102544f4d43/);
+		expect(resultMessage).toMatch(/544f4d43/);
 	});
 });

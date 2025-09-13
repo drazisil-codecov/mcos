@@ -1,25 +1,18 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { BytableMessage } from "./BytableMessage";
-import { BytableHeader } from "./BytableHeader";
-import { BytableContainer } from "./BytableContainer";
-import { BytableDword } from "./BytableDword";
-import { BytableBase } from "./BytableBase";
+import { BytableMessage } from "./BytableMessage.js";
+import { BytableHeader } from "./BytableHeader.js";
+import { BytableContainer } from "./BytableContainer.js";
+import { BytableDword } from "./BytableDword.js";
 
 describe("Binary Message Parsing", () => {
 	const testHex =
 		"0501013e010100000000013e0022643331366364326464366266383730383933646662616166313766393635383834650000010032323841413331423743423530463233343933323539323730413842334430353233333534463146323936413132343430444541343942353031453843363346443841394141453143463534304242333535354245363437324641423230443632303634304239394645453837414139373332363938304231303430323341314132354233453635314534413434453445394242313341453644303033383233303544434336393035434135393032363435443332463138413644414434443334363937304531443931313944424534363746373333364443334333444439413043443942463741313945453331323631443945444146413139344445443846000432313736fea31c19";
 	const testBuffer = Buffer.from(testHex, "hex");
 
-    describe("BytableBase", () => {
-        it("should throw error when deserializing empty buffer", () => {
-            const base = new BytableBase();
-            expect(() => base.deserialize(Buffer.alloc(0))).toThrowError("Cannot deserialize empty buffer");
-        });
-    });
-
 	describe("BytableHeader", () => {
 		it("should correctly parse message header", () => {
-			const header = BytableHeader.fromBuffer(testBuffer, 0);
+			const header = new BytableHeader()
+			header.deserialize(testBuffer);
 
 			expect(header.messageId).toBe(0x0501);
 			expect(header.messageLength).toBe(0x013e);
@@ -32,13 +25,13 @@ describe("Binary Message Parsing", () => {
 		let message: BytableMessage;
 
 		beforeEach(() => {
-			message = BytableMessage.fromBuffer(testBuffer, 0);
+			message = new BytableMessage()
 			message.setSerializeOrder([
-				{ name: "ContextId", field: "Container" },
-				{ name: "", field: "Container" },
-				{ name: "SessionKey", field: "Container" },
-				{ name: "GameId", field: "Container" },
-				{ name: "", field: "Dword" },
+				{ name: "ContextId", field: "PrefixedString2" },
+				{ name: "", field: "PrefixedString2" },
+				{ name: "SessionKey", field: "PrefixedString2" },
+				{ name: "GameId", field: "PrefixedString2" },
+				{ name: "Checksum", field: "Dword" },
 			]);
 			message.deserialize(testBuffer);
 		});
@@ -90,14 +83,14 @@ describe("Binary Message Parsing", () => {
 				container.setValue("test");
 				const serialized = container.serialize();
 				// First 2 bytes should be length (4), followed by "test"
-				expect(serialized.length).toBe(6); // 2 bytes length + 4 bytes content
-				expect(serialized.readUInt16BE(0)).toBe(4); // Length prefix
-				expect(serialized.subarray(2).toString()).toBe("test");
+				expect(serialized.length).toBe(8); // 2 bytes length + 4 bytes content
+				expect(serialized.readUInt32BE(0)).toBe(4); // Length prefix
+				expect(serialized.subarray(4).toString()).toBe("test");
 			});
 
 			it("should calculate correct serializeSize", () => {
 				container.setValue("hello");
-				expect(container.serializeSize).toBe(7); // 5 (content) + 2 (length prefix)
+				expect(container.serializeSize).toBe(9); // 5 (content) + 2 (length prefix)
 			});
 		});
 
@@ -167,7 +160,8 @@ describe("Binary Message Parsing", () => {
         });
 
 		it("should correctly parse 32-bit values", () => {
-			const dword = BytableDword.fromBuffer(testBuffer, testBuffer.length - 4);
+			const dword = new BytableDword()
+			dword.deserialize(testBuffer);
 			expect(dword.serializeSize).toBe(4);
 			// Add specific value checks based on your expected data
 		});

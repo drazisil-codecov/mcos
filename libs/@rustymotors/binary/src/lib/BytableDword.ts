@@ -17,7 +17,7 @@ export class BytableDword extends Bytable {
 
 		override deserialize(buffer: Buffer) {
 			BytableDword.validateBufferLength(buffer, 4);
-			this.setValue(buffer.readUInt32BE(0));
+			this.setValue(buffer.subarray(0, 4));
 		}
 
 		override serialize() {

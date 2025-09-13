@@ -30,9 +30,6 @@ abstract class BytableContainerBase extends BytableBase implements BytableObject
 
     setValue(value: string | number | Buffer): void {
         this.validateValue(value);
-        if (this.nullTerminated && typeof value === 'string') {
-            this.validateString(value);
-        }
         this.value_ = value;
         this.length = this.getByteLength(value);
     }
@@ -84,6 +81,27 @@ abstract class BytableContainerBase extends BytableBase implements BytableObject
     }
 }
 
+/**
+ * Represents a container for serializing and deserializing short binary data with optional null-termination.
+ * 
+ * This class extends `BytableContainerBase` and provides methods to serialize its value either with a length-prefixed
+ * format (2 bytes for length) or as a null-terminated string. It also supports deserialization from a buffer and exposes
+ * a JSON representation of its state.
+ * 
+ * @remarks
+ * - If `nullTerminated` is `true`, the serialized format ends with a null byte (`0x00`).
+ * - If `nullTerminated` is `false`, the serialized format is prefixed with a 2-byte big-endian length.
+ * 
+ * @property {string} name_ - The name of the container.
+ * @property {string} value_ - The value stored in the container.
+ * @property {number} length - The length of the value.
+ * @property {boolean} nullTerminated - Indicates if the value is null-terminated.
+ * @property {number} serializeSize - The size of the serialized buffer.
+ * 
+ * @method serialize - Serializes the container to a Buffer.
+ * @method deserialize - Deserializes the container from a Buffer.
+ * @method json - Returns a JSON representation of the container.
+ */
 export class BytableShortContainer extends BytableContainerBase {
     override get serializeSize() {
         return this.nullTerminated ? this.length + 1 : this.length + 2;
@@ -144,6 +162,20 @@ export class BytableShortContainer extends BytableContainerBase {
     }
 }
 
+/**
+ * Represents a container for serializing and deserializing values with optional null-termination.
+ * Extends {@link BytableContainerBase}.
+ *
+ * @remarks
+ * - If `nullTerminated` is `true`, the serialized buffer ends with a null byte (`\0`).
+ * - If `nullTerminated` is `false`, the serialized buffer is prefixed with a 4-byte length.
+ *
+ * @property {number} serializeSize - The size of the serialized container in bytes.
+ * @property {object} json - A JSON representation of the container's state.
+ *
+ * @method serialize Serializes the container's value into a buffer.
+ * @method deserialize Deserializes a buffer into the container's value.
+ */
 export class BytableContainer extends BytableContainerBase {
     override get serializeSize() {
         return this.nullTerminated ? this.length + 1 : this.length + 4;

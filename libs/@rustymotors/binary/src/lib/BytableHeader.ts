@@ -79,6 +79,9 @@ export class BytableHeader extends Bytable {
 	}
 
 	override deserialize(buffer: Buffer) {
+		if (buffer.byteLength === 0) {
+			throw new Error('Cannot deserialize empty buffer')
+		}
 		this.setMessageId(buffer.readUInt16BE(0));
 		this.setMessageLength(buffer.readUInt16BE(2));
 

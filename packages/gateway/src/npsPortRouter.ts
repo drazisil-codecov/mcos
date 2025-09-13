@@ -10,7 +10,6 @@ import { receiveLoginData } from "rusty-motors-login";
 import { getServerLogger, ServerLogger } from "rusty-motors-shared";
 import { BytableMessage, createRawMessage } from "@rustymotors/binary";
 import * as Sentry from "@sentry/node";
-import { getMCOProtocolInstance } from "@rustymotors/protocol";
 
 /**
  * Handles routing for the NPS (Network Play System) ports.

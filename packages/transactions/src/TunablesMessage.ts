@@ -20,6 +20,39 @@ import { SerializedBufferOld } from "rusty-motors-shared";
  * A message listing the lobbies
  * This is the body of a MessageNode
  */
+/**
+ * Represents a message containing tunable configuration values for clubs, inventory, cars, ads, and other game features.
+ * 
+ * This class serializes its properties into a fixed-size buffer for network transmission.
+ * 
+ * @extends SerializedBufferOld
+ * 
+ * @property _msgNo - Message number (2 bytes).
+ * @property _clubCreationCost - Cost to create a club (4 bytes).
+ * @property _clubCreationRequiredLevel - Required level to create a club (4 bytes).
+ * @property _clubOfficerRequiredLevel - Required level to become a club officer (4 bytes).
+ * @property _inventorySizePerLevel - Inventory size per level (4 bytes).
+ * @property _carsPerLevel - Number of cars per level (4 bytes).
+ * @property _maxEZStreetLevel - Maximum EZ Street level (4 bytes).
+ * @property _clubSwitchCooldown - Cooldown period for switching clubs (4 bytes).
+ * @property _universalRepairCostModifier - Modifier for universal repair cost (8 bytes).
+ * @property _universalScrapValueModifier - Modifier for universal scrap value (8 bytes).
+ * @property _addCost1Day to _addCost7Day - Additional costs for 1 to 7 days (4 bytes each).
+ * @property _tradeinModifier - Trade-in value modifier (8 bytes).
+ * @property _simStreetMaxWager - Maximum wager for Sim Street (4 bytes).
+ * @property saleryPerLevel - Salary per level (4 bytes).
+ * @property _clubMaxMembers - Maximum number of club members (4 bytes).
+ * @property _clubRegistrationCost - Cost to register a club (4 bytes).
+ * @property _clubReRegistrationCost - Cost to re-register a club (4 bytes).
+ * @property _classifiedAdRate - Rate for classified ads (4 bytes).
+ * @property _classifiedAdMaxDuration - Maximum duration for classified ads (4 bytes).
+ * @property _classifiedAdMaxSize - Maximum size for classified ads (4 bytes).
+ * @property _classifiedAdMaxCountPerPlayer - Maximum number of classified ads per player (4 bytes).
+ * 
+ * @method size - Returns the size of the serialized buffer (118 bytes).
+ * @method serialize - Serializes the message properties into a Buffer.
+ * @method toString - Returns a string representation of the message.
+ */
 export class TunablesMessage extends SerializedBufferOld {
 	_msgNo: number;
 	_clubCreationCost: number;

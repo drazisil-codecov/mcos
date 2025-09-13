@@ -57,12 +57,6 @@ export class BytableBase {
 		return Buffer.from(String(value)).byteLength;
 	}
 
-	protected validateString(value: string) {
-		if (value.length === 0) {
-			throw new Error("Cannot set empty string");
-		}
-	}
-
 	protected toBuffer(value: string | number | Buffer) {
 		if (value instanceof Buffer) {
 			return value;
