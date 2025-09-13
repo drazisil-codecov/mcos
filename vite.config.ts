@@ -20,6 +20,7 @@ export default defineConfig({
                 "instrument.mjs",
                 "commitlint.config.js",
                 "packages/pklib-ts",
+                "**/coverage/**",
                 ...coverageConfigDefaults.exclude,
             ],
             reporter: ["lcov", "cobertura", "html", "text"],
