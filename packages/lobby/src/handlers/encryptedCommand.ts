@@ -4,7 +4,6 @@ import {
 	ServerLogger,
 	updateEncryption,
 } from "rusty-motors-shared";
-import { SerializedBufferOld } from "rusty-motors-shared";
 import { _setMyUserData } from "./_setMyUserData.js";
 import { handleGetMiniUserList } from "./handleGetMiniUserList.js";
 import { handleSendMiniRiffList } from "./handleSendMiniRiffList.js";
@@ -20,11 +19,11 @@ import { handleGetServerInfo } from "./handleGetServerInfo.js";
  * name: string,
  * handler: (args: {
  * connectionId: string,
- * message: SerializedBufferOld,
+ * message: BytableMessage,
  * log: ServerLogger,
  * }) => Promise<{
  * connectionId: string,
- * messages: SerializedBufferOld[],
+ * messages: BytableMessage[],
  * }>}[]}
  */
 export const messageHandlers: {
@@ -36,7 +35,7 @@ export const messageHandlers: {
 		log: ServerLogger;
 	}) => Promise<{
 		connectionId: string;
-		messages: SerializedBufferOld[];
+		messages: BytableMessage[];
 	}>;
 }[] = [];
 
@@ -235,11 +234,11 @@ async function handleCommand({
  *
  * @param {object} args
  * @param {string} args.connectionId
- * @param {SerializedBufferOld} args.message
+ * @param {BytableMessage} args.message
  * @param {ServerLogger} [args.log=getServerLogger({ name: "Lobby" })]
   * @returns {Promise<{
 *  connectionId: string,
-* messages: SerializedBufferOld[],
+* messages: BytableMessage[],
 * }>}
 
  */
@@ -253,7 +252,7 @@ export async function handleEncryptedNPSCommand({
 	log?: ServerLogger;
 }): Promise<{
 	connectionId: string;
-	messages: SerializedBufferOld[];
+	messages: BytableMessage[];
 }> {
 	log.debug(`[${connectionId}] Handling encrypted NPS command`);
 	log.debug(`[${connectionId}] Received command: ${message.serialize().toString("hex")}`);
