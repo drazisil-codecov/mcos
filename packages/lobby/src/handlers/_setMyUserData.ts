@@ -42,12 +42,11 @@ export async function _setMyUserData({
 		// packetResult._header.id = 516;
 		packetResult._header.id = 0x214;
 
-		const channelBuffer = Buffer.alloc(4);
+		const channelBuffer = Buffer.alloc(8);
 		channelBuffer.writeInt32BE(currentChannel);
+		channelBuffer.writeInt32BE(7003, 4)
 
-		const response = Buffer.concat([channelBuffer, Buffer.from([0, 0, 0, 0])]);
-
-		packetResult.setBuffer(response);
+		packetResult.setBuffer(channelBuffer);
 
 		// packetResult.deserialize(incomingMessage.serialize());
 

@@ -23,12 +23,14 @@ export async function handleGetServerInfo({
 		);
 
 		// l
-		const incommingRequest = new BytableMessage();
-		incommingRequest.setSerializeOrder([{ name: "riffId", field: "Dword" }]);
-		incommingRequest.deserialize(message.serialize());
+		const incomingRequest = new BytableMessage();
+		incomingRequest.setSerializeOrder([{ name: "commId", field: "Dword" }]);
+		incomingRequest.deserialize(message.serialize());
+
+		const requestedCommId = incomingRequest.getFieldValueByName("commId") ?? -1
 
 		log.debug(
-			`[${connectionId}] Received riffId: ${incommingRequest.getFieldValueByName("riffId")}`,
+			`[${connectionId}] Received commIdId: ${requestedCommId}`,
 		);
 
 		// TODO: Actually have servers
@@ -47,7 +49,7 @@ export async function handleGetServerInfo({
 		outgoingGameMessage.header.setMessageId(525);
         outgoingGameMessage.setVersion(0);
 		outgoingGameMessage.setFieldValueByName("riffName", "MCC01\n");
-		outgoingGameMessage.setFieldValueByName("commId", 224);
+		outgoingGameMessage.setFieldValueByName("commId", requestedCommId);
 		outgoingGameMessage.setFieldValueByName(
 			"ipAddress",
 			"71.186.155.248\n",

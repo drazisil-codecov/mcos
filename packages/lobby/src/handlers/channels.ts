@@ -22,3 +22,4 @@ export const channels = [
 		population: 0,
 	},
 ];
+

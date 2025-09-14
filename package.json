@@ -37,6 +37,7 @@
         "@mikro-orm/reflection": "^6.4.16",
         "@rustymotors/binary": "",
         "@rustymotors/protocol": "file:libs/@rustymotors/protocol",
+        "@rustymotors/rooms": "file:libs/@rustymotors/rooms",
         "@sentry/node": "^9.32.0",
         "@sentry/profiling-node": "9.32.0",
         "bcrypt": "^6.0.0",
