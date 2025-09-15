@@ -4,7 +4,6 @@ import {
 	type SerializableInterface,
 } from "rusty-motors-shared-packets";
 import { receiveLobbyData } from "rusty-motors-lobby";
-import { receiveChatData } from "rusty-motors-chat";
 import { receivePersonaData } from "rusty-motors-personas";
 import { receiveLoginData } from "rusty-motors-login";
 import { getServerLogger, ServerLogger } from "rusty-motors-shared";
@@ -54,13 +53,12 @@ export async function npsPortRouter({
 		try {
 			log.debug(`[${id}] Received data: ${data.toString("hex")}`);
 			const initialPacket = parseInitialMessage(data);
-			log.debug(`[${id}] Initial packet(str): ${initialPacket}`);
-			log.debug(`[${id}] initial Packet(hex): ${initialPacket.toString()}`);
+			log.debug(`[${id}] initial Packet: ${initialPacket.header.messageId}`);
 			await routeInitialMessage(id, port, initialPacket)
 				.then((response) => {
 					// Send the response back to the client
 					log.debug(
-						`[${id}] Sending response to socket: ${response.toString("hex")}`,
+						`[${id}] Sending ${response.byteLength} bytes to socket`,
 					);
 					socket.write(response);
 				})
@@ -152,7 +150,7 @@ async function routeInitialMessage(
 	// Route the initial message to the appropriate handler
 	// Messages may be encrypted, this will be handled by the handler
 
-	log.debug(`Routing message for port ${port}: ${initialPacket.toString()}`);
+	log.debug(`Routing message for port ${port}: ${initialPacket.header.messageId}`);
 
 	const packet = new GamePacket();
 	packet.deserialize(initialPacket.serialize());
@@ -163,22 +161,19 @@ async function routeInitialMessage(
 		case 7003:
 			// Handle lobby packet
 			log.debug(
-				`[${id}] Passing packet to lobby handler: ${packet.serialize().toString("hex")}`,
+				`[${id}] Passing packet to lobby handler: ${packet.getMessageId()}`,
 			);
 			responses = (
 				await receiveLobbyData({ connectionId: id, message: initialPacket })
 			).messages;
-			log.debug(`[${id}] Lobby Responses: ${responses.map((r) => r.serialize().toString("hex"))}`);
+			log.debug(`[${id}] Received ${responses.length} lobby response packets`);
 			break;
 		case 8226:
 			// Handle login packet
-			log.debug(
-				`[${id}] Passing packet to login handler: ${packet.serialize().toString("hex")}`,
-			);
 			responses = (
 				await receiveLoginData({ connectionId: id, message: initialPacket })
 			).messages;
-			log.debug(`[${id}] Login Responses: ${responses.map((r) => r.serialize().toString("hex"))}`);
+			log.debug(`[${id}] Received ${responses.length} login response packets`);
 			break;
 		// case 8227:
 		// 	// Handle chat packet
@@ -197,7 +192,7 @@ async function routeInitialMessage(
 			responses = (
 				await receivePersonaData({ connectionId: id, message: packet })
 			).messages;
-			log.debug(`[${id}] Persona Responses: ${responses.map((r) => r.serialize().toString("hex"))}`);
+			log.debug(`[${id}] Received ${responses.length} persona response packets`);
 			break;
 		default:
 			// No handler

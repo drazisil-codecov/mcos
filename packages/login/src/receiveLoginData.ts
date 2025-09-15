@@ -43,7 +43,6 @@ export async function receiveLoginData({
 	log?: ServerLogger;
 }): Promise<ServiceResponse> {
 	try {
-		log.debug(`[${connectionId}] Entering login module`);
 		const response = await handleLoginData({
 			connectionId,
 			message,

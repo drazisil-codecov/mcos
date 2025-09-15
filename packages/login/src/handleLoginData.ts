@@ -34,8 +34,6 @@ export async function handleLoginData({
 	connectionId: string;
 	messages: GamePacket[];
 }> {
-	log.debug(`[${connectionId}] Entering handleLoginData`);
-
 	// The packet needs to be an NPSMessage
 	const inboundMessage = new NPSMessage();
 	inboundMessage._doDeserialize(message.serialize());

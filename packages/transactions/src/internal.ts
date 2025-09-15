@@ -174,8 +174,6 @@ export async function receiveTransactionsData({
 	const outboundMessages: ServerPacket[] = [];
 
 	response.messages.forEach((message) => {
-		log.debug(`[${connectionId}] Processing outbound message`);
-
 		const outboundMessage = new ServerPacket();
 		outboundMessage.deserialize(message.serialize());
 
@@ -188,11 +186,6 @@ export async function receiveTransactionsData({
 				throw Error(`[${connectionId}] Unable to locate encryption settings`);
 			}
 
-			// log the old buffer
-			log.debug(
-				`[${connectionId}] Outbound buffer: ${outboundMessage.data.toHexString()}`,
-			);
-
 			const encryptedMessage = encryptOutboundMessage(
 				encryptionSettings,
 				outboundMessage,
@@ -202,7 +195,7 @@ export async function receiveTransactionsData({
 			outboundMessages.push(encryptedMessage);
 		} else {
 			log.debug(
-				`[${connectionId}] Outbound message: ${outboundMessage.toHexString()}`,
+				`[${connectionId}] Sending message: ${outboundMessage.getMessageId()}`,
 			);
 			outboundMessages.push(outboundMessage);
 		}
@@ -259,10 +252,6 @@ function decryptMessage(
 
 		const outboundMessage = ServerPacket.copy(inboundMessage, decryptedMessage);
 		outboundMessage.setPayloadEncryption(false);
-
-		log.debug(
-			`[${connectionId}] Decrypted message: ${outboundMessage.toHexString()}`,
-		);
 
 		return outboundMessage;
 	} catch (error) {

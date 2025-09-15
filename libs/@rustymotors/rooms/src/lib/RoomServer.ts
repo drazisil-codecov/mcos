@@ -6,12 +6,16 @@ export class RoomServer {
     _serverId;
     _serverName;
     _defaultRoomName = "LOBBY";
+    _hostname: string
+    _port: number
     _roomList: Map<string, Room> = new Map();
     _charList: Map<number, ChatMessage> = new Map();
 
-    constructor(serverId: number, serverName: string) {
+    constructor(serverId: number, serverName: string, hostname: string, port: number) {
         this._serverId = serverId;
         this._serverName = serverName;
+        this._hostname = hostname
+        this._port = port
     }
 
 

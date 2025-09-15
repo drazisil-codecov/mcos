@@ -4,12 +4,9 @@ import {
 	ServerLogger,
 	updateEncryption,
 } from "rusty-motors-shared";
-import { _setMyUserData } from "./_setMyUserData.js";
-import { handleGetMiniUserList } from "./handleGetMiniUserList.js";
-import { handleSendMiniRiffList } from "./handleSendMiniRiffList.js";
 import { getServerLogger } from "rusty-motors-shared";
 import { BytableMessage, createRawMessage } from "@rustymotors/binary";
-import { handleGetServerInfo } from "./handleGetServerInfo.js";
+import { npsCommandHandlers } from "./npsCommandHandlers.js";
 
 /**
  * Array of supported command handlers
@@ -164,30 +161,6 @@ export type NpsCommandHandler = {
 	}>;
 };
 
-const npsCommandHandlers: NpsCommandHandler[] = [
-	{
-		opCode: 0x10c, // 268
-		name: "NPS_GET_SERVER_INFO",
-		handler: handleGetServerInfo,
-	},
-	{
-		opCode: 0x128, // 296
-		name: "NPS_GET_MINI_USER_LIST",
-		handler: handleGetMiniUserList,
-	},
-	{
-		opCode: 0x30c, // 780
-		name: "NPS_SEND_MINI_RIFF_LIST",
-		handler: handleSendMiniRiffList,
-	},
-	{
-		opCode: 0x103, // 259
-		name: "NPS_SET_MY_USER_DATA",
-		handler: _setMyUserData,
-	},
-];
-
-
 async function handleCommand({
 	connectionId,
 	message,
@@ -200,14 +173,10 @@ async function handleCommand({
 	connectionId: string;
 	message: BytableMessage;
 }> {
-	log.debug(
-		`[${connectionId}] Received command: ${message.serialize().toString("hex")}`,
-	);
-
 	const command = message.header.messageId;
 
 	// What is the command?
-	log.debug(`[${connectionId}] Command: ${command}`);
+	log.debug(`[${connectionId}] Received Command: ${command}`);
 
 	const handler = npsCommandHandlers.find((h) => h.opCode === command);
 
@@ -221,7 +190,7 @@ async function handleCommand({
 		message,
 	});
 
-	log.debug(`[${connectionId}] Sending response: ${response.serialize().toString("hex")}`);
+	log.debug(`[${connectionId}] Sending response: ${response.header.messageId}`);
 
 	return {
 		connectionId,
@@ -254,8 +223,7 @@ export async function handleEncryptedNPSCommand({
 	connectionId: string;
 	messages: BytableMessage[];
 }> {
-	log.debug(`[${connectionId}] Handling encrypted NPS command`);
-	log.debug(`[${connectionId}] Received command: ${message.serialize().toString("hex")}`);
+	log.debug(`[${connectionId}] Received encrypted command: ${message.header.messageId}`);
 
 	// Decipher
 	const decipheredMessage = await decryptCmd({
@@ -263,7 +231,7 @@ export async function handleEncryptedNPSCommand({
 		message,
 	});
 
-	log.debug(`[${connectionId}] Deciphered message: ${decipheredMessage.message.serialize().toString("hex")}`);
+	log.debug(`[${connectionId}] Deciphered command: ${decipheredMessage.message.header.messageId}`);
 
 	const response = await handleCommand({
 		connectionId,
@@ -278,7 +246,7 @@ export async function handleEncryptedNPSCommand({
 		};
 	}
 
-	log.debug(`[${connectionId}] Sending response: ${response.message.serialize().toString("hex")}`);
+	log.debug(`[${connectionId}] Sending response: ${response.message.header.messageId}`);
 
 	// Encipher
 	const result = await encryptCmd({
@@ -287,8 +255,6 @@ export async function handleEncryptedNPSCommand({
 	});
 
 	const encryptedResponse = result.message;
-
-	log.debug(`[${connectionId}] Enciphered response: ${encryptedResponse.serialize().toString("hex")}`);
 
 	return {
 		connectionId,

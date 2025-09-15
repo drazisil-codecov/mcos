@@ -33,10 +33,6 @@ export async function receivePersonaData({
 	connectionId: string;
 	messages: SerializedBufferOld[];
 }> {
-	const data = message.serialize();
-	log.debug(`[${connectionId}] Entering receivePersonaData`);
-	log.debug(`[${connectionId}] Received persona data: ${data.toString("hex")}`);
-
 	// The packet needs to be an NPSMessage
 	const inboundMessage = new LegacyMessage();
 	inboundMessage._doDeserialize(message.serialize());

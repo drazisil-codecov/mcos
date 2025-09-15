@@ -3,8 +3,8 @@ import { RoomServer } from "./RoomServer.js";
 
 export class PrimaryRoomServer extends RoomServer {
 
-    constructor() {
-        super(0, 'RootServer');
+    constructor(hostname: string, port: number) {
+        super(0, 'RootServer', hostname, port);
     }
 
 

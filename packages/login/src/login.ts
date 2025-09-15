@@ -32,15 +32,9 @@ export async function login({
 }> {
 	const data = message.serialize();
 
-	log.debug(`[${connectionId}] Entering login`);
-
-	log.debug(`[${connectionId}] Creating NPSUserStatus object`);
 	const userStatus = new NPSUserStatus(data, getServerConfiguration(), log);
-	log.debug(`[${connectionId}] NPSUserStatus object created`);
 
-	log.debug(`[${connectionId}] Extracting session key from packet`);
 	userStatus.extractSessionKeyFromPacket(data);
-	log.debug(`[${connectionId}] Session key extracted`);
 
 	const { contextId, sessionKey } = userStatus;
 
@@ -71,8 +65,6 @@ export async function login({
 		throw err;
 	});
 
-	log.debug(`[${connectionId}] Creating outbound message`);
-
 	const outboundMessage = new NetworkMessage(0x601);
 
 	const dataBuffer = Buffer.alloc(26);
@@ -94,16 +86,9 @@ export async function login({
 	// Set the packet content in the outbound message
 	outboundMessage.data = packetContent;
 
-	log.debug(
-		`[${connectionId}] Outbound message: ${outboundMessage.toHexString()}`,
-	);
-
 	const outboundMessage2 = new GamePacket();
 	outboundMessage2.deserialize(outboundMessage.serialize());
 
-	log.debug(
-		`[${connectionId}] Outbound message2: ${outboundMessage2.toHexString()}`,
-	);
 
 	// Update the data buffer
 	const response = {
