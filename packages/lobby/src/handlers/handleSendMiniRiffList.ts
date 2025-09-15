@@ -40,7 +40,7 @@ export async function handleSendMiniRiffList({
 	message: BytableMessage;
 }> {
 	log.debug("[${connectionId}] Handling NPS_SEND_MINI_RIFF_LIST");
-	log.debug(`[${connectionId}] Received command: ${message.serialize().toString("hex")}`);
+	log.debug(`[${connectionId}] Received command: ${message.header.messageId}`);
 
 	const outgoingGameMessage = new LegacyMessage();
 	outgoingGameMessage.setMessageId(1028); // NPS_SEND_MINI_RIFF_LIST

@@ -19,7 +19,7 @@ export async function handleGetServerInfo({
 	try {
 		log.debug(`[${connectionId}] Handling NPS_GET_SERVER_INFO`);
 		log.debug(
-			`[${connectionId}] Received command: ${message.serialize().toString("hex")}`,
+			`[${connectionId}] Received command: ${message.header.messageId}`,
 		);
 
 		// l

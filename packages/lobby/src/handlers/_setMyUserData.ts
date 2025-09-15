@@ -17,7 +17,7 @@ export async function _setMyUserData({
 }) {
 	try {
 		log.debug(`[$connectionId] Handling NPS_SET_MY_USER_DATA`);
-		log.debug(`[$connectionId] Received command: ${message.serialize().toString("hex")}`);
+		log.debug(`[$connectionId] Received command: ${message.header.messageId}`);
 
 		const incomingMessage = new UserInfo();
 		incomingMessage.deserialize(message.serialize());

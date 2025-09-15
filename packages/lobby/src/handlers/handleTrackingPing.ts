@@ -16,11 +16,6 @@ export async function handleTrackingPing({
 	connectionId: string;
 	messages: SerializedBufferOld[];
 }> {
-	log.debug("Handling NPS_TRACKING_PING");
-	log.debug(`Received command: ${message.toString()}`);
-
-	log.debug("Skipping response");
-
 	return {
 		connectionId,
 		messages: [],

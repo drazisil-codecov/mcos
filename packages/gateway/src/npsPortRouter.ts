@@ -115,9 +115,6 @@ function parseInitialMessage(data: Buffer): BytableMessage {
 
 		message.deserialize(data);
 
-		getServerLogger("gateway.npsPortRouter/parseInitialMessage").debug(
-			`Parsed initial message: ${message.serialize().toString("hex")}`,
-		);
 		return message;
 	} catch (error) {
 		const err = new Error(`Error parsing initial message: ${error}`, {
