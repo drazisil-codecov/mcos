@@ -2,7 +2,7 @@ import { LegacyMessage } from "rusty-motors-shared";
 import { UserInfo } from "../UserInfoMessage.js";
 import { databaseManager } from "rusty-motors-database";
 import { ServerLogger, getServerLogger } from "rusty-motors-shared";
-import { UserData } from "../UserInfoMessage.js";
+import { UserData } from "../UserData.js";
 import { BytableMessage } from "@rustymotors/binary";
 
 
@@ -27,11 +27,11 @@ export async function _setMyUserData({
 		// Update the user's data
 		databaseManager.updateUser({
 			userId: incomingMessage._userId,
-			userData: incomingMessage._userData,
+			userData: incomingMessage._userData.serialize(),
 		});
 
 		const userData = new UserData();
-		userData.deserialize(incomingMessage._userData);
+		userData.deserialize(incomingMessage._userData.serialize());
 
 		log.debug(`User data: ${userData.toString()}`);
 
