@@ -29,6 +29,10 @@ async function updateUser(user: {
 	}
 }
 
+async function getUser(userId: number): Promise<Buffer<ArrayBufferLike> | undefined> {
+		return Promise.resolve(_users.get(userId));
+}
+
 /**
  * Locate customer session encryption key in the database
  *
@@ -118,6 +122,7 @@ export function getDatabase(): Sequelize {
 
 export interface DatabaseManager {
 	updateUser: typeof updateUser;
+	getUser: typeof getUser
 	fetchSessionKeyByCustomerId: typeof fetchSessionKeyByCustomerId;
 	updateSessionKey: typeof updateSessionKey;
 	fetchSessionKeyByConnectionId: typeof fetchSessionKeyByConnectionId;
@@ -125,6 +130,7 @@ export interface DatabaseManager {
 
 export const databaseManager: DatabaseManager = {
 	updateUser,
+	getUser,
 	fetchSessionKeyByCustomerId,
 	updateSessionKey,
 	fetchSessionKeyByConnectionId,

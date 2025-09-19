@@ -3,6 +3,7 @@ import type { TBrand } from "./models/Brand.js";
 import { getSlonik, getDatabase } from "./services/database.js";
 import * as Sentry from "@sentry/node";
 import { TPart } from "./models/Part.js";
+import { databaseManager } from "./DatabaseManager.js";
 const { slonik, sql } = await getDatabase();
 
 const level1PartTypes = [1001, 2001, 4001, 5001, 6001, 15001, 36001, 37001];
@@ -685,4 +686,30 @@ export async function buildVehiclePartTree({
     log.debug(`Vehicle part tree: ${JSON.stringify(vehiclePartTree)}`);
 
     return vehiclePartTree;
+}
+
+export async function dbBuyNewPart(personiaId: number, brandedPartId: number, dealerId: number, shouldChargelayer: boolean): Promise<number> {
+    const persona = databaseManager.getUser(personiaId)
+
+    if (typeof persona === "undefined") {
+        throw new Error(`Persona ${personiaId} not found`)
+    }
+
+    const newPartId = await getNextPartId();
+
+    const newPart: TPart = {
+        part_id: newPartId,
+        parent_part_id: null,
+        branded_part_id: brandedPartId,
+        percent_damage: 0,
+            item_wear: 0,
+            attachment_point_id: 0,
+            owner_id: personiaId,
+            part_name: null,
+            repair_cost: 0,
+            scrap_value: 0,
+    }
+    
+    
+    return savePart(newPart).then(() => newPartId)
 }

@@ -34,6 +34,8 @@ import { IServerMessage } from "rusty-motors-shared-packets";
 import { _crcPreRaceData } from "./_crcPreRaceData.js";
 import { _updateCachedVehicle } from "./_updateCachedVehicle.js";
 import { _getCompleteVehicleInfo } from "./_getFullCarInfo.js";
+import { _buyNewPart } from "./_buyNewPart.js";
+
 
 export interface MessageHandlerArgs {
 	connectionId: string;
@@ -52,6 +54,10 @@ export interface MessageHandler {
 }
 
 export const messageHandlers: MessageHandler[] = [
+	{
+		name: "MC_BUY_NEW_PART",
+		handler: _buyNewPart
+	},
 	{
 		name: "MC_TRACKING_MSG",
 		handler: trackingPing,
@@ -125,3 +131,5 @@ export const messageHandlers: MessageHandler[] = [
 		handler: _updateCachedVehicle
 	}
 ];
+
+

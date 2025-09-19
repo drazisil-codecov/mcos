@@ -3,6 +3,7 @@ import {
     getServerLogger,
     ServerLogger,
 } from "rusty-motors-shared";
+import { databaseManager } from "rusty-motors-database";
 import { UserInfo } from "../UserInfoMessage.js";
 
 export async function handleGetUserList({
@@ -53,8 +54,11 @@ export async function handleGetUserList({
         const userList: UserInfo[] = []
         
         const user1 = new UserInfo()
-        user1._userId = 88,
-        user1._userName = "Marty"
+        user1._userId = 21,
+        user1._userName = "Dr Brown"
+        user1._userData.deserialize(await databaseManager.getUser(21)?? Buffer.alloc(64))
+
+        log.debug(`Fetched userData: ${user1._userData.toString()}`)
 
         userList.push(user1)
         

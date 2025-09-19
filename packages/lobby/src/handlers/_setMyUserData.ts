@@ -2,7 +2,7 @@ import { LegacyMessage } from "rusty-motors-shared";
 import { UserInfo } from "../UserInfoMessage.js";
 import { databaseManager } from "rusty-motors-database";
 import { ServerLogger, getServerLogger } from "rusty-motors-shared";
-import { UserData } from "../UserData.js";
+import { SetMyUserDataMessage, UserData, UserData_byte } from "../UserData.js";
 import { BytableMessage } from "@rustymotors/binary";
 
 
@@ -23,6 +23,7 @@ export async function _setMyUserData({
 		incomingMessage.deserialize(message.serialize());
 
 		log.debug(`User ID: ${incomingMessage._userId}`);
+		log.debug(`UserData: ${incomingMessage._userData.toString()}`)
 
 		// Update the user's data
 		databaseManager.updateUser({
@@ -30,8 +31,24 @@ export async function _setMyUserData({
 			userData: incomingMessage._userData.serialize(),
 		});
 
-		const userData = new UserData();
+		const userData = new UserData_byte();
 		userData.deserialize(incomingMessage._userData.serialize());
+
+		// === TEST! ===
+
+		try {
+			log.debug(`AAA: ${message.serialize().toString("hex")}`)
+
+			const ud = new SetMyUserDataMessage()
+			ud.deserialize(message.serialize())
+
+			log.debug(`BBB: ${ud.serialize().toString("hex")}`)
+	
+		} catch (error) {
+			throw new Error(`Well, that was a failure!: ${String(error)}`)
+		}
+
+		// === end TEST! ===
 
 		log.debug(`User data: ${userData.toString()}`);
 

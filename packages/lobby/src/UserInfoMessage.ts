@@ -1,8 +1,8 @@
-import { deserializeString } from "rusty-motors-shared";
+import { deserializeString, getServerLogger } from "rusty-motors-shared";
 import { serializeString } from "rusty-motors-shared";
 // eslint-disable-next-line no-unused-vars
 import { BytableStructure } from "@rustymotors/binary";
-import { UserData } from "./UserData.js";
+import { UserData_byte } from "./UserData.js";
 
 export class MiniUserInfo extends BytableStructure {
 	constructor() {
@@ -18,11 +18,11 @@ export class MiniUserInfo extends BytableStructure {
 export class UserInfo {
 	_userId: number;
 	_userName: string;
-	_userData: UserData;
+	_userData: UserData_byte;
 	constructor() {
 		this._userId = 0; // 4 bytes
 		this._userName = ""; // 2 bytes + string
-		this._userData = new UserData()
+		this._userData = new UserData_byte()
 	}
 
 	deserialize(buffer: Buffer) {
