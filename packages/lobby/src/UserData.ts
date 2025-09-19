@@ -1,5 +1,4 @@
 import { BytableStructure } from "@rustymotors/binary";
-import { log } from "console";
 
 
 export class UserData_byte extends BytableStructure {
@@ -71,8 +70,6 @@ function padBuffer(inBuf: Buffer): Buffer {
 function sliceBuff(inbuff: Buffer, offset: number, len: number): Buffer<ArrayBuffer> {
 	const endIdx = offset + len
 	if (inbuff.byteLength < endIdx) {
-		log(`DDD: ${inbuff.toString("hex")}`)
-		log(`EEE: ${inbuff.byteLength}, ${offset}, ${len}`)
 		throw new Error(`input buffer not log enough, need ${len} bytes`)
 	}
 	return Buffer.from(inbuff.subarray(offset, endIdx))
