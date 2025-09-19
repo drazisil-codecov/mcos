@@ -1,44 +1,97 @@
-import type { Serializable } from "./BaseSerialized.js";
-import { SerializedBuffer } from "./SerializedBuffer.js";
+import { checkSize4, sliceBuff, checkSize2 } from "./UserData.js";
+import { SerializableMessage } from "./interfaces.js";
 
-/**
- * A serialized buffer, prefixed with a 2-byte message id and a 2-byte total length.
- */
-export class RawMessage extends SerializedBuffer {
-	private _messageId: number;
-	constructor(messageId: number, data?: Buffer) {
-		super(data);
-		this._messageId = messageId;
+
+export class RawMessage implements SerializableMessage {
+	private _header: RawMessageHeader;
+	private _data: Buffer;
+
+	constructor() {
+		this._header = new RawMessageHeader();
+		this._data = Buffer.alloc(0);
 	}
-	override serialize() {
-		const buffer = Buffer.alloc(4 + this._data.length);
-		buffer.writeUInt16BE(this._messageId, 0);
-		buffer.writeUInt16BE(this._data.length + 4, 2);
-		this._data.copy(buffer, 4);
-		return buffer;
+
+	get sizeOf() {
+		return this._header.length ?? 4 + this._data.byteLength;
 	}
-	override deserialize<T extends Serializable>(buffer: Buffer): T {
-		if (buffer.length < 4) {
-			throw Error(`Unable to get header from buffer, got ${buffer.length}`);
+
+	serialize() {
+		return Buffer.from(Buffer.concat([
+			this._header.serialize(),
+			this._data
+		]));
+	}
+
+	deserialize(buf: Buffer) {
+		checkSize4(buf.byteLength);
+		this._header.deserialize(sliceBuff(buf, 0, 4));
+		if (buf.byteLength > 4) {
+			this._data = Buffer.from(buf.subarray(4));
 		}
-		const length = buffer.readUInt16BE(2);
-		if (buffer.length < length) {
-			throw Error(`Expected buffer of length ${length}, got ${buffer.length}`);
-		}
-		this._messageId = buffer.readUInt16BE(0);
-		this._data = buffer.subarray(4, 4 + length);
-		return this as unknown as T;
 	}
 
-	get messageId(): number {
-		return this._messageId;
+	get id() {
+		return this._header.id;
 	}
 
-	override get length(): number {
-		return 4 + this._data.length;
+	set id(val: number) {
+		checkSize2(val);
+		this._header.id = val;
 	}
 
-	override asHex(): string {
-		return this.serialize().toString("hex");
+	get length() {
+		return this._header.length;
+	}
+
+	set length(val: number) {
+		checkSize2(val);
+		this._header.length = val;
 	}
 }
+export class RawMessageHeader implements SerializableMessage {
+	private _id: Buffer
+	private _length: Buffer
+
+	constructor() {
+		this._id = Buffer.alloc(2)
+		this._length = Buffer.alloc(2)
+	}
+
+	get sizeOf() {
+		return 4
+	}
+
+	serialize() {
+		return Buffer.from(Buffer.concat([
+			this._id,
+			this._length
+		]))
+	}
+
+	deserialize(buf: Buffer) {
+		if (buf.byteLength < 4) {
+			throw new Error('Header must be 4 bytes long')
+		}
+		this._id = sliceBuff(buf, 0, 2)
+		this._length = sliceBuff(buf, 2, 2)
+	}
+
+	get id() {
+		return this._id.readInt16BE()
+	}
+
+	set id(val: number) {
+		checkSize2(val)
+		this._id.writeInt16BE(val)
+	}
+
+	get length() {
+		return this._length.readInt16BE()
+	}
+
+	set length(val: number) {
+		checkSize2(val)
+		this._length.writeInt16BE(val)
+	}
+}
+

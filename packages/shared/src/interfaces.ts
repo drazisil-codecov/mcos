@@ -74,3 +74,16 @@ export interface KeypressEvent {
 	meta: boolean;
 	shift: boolean;
 }
+export interface Serializable {
+	serialize: () => Buffer
+	deserialize: (buf: Buffer) => void
+	sizeOf: number
+}
+
+export interface SerializableMessage {
+	serialize: () => Buffer
+	deserialize: (buf: Buffer) => void
+	sizeOf: number
+	id: number
+	length: number
+}

@@ -2,9 +2,9 @@ import { BytableMessage } from "@rustymotors/binary";
 import {
     getServerLogger,
     ServerLogger,
+    UserInfo,
 } from "rusty-motors-shared";
 import { databaseManager } from "rusty-motors-database";
-import { UserInfo } from "../UserInfoMessage.js";
 
 export async function handleGetUserList({
     connectionId,
@@ -53,15 +53,12 @@ export async function handleGetUserList({
         
         const userList: UserInfo[] = []
         
-        const user1 = new UserInfo()
-        user1._userId = 21,
-        user1._userName = "Dr Brown"
-        user1._userData.deserialize(await databaseManager.getUser(21)?? Buffer.alloc(64))
+        const user1 = await databaseManager.getUser(21)
 
-        log.debug(`Fetched userData: ${user1._userData.toString()}`)
-
-        userList.push(user1)
-        
+        if (typeof user1 !== "undefined") {
+            log.debug(`Fetched userData: ${user1.userData.toString()}`)
+            userList.push(user1)
+        }
         
         outgoingGameMessage.setFieldValueByName(
             "userCount",

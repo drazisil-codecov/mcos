@@ -1,7 +1,6 @@
-import { LegacyMessage } from "rusty-motors-shared";
+import { LegacyMessage, SetMyUserDataMessage } from "rusty-motors-shared";
 import { databaseManager } from "rusty-motors-database";
 import { ServerLogger, getServerLogger } from "rusty-motors-shared";
-import { SetMyUserDataMessage } from "../UserData.js";
 import { BytableMessage } from "@rustymotors/binary";
 
 
@@ -27,7 +26,7 @@ export async function _setMyUserData({
 		// Update the user's data
 		databaseManager.updateUser({
 			userId: incomingMessage.userInfo.userId,
-			userData: incomingMessage.userInfo.userData.serialize(),
+			userInfo: incomingMessage.userInfo,
 		});
 
 		const userData = incomingMessage.userInfo.userData

@@ -1,4 +1,4 @@
-import type { ConnectionRecord } from "rusty-motors-shared";
+import type { ConnectionRecord, UserInfo } from "rusty-motors-shared";
 import { Sequelize } from "sequelize";
 
 
@@ -6,7 +6,7 @@ import { Sequelize } from "sequelize";
 // This is a fake database table that holds sessions of currently logged in users
 const _sessions: ConnectionRecord[] = [];
 // This is a fake database table that holds user data
-const _users: Map<number, Buffer> = new Map();
+const _users: Map<number, UserInfo> = new Map();
 
 /**
  * @module Database
@@ -19,17 +19,17 @@ const _users: Map<number, Buffer> = new Map();
  */
 async function updateUser(user: {
 	userId: number;
-	userData: Buffer;
+	userInfo: UserInfo;
 }): Promise<void> {
 	try {
-		_users.set(user.userId, user.userData);
+		_users.set(user.userId, user.userInfo);
 		return Promise.resolve();
 	} catch (error) {
 		throw Error(`Error updating user: ${String(error)}`);
 	}
 }
 
-async function getUser(userId: number): Promise<Buffer<ArrayBufferLike> | undefined> {
+async function getUser(userId: number): Promise<UserInfo | undefined> {
 		return Promise.resolve(_users.get(userId));
 }
 

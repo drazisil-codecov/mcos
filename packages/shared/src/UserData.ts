@@ -1,39 +1,5 @@
-import { BytableStructure } from "@rustymotors/binary";
-
-
-class UserData_byte extends BytableStructure {
-	// 00000000000000000000000005000000a5ceffff0d45acffffffffff00d8ffff0000000000000000010000000000000008000000000000000001000000000000
-	constructor() {
-		super();
-		this.setSerializeOrder([
-			{ name: "carIds", field: "Structure" },
-			{ name: "lobbyId", field: "Dword" },
-			{ name: "clubId", field: "Dword" },
-			{ name: "inLobby", field: "Boolean" },
-			{ name: "inMovement", field: "Boolean" },
-			{ name: "inRace", field: "Boolean" },
-			{ name: "isDataValid", field: "Boolean" },
-			{ name: "unused", field: "Boolean" },
-			{ name: "performance", field: "Dword" },
-			{ name: "points", field: "Dword" },
-			{ name: "level", field: "Short" },
-		]);
-	}
-}
-
-interface Serializable {
-	serialize: () => Buffer,
-	deserialize: (buf: Buffer) => void
-	sizeOf: number
-}
-
-interface SerializableMessage {
-	serialize: () => Buffer,
-	deserialize: (buf: Buffer) => void
-	sizeOf: number
-	id: number
-	length: number
-}
+import { Serializable, SerializableMessage } from "./interfaces.js"
+import { RawMessageHeader } from "./RawMessage.js"
 
 /**
  * Aligns the given value to the nearest multiple of 4
@@ -67,7 +33,7 @@ function padBuffer(inBuf: Buffer): Buffer {
  * @returns A Buffer subarray containing the specified range.
  * @throws {Error} If the input buffer is not long enough to fulfill the request.
  */
-function sliceBuff(inbuff: Buffer, offset: number, len: number): Buffer<ArrayBuffer> {
+export function sliceBuff(inbuff: Buffer, offset: number, len: number): Buffer<ArrayBuffer> {
 	const endIdx = offset + len
 	if (inbuff.byteLength < endIdx) {
 		throw new Error(`input buffer not log enough, need ${len} bytes`)
@@ -197,7 +163,7 @@ function checkSize1(val: number) {
  * @param val - The number to check.
  * @throws {Error} If the value does not fit in 2 bytes.
  */
-function checkSize2(val: number) {
+export function checkSize2(val: number) {
 	if (val < 0x00 || val > 0xFFFF) {
 		throw new Error(`value must fit in 2 bytes. got: ${val.toString(16)}`);
 	}
@@ -210,7 +176,7 @@ function checkSize2(val: number) {
  * @param val - The number to check.
  * @throws {Error} If the value does not fit in 4 bytes.
  */
-function checkSize4(val: number) {
+export function checkSize4(val: number) {
 	if (val < 0x00 || val > 0xFFFFFFFF) {
 		throw new Error(`value must fit in 4 bytes. got: ${val.toString(16)}`);
 	}
@@ -415,100 +381,6 @@ export class UserData implements Serializable {
 	}
 }
 
-class RawMessageHeader implements SerializableMessage {
-	private _id: Buffer
-	private _length: Buffer
-
-	constructor() {
-		this._id = Buffer.alloc(2)
-		this._length = Buffer.alloc(2)
-	}
-
-	get sizeOf() {
-		return 4
-	}
-
-	serialize() {
-		return Buffer.from(Buffer.concat([
-			this._id,
-			this._length
-		]))
-	}
-
-	deserialize(buf: Buffer) {
-		if (buf.byteLength < 4) {
-			throw new Error('Header must be 4 bytes long')
-		}
-		this._id = sliceBuff(buf, 0, 2)
-		this._length = sliceBuff(buf, 2, 2)
-	}
-
-	get id() {
-		return this._id.readInt16BE()
-	}
-
-	set id(val: number) {
-		checkSize2(val);
-		this._id.writeInt16BE(val)
-	}
-
-	get length() {
-		return this._length.readInt16BE()
-	}
-
-	set length(val: number) {
-		checkSize2(val)
-		this._length.writeInt16BE(val)
-	}
-}
-
-export class RawMessage implements SerializableMessage {
-	private _header: RawMessageHeader
-	private _data: Buffer
-
-	constructor() {
-		this._header = new RawMessageHeader()
-		this._data = Buffer.alloc(0)
-	}
-
-	get sizeOf() {
-		return this._header.length ?? 4 + this._data.byteLength
-	}
-
-	serialize() {
-		return Buffer.from(Buffer.concat([
-			this._header.serialize(),
-			this._data
-		]))
-	}
-
-	deserialize(buf: Buffer) {
-		checkSize4(buf.byteLength)
-		this._header.deserialize(sliceBuff(buf, 0, 4))
-		if (buf.byteLength > 4) {
-			this._data = Buffer.from(buf.subarray(4))
-		}
-	}
-
-	get id() {
-		return this._header.id
-	}
-
-	set id(val: number) {
-		checkSize2(val)
-		this._header.id = val
-	}
-
-	get length() {
-		return this._header.length
-	}
-
-	set length(val: number) {
-		checkSize2(val)
-		this._header.length = val
-	}
-}
-
 class CString implements Serializable {
 	private _string: Buffer
 	private _maxLen: number
@@ -547,6 +419,13 @@ class CString implements Serializable {
 
 	get length() {
 		return this._string.byteLength
+	}
+
+	set(val: string) {
+		if (val.length + 1 > this._maxLen -1) {
+			throw new Error(`string can only be ${this._maxLen + 1} bytes long, got ${val.length}`)
+		}
+		this._string.write(val + '\n', "utf8")
 	}
 }
 
@@ -588,6 +467,19 @@ export class UserInfo implements Serializable {
 
 	get userId() {
 		return this._userId.readInt32BE()
+	}
+
+	set userId(val: number) {
+		checkSize4(val)
+		this._userId.writeInt32BE(val)
+	}
+
+	get userName() {
+		return this._username.toString().trimEnd()
+	}
+
+	set userName(val: string) {
+		this._username.set(val)
 	}
 
 	get userData(): UserData {
