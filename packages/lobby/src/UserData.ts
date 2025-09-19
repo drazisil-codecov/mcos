@@ -1,7 +1,7 @@
 import { BytableStructure } from "@rustymotors/binary";
 
 
-export class UserData_byte extends BytableStructure {
+class UserData_byte extends BytableStructure {
 	// 00000000000000000000000005000000a5ceffff0d45acffffffffff00d8ffff0000000000000000010000000000000008000000000000000001000000000000
 	constructor() {
 		super();
@@ -409,6 +409,10 @@ export class UserData implements Serializable {
 		offset += 4
 		this._level = sliceBuff(buf, offset, 2)
 	}
+
+	get lobbyId() {
+		return this._lobbyId.readInt32BE()
+	}
 }
 
 class RawMessageHeader implements SerializableMessage {
@@ -581,6 +585,14 @@ export class UserInfo implements Serializable {
 		offset += this._username.sizeOf
 		this._userData.deserialize(buf.subarray(offset))
 	}
+
+	get userId() {
+		return this._userId.readInt32BE()
+	}
+
+	get userData(): UserData {
+		return this._userData
+	}
 }
 
 export class SetMyUserDataMessage implements SerializableMessage {
@@ -621,6 +633,10 @@ export class SetMyUserDataMessage implements SerializableMessage {
 
 	get length() {
 		return this._header.length
+	}
+
+	get userInfo(): UserInfo {
+		return this._userInfo
 	}
 }
 

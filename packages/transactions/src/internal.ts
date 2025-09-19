@@ -46,7 +46,7 @@ import { explode } from "pklib-ts"
 async function processInput({
 	connectionId,
 	inboundMessage,
-	log = getServerLogger( "transactionServer.processInput"),
+	log = getServerLogger("transactionServer.processInput"),
 }: {
 	connectionId: string;
 	inboundMessage: ServerPacket;
@@ -100,7 +100,7 @@ async function processInput({
 export async function receiveTransactionsData({
 	connectionId,
 	message,
-	log = getServerLogger( "transactionServer.receiveTransactionsData"),
+	log = getServerLogger("transactionServer.receiveTransactionsData"),
 }: {
 	connectionId: string;
 	message: BufferSerializer;
@@ -304,45 +304,43 @@ function encryptOutboundMessage(
 
 function decompressMessage(
 	compressedMessage: ServerPacket,
-	connectionId: string,
+	_connectionId: string,
 	log = getServerLogger("transactionServer.decompressInboundMessage"),
 ): ServerPacket {
 	log.debug(`Decompressing message with initial messageId of ${compressedMessage.getMessageId()}`)
 
-	const uncompressedLen = compressedMessage.data.getMessageId()
-
-	    const outputBuffer = new Uint8Array(64 * 1024); // 64KB buffer
-    let outputPos = 0;
+	const outputBuffer = new Uint8Array(64 * 1024); // 64KB buffer
+	let outputPos = 0;
 
 	const compressedPayload = compressedMessage.getDataBuffer().subarray(2)
-    
-    const writeCallback = (data: Uint8Array, bytesToWrite: number): number => {
-      if (outputPos + bytesToWrite > outputBuffer.length) {
-        throw new Error('Output buffer overflow');
-      }
-      outputBuffer.set(data.slice(0, bytesToWrite), outputPos);
-      outputPos += bytesToWrite;
-      return bytesToWrite;
-    };
-    
-    let inputPos = 0;
-    const readCallback = (buffer: Uint8Array, bytesToRead: number): number => {
-      const available = Math.min(bytesToRead, compressedPayload.length - inputPos);
-      if (available <= 0) return 0;
-      
-      buffer.set(compressedPayload.subarray(inputPos, inputPos + available));
-      inputPos += available;
-      return available;
-    };
-    
-    const result = explode(readCallback, writeCallback);
-    
-    if (result.success) {
-      const outputData = Buffer.from(outputBuffer.slice(0, outputPos));
 
-	  log.debug(`DecompressedPayload: ${outputData.toString("hex")}`)
-      
-        // Output raw binary data to stdout
+	const writeCallback = (data: Uint8Array, bytesToWrite: number): number => {
+		if (outputPos + bytesToWrite > outputBuffer.length) {
+			throw new Error('Output buffer overflow');
+		}
+		outputBuffer.set(data.slice(0, bytesToWrite), outputPos);
+		outputPos += bytesToWrite;
+		return bytesToWrite;
+	};
+
+	let inputPos = 0;
+	const readCallback = (buffer: Uint8Array, bytesToRead: number): number => {
+		const available = Math.min(bytesToRead, compressedPayload.length - inputPos);
+		if (available <= 0) return 0;
+
+		buffer.set(compressedPayload.subarray(inputPos, inputPos + available));
+		inputPos += available;
+		return available;
+	};
+
+	const result = explode(readCallback, writeCallback);
+
+	if (result.success) {
+		const outputData = Buffer.from(outputBuffer.slice(0, outputPos));
+
+		log.debug(`DecompressedPayload: ${outputData.toString("hex")}`)
+
+		// Output raw binary data to stdout
 		const uncompressedMessage = ServerPacket.copy(compressedMessage, outputData);
 		uncompressedMessage.setPayloadCompression(false)
 		return uncompressedMessage

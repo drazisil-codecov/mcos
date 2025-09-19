@@ -1,8 +1,7 @@
 import { LegacyMessage } from "rusty-motors-shared";
-import { UserInfo } from "../UserInfoMessage.js";
 import { databaseManager } from "rusty-motors-database";
 import { ServerLogger, getServerLogger } from "rusty-motors-shared";
-import { SetMyUserDataMessage, UserData, UserData_byte } from "../UserData.js";
+import { SetMyUserDataMessage } from "../UserData.js";
 import { BytableMessage } from "@rustymotors/binary";
 
 
@@ -19,40 +18,23 @@ export async function _setMyUserData({
 		log.debug(`[$connectionId] Handling NPS_SET_MY_USER_DATA`);
 		log.debug(`[$connectionId] Received command: ${message.header.messageId}`);
 
-		const incomingMessage = new UserInfo();
+		const incomingMessage = new SetMyUserDataMessage();
 		incomingMessage.deserialize(message.serialize());
 
-		log.debug(`User ID: ${incomingMessage._userId}`);
-		log.debug(`UserData: ${incomingMessage._userData.toString()}`)
+		log.debug(`User ID: ${incomingMessage.userInfo.userId}`);
+		log.debug(`UserData: ${incomingMessage.userInfo.userData.toString()}`)
 
 		// Update the user's data
 		databaseManager.updateUser({
-			userId: incomingMessage._userId,
-			userData: incomingMessage._userData.serialize(),
+			userId: incomingMessage.userInfo.userId,
+			userData: incomingMessage.userInfo.userData.serialize(),
 		});
 
-		const userData = new UserData_byte();
-		userData.deserialize(incomingMessage._userData.serialize());
-
-		// === TEST! ===
-
-		try {
-			log.debug(`AAA: ${message.serialize().toString("hex")}`)
-
-			const ud = new SetMyUserDataMessage()
-			ud.deserialize(message.serialize())
-
-			log.debug(`BBB: ${ud.serialize().toString("hex")}`)
-	
-		} catch (error) {
-			throw new Error(`Well, that was a failure!: ${String(error)}`)
-		}
-
-		// === end TEST! ===
+		const userData = incomingMessage.userInfo.userData
 
 		log.debug(`User data: ${userData.toString()}`);
 
-		const currentChannel = userData.getFieldValueByName("lobbyId") as number;
+		const currentChannel = userData.lobbyId;
 
 		// Build the packet
 		const packetResult = new LegacyMessage();
