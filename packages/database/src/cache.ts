@@ -4,6 +4,7 @@ import { getSlonik, getDatabase } from "./services/database.js";
 import * as Sentry from "@sentry/node";
 import { TPart } from "./models/Part.js";
 import { databaseManager } from "./DatabaseManager.js";
+import { BrandedPart } from "./__generated__/index.js";
 const { slonik, sql } = await getDatabase();
 
 const level1PartTypes = [1001, 2001, 4001, 5001, 6001, 15001, 36001, 37001];
@@ -165,7 +166,8 @@ export async function saveVehicle(
             scrap_value: 0,
         };
 
-        log.debug(`Saving vehicle part: ${JSON.stringify(vehiclePart)}`);
+        log.debug(`Saving vehicle part: ${JSON.stringify(vehiclePart)}`,
+    {vehicleId:  vehiclePartTree.vehicleId});
         await savePart(vehiclePart).catch((error) => {
             log.error(`Error saving vehicle part: ${error}`);
             const e = new Error(`Error saving vehicle part: ${error}`);
@@ -182,7 +184,9 @@ export async function saveVehicle(
             damage_info: vehiclePartTree.damageInfo,
         };
 
-        log.debug(`Saving vehicle: ${JSON.stringify(newVehicle)}`);
+        log.debug(`Saving vehicle: ${JSON.stringify(newVehicle)}`,{
+            vehicleId: vehiclePartTree.vehicleId
+        });
 
         await Sentry.startSpan(
             {
@@ -364,20 +368,27 @@ export async function buildVehiclePartTreeFromDB(
         throw new Error(`Vehicle with id ${vehicleId} has no parts`);
     }
 
-    log.debug(`We got parts!`);
+    log.debug(`We got parts!`,{
+        BrandedPart: vehiclePartTree.brandedPartId
+    });
     log.debug(
         `There are ${level1Parts.length} level 1 parts in the vehicle assembly`,
+        {BrandedPart: vehiclePartTree.brandedPartId}
     );
 
-    log.debug(`level1Parts: ${JSON.stringify(level1Parts)}`);
+    log.debug(`level1Parts: ${JSON.stringify(level1Parts)}`,
+{BrandedPart: vehiclePartTree.brandedPartId});
 
     const level1PartsIds = level1Parts.map((part) => part.part_id);
 
-    log.debug(`level1PartsIds: ${level1PartsIds}`);
+    log.debug(`level1PartsIds: ${level1PartsIds}`, {
+        BrandedPart: vehiclePartTree.brandedPartId
+    });
 
     for (const part of level1Parts) {
         log.debug(
             `Adding part: ${JSON.stringify(part)} to vehicle part tree level 1`,
+            {BrandedPart: vehiclePartTree.brandedPartId}
         );
 
         const newPart: TPart = {
@@ -419,9 +430,12 @@ export async function buildVehiclePartTreeFromDB(
         throw new Error(`Vehicle with id ${vehicleId} has no level 2 parts`);
     }
 
-    log.debug(`We got parts!`);
+    log.debug(`We got parts!`,
+    {BrandedPart: vehiclePartTree.brandedPartId}
+    );
     log.debug(
         `There are ${level2Parts.length} level 2 parts in the vehicle assembly`,
+        {BrandedPart: vehiclePartTree.brandedPartId}
     );
 
     for (const part of level2Parts) {
@@ -441,8 +455,12 @@ export async function buildVehiclePartTreeFromDB(
         vehiclePartTree.partTree.level2.parts.push(newPart);
     }
 
-    log.debug(`Vehicle part tree populated`);
-    log.debug(`Vehicle part tree: ${vehiclePartTreeToJSON(vehiclePartTree)}`);
+    log.debug(`Vehicle part tree populated`,
+        {BrandedPart: vehiclePartTree.brandedPartId}
+    );
+    log.debug(`Vehicle part tree: ${vehiclePartTreeToJSON(vehiclePartTree)}`,{
+        BrandedPart: vehiclePartTree.brandedPartId
+    });
 
     setVehiclePartTree(vehiclePartTree.vehicleId, vehiclePartTree);
 
@@ -566,7 +584,9 @@ export async function buildVehiclePartTree({
             },
         },        
         async () => {
-            log.debug(`Getting vehicle assembly for vehicle with branded part id ${brandedPartId}`);
+            log.debug(`Getting vehicle assembly for vehicle with branded part id ${brandedPartId}`,
+                {BrandedPart: vehiclePartTree.brandedPartId}
+            );
             const { slonik, sql } = await getSlonik();
             return slonik.many(sql.typeAlias('detailedPart')`
         SELECT bp.branded_part_id, bp.part_type_id, a.attachment_point_id, pt.abstract_part_type_id, apt.parent_abstract_part_type_id
@@ -595,9 +615,12 @@ export async function buildVehiclePartTree({
     }
 
     // But we did get parts, right?
-    log.debug(`We got parts!`);
+    log.debug(`We got parts!`,
+        {BrandedPart: brandedPartId}
+    );
     log.debug(
         `There are ${vehicleAssembly.length} parts in the vehicle assembly`,
+        {brandedPart: brandedPartId}
     );
 
     const topPartId = await getNextPartId();

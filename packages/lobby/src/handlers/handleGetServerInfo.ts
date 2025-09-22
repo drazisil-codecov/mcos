@@ -3,6 +3,7 @@ import {
 	getServerLogger,
 	ServerLogger,
 } from "rusty-motors-shared";
+import { chatChannelIds } from "./channels.js";
 
 export async function handleGetServerInfo({
 	connectionId,
@@ -29,11 +30,18 @@ export async function handleGetServerInfo({
 
 		const requestedCommId = incomingRequest.getFieldValueByName("commId") ?? -1
 
+		const cID = (requestedCommId as Buffer).readInt32BE()
+
 		log.debug(
-			`[${connectionId}] Received commIdId: ${requestedCommId}`,
+			`[${connectionId}] Received commId: ${cID}`,
 		);
 
 		// TODO: Actually have servers
+		let commPort;
+
+		if (cID > 0 && cID < 21) {
+			commPort = chatChannelIds[cID] ?? 7003
+		}
 
 		// plplll
 		const outgoingGameMessage = new BytableMessage();
@@ -48,7 +56,7 @@ export async function handleGetServerInfo({
 
 		outgoingGameMessage.header.setMessageId(525);
         outgoingGameMessage.setVersion(0);
-		outgoingGameMessage.setFieldValueByName("riffName", "MCC01\n");
+		outgoingGameMessage.setFieldValueByName("riffName", `MCC${commPort}\n`);
 		outgoingGameMessage.setFieldValueByName("commId", requestedCommId);
 		outgoingGameMessage.setFieldValueByName(
 			"ipAddress",
@@ -56,7 +64,7 @@ export async function handleGetServerInfo({
 		);
 		outgoingGameMessage.setFieldValueByName(
 			"port",
-			7003
+			parseInt(`90${commPort}`)
 		);
 		outgoingGameMessage.setFieldValueByName("userId", 21);
 		outgoingGameMessage.setFieldValueByName("playerCount", 1);

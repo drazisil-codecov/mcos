@@ -48,7 +48,7 @@ export function onSocketConnection({
 	const socketWithId = tagSocket(
 		incomingSocket,
 		Date.now(),
-		randomUUID(),
+		`${randomUUID()}:${localPort}`,
 	);
 
 	/*

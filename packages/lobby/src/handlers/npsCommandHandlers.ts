@@ -1,5 +1,6 @@
 import { _setMyUserData } from "./_setMyUserData.js";
 import { NpsCommandHandler } from "./encryptedCommand.js";
+import { handleCloseCommChannel } from "./handleCloseCommChannel.js";
 import { handleGetMiniUserList } from "./handleGetMiniUserList.js";
 import { handleGetServerInfo } from "./handleGetServerInfo.js";
 import { handleGetUserList } from "./handleGetUserList.js";
@@ -11,6 +12,11 @@ export const npsCommandHandlers: NpsCommandHandler[] = [
 		opCode: 0x101,
 		name: "NPS_GET_USER_LIST",
 		handler: handleGetUserList
+	},
+	{
+		opCode: 0x105,
+		name: "NPS_CLOSE_COMM_CHANNEL",
+		handler: handleCloseCommChannel
 	},
 	{
 		opCode: 0x10c, // 268

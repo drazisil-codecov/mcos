@@ -1,31 +1,8 @@
 import { LegacyMessage, ServerLogger,  } from "rusty-motors-shared";
 import { serializeString } from "rusty-motors-shared";
-import { channelRecordSize, channels } from "./channels.js";
+import { channelRecordSize, channels, chatChannelIds } from "./channels.js";
 import { getServerLogger } from "rusty-motors-shared";
 import { BytableMessage } from "@rustymotors/binary";
-
-const chatChannelIds = [
-	'01',
-	'02',
-	'03',
-	'04',
-	'05',
-	'06',
-	'07',
-	'08',
-	'09',
-	'10',
-	'11',
-	'12',
-	'13',
-	'14',
-	'15',
-	'16',
-	'17',
-	'18',
-	'19',
-	'20',
-]
 
 export async function handleSendMiniRiffList({
 	connectionId,
@@ -65,16 +42,13 @@ export async function handleSendMiniRiffList({
 			offset += 2;
 		}
 
-		let lobbyId = 221
-
 		for (const chatId of chatChannelIds) {
 			offset = serializeString(`MCC${chatId}`, packetContent, offset);
 
-			packetContent.writeUInt32BE(lobbyId, offset);
+			packetContent.writeUInt32BE(parseInt(chatId), offset);
 			offset += 4;
 			packetContent.writeUInt16BE(2, offset);
 			offset += 2;
-			lobbyId++
 		}
 
 		outgoingGameMessage.setBuffer(packetContent);

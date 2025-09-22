@@ -66,21 +66,13 @@ export class PartStruct {
         const log = getServerLogger("transactions/PartStruct");
         try {
             const buffer = Buffer.alloc(this.size());
-            log.debug(`Writing partId: ${this.partId}`);
             buffer.writeUInt32LE(this.partId, 0);
-            log.debug(`Writing parentPartId: ${this.parentPartId}`);
             buffer.writeInt32LE(this.parentPartId ?? 0, 4);
-            log.debug(`Writing brandedPartId: ${this.brandedPartId}`);
             buffer.writeInt32LE(this.brandedPartId, 8);
-            log.debug(`Writing repairCost: ${this.repairCost}`);
             buffer.writeInt32LE(this.repairCost, 12);
-            log.debug(`Writing junkyardValue: ${this.junkyardValue}`);
             buffer.writeInt32LE(this.junkyardValue, 16);
-            log.debug(`Writing wear: ${this.wear}`);
             buffer.writeInt32LE(this.wear, 20);
-            log.debug(`Writing attachmentPoint: ${this.attachmentPoint}`);
             buffer.writeInt8(this.attachmentPoint, 24);
-            log.debug(`Writing damage: ${this.damage}`);
             buffer.writeInt8(this.damage, 25);
             return buffer;
         } catch (error) {
@@ -123,7 +115,6 @@ class CarInfoStruct {
             buffer.writeUInt16LE(this.noOfParts, 6 + this.vehicle.size());
             let offset = 8 + this.vehicle.size();
             for (const part of this.parts) {
-                log.debug(`Serializing part: ${part}`);
                 part.serialize().copy(buffer, offset);
                 offset += part.size();
             }
@@ -213,8 +204,6 @@ export async function _getCompleteVehicleInfo({
         vehicleStruct.Damage = damageInfo;
         vehicleStruct.damageLengthOverride = 0;
 
-        log.debug(`VehicleStruct: ${vehicleStruct}`);
-
         carInfo.vehicle = vehicleStruct;
 
         const parts: PartStruct[] = [];
@@ -235,8 +224,6 @@ export async function _getCompleteVehicleInfo({
             partStruct.wear = part.item_wear;
             partStruct.attachmentPoint = part.attachment_point_id ?? 0;
             partStruct.damage = part.percent_damage;
-
-            log.debug(`PartStruct: ${partStruct}`);
 
             parts.push(partStruct);
         }

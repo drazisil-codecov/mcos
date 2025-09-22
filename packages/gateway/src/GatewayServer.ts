@@ -203,6 +203,9 @@ export class Gateway {
 		addPortRouter(8227, npsPortRouter);
 		addPortRouter(8228, npsPortRouter);
 		addPortRouter(7003, npsPortRouter);
+		for (let port = 9001; port < 9021; port++) {
+			addPortRouter(port, npsPortRouter);
+		}
 		addPortRouter(43300, mcotsPortRouter);
 
 		process.on("SIGINT", this.exit.bind(this));

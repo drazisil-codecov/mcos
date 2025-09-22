@@ -14,14 +14,14 @@ export async function _setMyUserData({
 	log?: ServerLogger;
 }) {
 	try {
-		log.debug(`[$connectionId] Handling NPS_SET_MY_USER_DATA`);
-		log.debug(`[$connectionId] Received command: ${message.header.messageId}`);
+		log.debug(`[${connectionId}] Handling NPS_SET_MY_USER_DATA`);
+		log.debug(`[${connectionId}] Received command: ${message.header.messageId}`);
 
 		const incomingMessage = new SetMyUserDataMessage();
 		incomingMessage.deserialize(message.serialize());
 
 		log.debug(`User ID: ${incomingMessage.userInfo.userId}`);
-		log.debug(`UserData: ${incomingMessage.userInfo.userData.toString()}`)
+		log.debug(`UserData: ${JSON.stringify(incomingMessage.userInfo.userData)}`)
 
 		// Update the user's data
 		databaseManager.updateUser({
@@ -30,8 +30,6 @@ export async function _setMyUserData({
 		});
 
 		const userData = incomingMessage.userInfo.userData
-
-		log.debug(`User data: ${userData.toString()}`);
 
 		const currentChannel = userData.lobbyId;
 
@@ -55,7 +53,7 @@ export async function _setMyUserData({
 			message,
 		};
 	} catch (error) {
-		const err = Error(`[$connectionId] Error handling NPS_SET_MY_USER_DATA: ${String(error)}`);
+		const err = Error(`[${connectionId}] Error handling NPS_SET_MY_USER_DATA: ${String(error)}`);
 		err.cause = error;
 		throw err;
 	}

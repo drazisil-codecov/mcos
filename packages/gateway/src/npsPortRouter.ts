@@ -154,6 +154,19 @@ async function routeInitialMessage(
 
 	let responses: SerializableInterface[] = [];
 
+	let wasHandled = false
+
+	if (port > 9000 && port < 9021) {
+					log.debug(
+				`[${id}] Passing room packet to lobby handler: ${packet.getMessageId()}`,
+			);
+			responses = (
+				await receiveLobbyData({ connectionId: id, message: initialPacket })
+			).messages;
+			log.debug(`[${id}] Received ${responses.length} room lobby response packets`);
+			wasHandled = true
+	}
+
 	switch (port) {
 		case 7003:
 			// Handle lobby packet
@@ -164,6 +177,7 @@ async function routeInitialMessage(
 				await receiveLobbyData({ connectionId: id, message: initialPacket })
 			).messages;
 			log.debug(`[${id}] Received ${responses.length} lobby response packets`);
+			wasHandled = true
 			break;
 		case 8226:
 			// Handle login packet
@@ -171,6 +185,7 @@ async function routeInitialMessage(
 				await receiveLoginData({ connectionId: id, message: initialPacket })
 			).messages;
 			log.debug(`[${id}] Received ${responses.length} login response packets`);
+			wasHandled = true
 			break;
 		// case 8227:
 		// 	// Handle chat packet
@@ -190,12 +205,16 @@ async function routeInitialMessage(
 				await receivePersonaData({ connectionId: id, message: packet })
 			).messages;
 			log.debug(`[${id}] Received ${responses.length} persona response packets`);
+			wasHandled = true
 			break;
 		default:
 			// No handler
-			log.warn(
-				`${id}] No handler found for port ${port}: ${packet.serialize().toString("hex")}`,
-			);
+			if (wasHandled === false) {
+
+				log.warn(
+					`${id}] No handler found for port ${port}: ${packet.serialize().toString("hex")}`,
+				);
+			}
 			break;
 	}
 

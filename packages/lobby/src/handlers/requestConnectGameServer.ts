@@ -112,6 +112,8 @@ export async function _npsRequestGameConnectServer({
 	// We have a session, we are good to go!
 	// Send the response packet
 
+	const responsePackets = []
+
 	const responsePacket = new BytableMessage();
 	responsePacket.header.setMessageVersion(0);
 	responsePacket.header.setMessageId(0x120);
@@ -134,10 +136,16 @@ export async function _npsRequestGameConnectServer({
 	const outboundMessage = new SerializedBufferOld();
 	outboundMessage.deserialize(responsePacket.serialize());
 
+	responsePackets.push(outboundMessage)
+
+	const localPort = connectionId.split(":")[1]
+
+	log.debug(`[${connectionId}] port ${localPort}`);
+
 	log.debug(`[${connectionId}] Returning with ${outboundMessage.toHexString()}`);
 
 	return {
 		connectionId,
-		messages: [outboundMessage],
+		messages: responsePackets,
 	};
 }
