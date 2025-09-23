@@ -41,6 +41,7 @@ export async function handleOpenCommChannel({
 
         // TODO: Actually have servers
         const packetResult = createNPSChannelGrantedPacket((requestedCommId as Buffer).readInt32BE(), 7003)
+        log.debug(`[${connectionId}]  Sending comm GRANTED: ${JSON.stringify(packetResult)}`)
 
 
         return {

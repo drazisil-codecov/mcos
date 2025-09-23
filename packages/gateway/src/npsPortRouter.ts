@@ -1,19 +1,34 @@
-import type { TaggedSocket } from "./socketUtility.js";
+import type { TaggedSocket } from './socketUtility.js';
 import {
 	GamePacket,
 	type SerializableInterface,
-} from "rusty-motors-shared-packets";
-import { receiveLobbyData } from "rusty-motors-lobby";
-import { receivePersonaData } from "rusty-motors-personas";
-import { receiveLoginData } from "rusty-motors-login";
-import { getServerLogger, ServerLogger } from "rusty-motors-shared";
-import { BytableMessage, createRawMessage } from "@rustymotors/binary";
-import * as Sentry from "@sentry/node";
+} from 'rusty-motors-shared-packets';
+import { receiveLobbyData } from 'rusty-motors-lobby';
+import { receivePersonaData } from 'rusty-motors-personas';
+import { receiveLoginData } from 'rusty-motors-login';
+
+import { BytableMessage, createRawMessage } from '@rustymotors/binary';
+// import { RoomServer } from '@rustymotors/roomserver';
+// import { addRoomServer, getRoomServerByPort } from 'rusty-motors-database';
+import { splitPackets } from './utility.js';
+import * as Sentry from '@sentry/node';
+import { Socket } from 'net';
+import { getServerLogger, ServerLogger } from 'rusty-motors-shared';
+
+// const server01 = new RoomServer({
+//     id: 224,
+//     name: 'MCC01',
+//     ip: getServerConfiguration().host,
+//     port: 9001,
+// });
+// addRoomServer(server01);
 
 /**
  * Handles routing for the NPS (Network Play System) ports.
  *
- * @param taggedSocket - The socket that has been tagged with additional metadata.
+ * @param taggedSocket - The socket connection with associated metadata to be routed.
+ *
+ * @remark If the socket's local port is undefined, the connection is closed immediately. On port 7003, an "ok to login" packet is sent upon connection.
  */
 
 export async function npsPortRouter({
@@ -42,6 +57,7 @@ export async function npsPortRouter({
 
 	// return;
 
+	// TODO: Document this
 	if (port === 7003) {
 		// Sent ok to login packet
 		log.debug(`[${id}] Sending ok to login packet`);
@@ -49,38 +65,9 @@ export async function npsPortRouter({
 	}
 
 	// Handle the socket connection here
-	socket.on("data", async (data) => {
-		try {
-			log.debug(`[${id}] Received data: ${data.toString("hex")}`);
-			const initialPacket = parseInitialMessage(data);
-			log.debug(`[${id}] initial Packet: ${initialPacket.header.messageId}`);
-			await routeInitialMessage(id, port, initialPacket)
-				.then((response) => {
-					// Send the response back to the client
-					log.debug(
-						`[${id}] Sending ${response.byteLength} bytes to socket`,
-					);
-					socket.write(response);
-				})
-				.catch((error) => {
-					throw new Error(
-						`[${id}] Error routing initial nps message: ${error}`,
-						{
-							cause: error,
-						},
-					);
-				});
-		} catch (error) {
-			if (error instanceof RangeError) {
-				log.warn(`[${id}] Error parsing initial nps message: ${error}`);
-			} else {
-				Sentry.captureException(error);
-				log.error(`[${id}] Error handling data: ${error}`);
-			}
-		}
-	});
+	socket.on('data', processSocketData(log, id, port, socket));
 
-	socket.on("end", () => {
+	socket.on('end', () => {
 		// log.debug(`[${id}] Socket closed by client for port ${port}`);
 	});
 
@@ -94,10 +81,138 @@ export async function npsPortRouter({
 }
 
 /**
- * Parses the initial message from a buffer and returns a `GamePacket` object.
+ * Processes incoming socket data, splits it into packets if necessary, and routes
+ * the initial message for further handling. Sends the response back to the client
+ * through the socket.
  *
- * @param data - The buffer containing the initial message data.
- * @returns A `GamePacket` object deserialized from the buffer.
+ * @param log - The logger instance used for logging debug, warning, and error messages.
+ * @param id - A unique identifier for the current connection or session.
+ * @param port - The port number associated with the socket connection.
+ * @param socket - The socket instance used for communication with the client.
+ * @returns A function that processes incoming data buffers from the socket.
+ *
+ * The returned function:
+ * - Logs the received data and its length.
+ * - Splits the data into packets based on a predefined separator if multiple packets are detected.
+ * - Parses the initial message from each packet.
+ * - Routes the initial message and sends the response back to the client.
+ * - Handles errors during parsing, routing, or response sending, logging them appropriately.
+ */
+export function processSocketData(
+	log: ServerLogger,
+	id: string,
+	port: number,
+	socket: Socket,
+): (data: Buffer) => void {
+	return async (data) => {
+		try {
+			log.debug(`[${id}] Received data: ${data.toString('hex')}`);
+			log.debug(`[${id}] Data length: ${data.length}`);
+
+			const separator = Buffer.from([0x11, 0x01]);
+			const packets = splitDataIntoPackets(data, separator, log, id);
+
+			if (packets.length) {
+				console.log('S: ==================================================================')
+				console.dir(packets)
+				console.log('E: ==================================================================')
+			}
+
+			for (const packet of packets) {
+				log.debug(`raw packet: ${packet.toString("hex")}`)
+				if (packet.byteLength === 0) {
+					log.warn(`BUG: We recieved an empty packet from the splitter`)
+					continue
+				}
+				const initialPacket = parseInitialMessage(packet);
+				log.debug(`[${id}] Initial packet(str): ${initialPacket}`);
+				log.debug(
+					`[${id}] initial Packet(hex): ${initialPacket.toString()}`,
+				);
+				await handlePacketRouting(id, port, initialPacket, socket, log);
+			}
+		} catch (error) {
+			handleSocketError(error, log, id);
+		}
+	};
+}
+
+function splitDataIntoPackets(
+	data: Buffer,
+	separator: Buffer,
+	log: ServerLogger,
+	id: string,
+): Buffer[] {
+	const packetsArray = data.toString('hex').split(separator.toString('hex'))
+	const packetCount =
+		packetsArray.length - 1;
+	log.debug(`[${id}] Number of packets: ${packetCount}`);
+
+	if (packetCount > 1) {
+		log.debug(`[${id}] ${packetCount} packets detected`);
+		let packets = packetsArray.map((packet: string) => {
+			if (packet.length > 0) {
+				return Buffer.concat([Buffer.from([0x11, 0x01]), Buffer.from(packet, "hex")])
+			}
+			return
+		})
+		packets = packets.filter((packet: Buffer | undefined) => {
+			return packet && packet.byteLength > 2
+		})
+		log.debug(
+			`[${id}] Split packets: ${packets.map((p) => p.toString('hex'))}`,
+		);
+		return packets as Buffer[]
+	} else {
+		log.debug(`[${id}] One packet detected`);
+		return [data];
+	}
+}
+
+function addPrefix(arr: Buffer[], prefix: Buffer) {
+	return arr.map((packet: Buffer) => {
+		return Buffer.concat([prefix, packet])
+	})
+}
+
+async function handlePacketRouting(
+	id: string,
+	port: number,
+	initialPacket: BytableMessage,
+	socket: Socket,
+	log: ServerLogger,
+): Promise<void> {
+	try {
+		const response = await routeInitialMessage(id, port, initialPacket);
+		log.debug(
+			`[${id}] Sending response to socket: ${response.toString('hex')}`,
+		);
+		socket.write(response);
+	} catch (error) {
+		throw new Error(`[${id}] Error routing initial nps message: ${error}`, {
+			cause: error,
+		});
+	}
+}
+
+function handleSocketError(error: unknown, log: ServerLogger, id: string): void {
+	if (error instanceof RangeError) {
+		log.warn(`[${id}] Error parsing initial nps message: ${error}`);
+	} else {
+		Sentry.captureException(error);
+		log.error(`[${id}] Error handling data: ${error}`);
+	}
+}
+
+/**
+ * Parses a raw buffer into a `BytableMessage` representing the initial game packet.
+ *
+ * Sets the message version based on the packet ID, then deserializes the buffer into a message object.
+ *
+ * @param data - The buffer containing the raw initial message.
+ * @returns The parsed `BytableMessage` object.
+ *
+ * @throws {Error} If the buffer cannot be parsed into a valid message.
  */
 function parseInitialMessage(data: Buffer): BytableMessage {
 	try {
@@ -157,14 +272,14 @@ async function routeInitialMessage(
 	let wasHandled = false
 
 	if (port > 9000 && port < 9021) {
-					log.debug(
-				`[${id}] Passing room packet to lobby handler: ${packet.getMessageId()}`,
-			);
-			responses = (
-				await receiveLobbyData({ connectionId: id, message: initialPacket })
-			).messages;
-			log.debug(`[${id}] Received ${responses.length} room lobby response packets`);
-			wasHandled = true
+		log.debug(
+			`[${id}] Passing room packet to lobby handler: ${packet.getMessageId()}`,
+		);
+		responses = (
+			await receiveLobbyData({ connectionId: id, message: initialPacket })
+		).messages;
+		log.debug(`[${id}] Received ${responses.length} room lobby response packets`);
+		wasHandled = true
 	}
 
 	switch (port) {
@@ -207,6 +322,7 @@ async function routeInitialMessage(
 			log.debug(`[${id}] Received ${responses.length} persona response packets`);
 			wasHandled = true
 			break;
+		// case 9001: {
 		default:
 			// No handler
 			if (wasHandled === false) {

@@ -7,7 +7,7 @@ export const channels = [
 		population: 1,
 	},
 	{
-		id: 2,
+		id: 33,
 		name: "LOBBY",
 		population: 1,
 	},

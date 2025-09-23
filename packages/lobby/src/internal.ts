@@ -48,22 +48,22 @@ export const messageHandlers: {
 		messages: SerializedBufferOld[];
 	}>;
 }[] = [
-	{
-		opCode: 256, // 0x100
-		name: "User login",
-		handler: _npsRequestGameConnectServer,
-	},
-	{
-		opCode: 4353, // 0x1101
-		name: "Encrypted command",
-		handler: handleEncryptedNPSCommand,
-	},
-	{
-		opCode: 535, // 0x0217
-		name: "Tracking ping",
-		handler: handleTrackingPing,
-	},
-];
+		{
+			opCode: 256, // 0x100
+			name: "User login",
+			handler: _npsRequestGameConnectServer,
+		},
+		{
+			opCode: 4353, // 0x1101
+			name: "Encrypted command",
+			handler: handleEncryptedNPSCommand,
+		},
+		{
+			opCode: 535, // 0x0217
+			name: "Tracking ping",
+			handler: handleTrackingPing,
+		},
+	];
 
 /**
  * @param {object} args
@@ -79,7 +79,7 @@ export const messageHandlers: {
 export async function receiveLobbyData({
 	connectionId,
 	message,
-	log = getServerLogger( "lobby.receiveLobbyData" ),
+	log = getServerLogger("lobby.receiveLobbyData"),
 }: {
 	connectionId: string;
 	message: BytableMessage;
@@ -90,11 +90,13 @@ export async function receiveLobbyData({
 }> {
 	const data = message.serialize();
 	log.debug(
-		`Received Lobby packet',
-    ${JSON.stringify({
+		'Received Lobby packet',
+		{
+			connectionId,
 			data: data.toString("hex"),
-		})}`,
-	);
+		}
+
+	)
 
 	const supportedHandler = messageHandlers.find((h) => {
 		return h.opCode === message.header.messageId;
@@ -110,7 +112,9 @@ export async function receiveLobbyData({
 			connectionId,
 			message
 		});
-		log.debug(`Returning with ${result.messages.length} messages`);
+		log.debug(`Returning with ${result.messages.length} messages`,
+		{connectionId}
+		);
 		log.debug("Leaving receiveLobbyData");
 		return result;
 	} catch (error) {

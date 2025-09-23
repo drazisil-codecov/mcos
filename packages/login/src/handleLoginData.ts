@@ -53,7 +53,6 @@ export async function handleLoginData({
 		const result = await supportedHandler.handler({
 			connectionId,
 			message,
-			log,
 		});
 		log.debug(
 			`[${connectionId}] Leaving handleLoginData with ${result.messages.length} messages`,

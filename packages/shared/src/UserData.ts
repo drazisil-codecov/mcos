@@ -395,12 +395,13 @@ class CString implements Serializable {
 	}
 
 	serialize() {
-		const len = this._string.byteLength
+		const len = this._string.byteLength + 1
 		const lenBuf = Buffer.alloc(4)
 		lenBuf.writeInt32BE(len)
 		return Buffer.from(Buffer.concat([
 			lenBuf,
-			this._string
+			this._string,
+			Buffer.from("0x00")
 		]))
 	}
 
@@ -425,7 +426,7 @@ class CString implements Serializable {
 		if (val.length + 1 > this._maxLen -1) {
 			throw new Error(`string can only be ${this._maxLen + 1} bytes long, got ${val.length}`)
 		}
-		this._string.write(val + '\n', "utf8")
+		this._string.write(val + '\n')
 	}
 }
 

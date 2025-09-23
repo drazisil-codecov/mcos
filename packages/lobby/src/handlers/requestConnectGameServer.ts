@@ -142,6 +142,12 @@ export async function _npsRequestGameConnectServer({
 
 	log.debug(`[${connectionId}] port ${localPort}`);
 
+	// if (localPort > 9000 && localPort < 9021) {
+    //    const grantPacket = createNPSChannelGrantedPacket(localPort, parseInt(`90${localPort}`))
+	// 	responsePackets.push(grantPacket)
+	// }
+
+
 	log.debug(`[${connectionId}] Returning with ${outboundMessage.toHexString()}`);
 
 	return {

@@ -60,8 +60,6 @@ export async function handleSendMiniRiffList({
 		]);
 		packetResult.deserialize(outgoingGameMessage.serialize());
 
-		log.debug(`[${connectionId}] Sending response: ${packetResult.serialize().toString("hex")}`);
-
 		return {
 			connectionId,
 			message: packetResult,

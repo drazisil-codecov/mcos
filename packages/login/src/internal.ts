@@ -39,7 +39,7 @@ export const messageHandlers: {
 	handler: (args: {
 		connectionId: string;
 		message: BytableMessage;
-		log: ServerLogger;
+		log?: ServerLogger;
 	}) => Promise<{
 		connectionId: string;
 		messages: GamePacket[];

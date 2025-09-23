@@ -40,7 +40,7 @@ export async function handleGetServerInfo({
 		let commPort;
 
 		if (cID > 0 && cID < 21) {
-			commPort = chatChannelIds[cID] ?? 7003
+			commPort = chatChannelIds[cID-1] ?? 7003
 		}
 
 		// plplll
@@ -68,13 +68,6 @@ export async function handleGetServerInfo({
 		);
 		outgoingGameMessage.setFieldValueByName("userId", 21);
 		outgoingGameMessage.setFieldValueByName("playerCount", 1);
-
-		log.debug(
-			`[${connectionId}] Sending response[string]: ${outgoingGameMessage.toString()}`,
-		);
-		log.debug(
-			`[${connectionId}] Sending response[serialize1]: ${outgoingGameMessage.serialize().toString("hex")}`,
-		);
 
 		// Build the packet
 		const packetResult = new BytableMessage();

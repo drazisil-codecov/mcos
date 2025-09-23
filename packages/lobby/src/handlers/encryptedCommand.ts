@@ -51,7 +51,6 @@ export const messageHandlers: {
 async function encryptCmd({
 	connectionId,
 	message,
-	log = getServerLogger( "lobby.encryptCmd"),
 }: {
 	connectionId: string;
 	message: BytableMessage;
@@ -60,7 +59,6 @@ async function encryptCmd({
 	connectionId: string;
 	message: BytableMessage;
 }> {
-	log.debug(`[ciphering Cmd: ${message.serialize().toString("hex")}`);
 	const state = fetchStateFromDatabase();
 
 	const encryption = getEncryption(state, connectionId);
@@ -73,7 +71,6 @@ async function encryptCmd({
 
 	let precriptedMessage = message.serialize();
 
-	log.debug(`[precripted Cmd: ${precriptedMessage.toString("hex")}`);
 	if (precriptedMessage.length % 8 !== 0) {
 		const padding = Buffer.alloc(8 - (precriptedMessage.length % 8));
 		precriptedMessage = Buffer.concat([precriptedMessage, padding]);
@@ -82,13 +79,9 @@ async function encryptCmd({
 	const result = encryption.commandEncryption.encrypt(precriptedMessage);
 	updateEncryption(state, encryption).save();
 
-	log.debug(`[ciphered Cmd: ${result.toString("hex")}`);
-
 	const encryptedMessage = createRawMessage();
 	encryptedMessage.header.setMessageId(0x1101);
 	encryptedMessage.setBody(result);
-
-	log.debug(`[ciphered message: ${encryptedMessage.serialize().toString("hex")}`);
 
 	return {
 		connectionId,
@@ -134,8 +127,6 @@ async function decryptCmd({
 
 	updateEncryption(state, encryption).save();
 
-	log.debug(`[Deciphered Cmd: ${result.toString("hex")}`);	
-	
 	const decipheredMessage = createRawMessage(result)
 
 	return {
@@ -173,6 +164,7 @@ async function handleCommand({
 
 	// What is the command?
 	log.debug(`[${connectionId}] Received Command: ${command}`);
+	log.debug(`[${connectionId}] Received Command message: ${message.serialize().toString("hex")}`);
 
 	const handler = npsCommandHandlers.find((h) => h.opCode === command);
 

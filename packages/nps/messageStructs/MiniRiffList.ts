@@ -32,7 +32,6 @@ export class MiniRiffInfo extends BaseSerializable {
 		buffer.writeUInt32BE(this.riffId, offset);
 		offset += 4;
 		buffer.writeUInt16BE(this.population, offset);
-		defaultLogger.debug(`MiniRiffInfo: ${this.toString()} - ${buffer.toString("hex")}`);
 		return buffer;
 	}
 	override getByteSize(): number {

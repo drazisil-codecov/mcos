@@ -12,7 +12,7 @@ import { BytableMessage } from "@rustymotors/binary";
  * @param {object} args
  * @param {string} args.connectionId
  * @param {SerializedBufferOld} args.message
- * @param {ServerLogger} [args.log=getServerLogger({ name: "LoginServer" })]
+ * @param {ServerLogger} [args.log=getServerLogger("LoginServer")]
  * @returns {Promise<{
  *  connectionId: string,
  * messages: SerializedBufferOld[],

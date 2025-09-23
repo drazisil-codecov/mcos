@@ -47,6 +47,10 @@ export class RawMessage implements SerializableMessage {
 		checkSize2(val);
 		this._header.length = val;
 	}
+
+	set data(val: Buffer) {
+		this._data = val
+	}
 }
 export class RawMessageHeader implements SerializableMessage {
 	private _id: Buffer
