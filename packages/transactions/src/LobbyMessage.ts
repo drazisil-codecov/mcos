@@ -260,7 +260,7 @@ export class LobbyInfo extends SerializedBufferOld {
 	}
 
 	override size() {
-		return 563;
+		return 567;
 	}
 
 	/**
@@ -372,7 +372,7 @@ export class LobbyInfo extends SerializedBufferOld {
 		this._driverAIEnabled = this.deserializeBool(
 			data.subarray(offset, offset + 2),
 		);
-		offset += 2;
+		offset += 6;
 		this._topDog = data.toString("utf8", offset, offset + 13);
 		offset += 13;
 		this._turfOwner = data.toString("utf8", offset, offset + 33);
@@ -547,7 +547,12 @@ export class LobbyInfo extends SerializedBufferOld {
 		buf.writeUInt16LE(this._defaultDriverAI ? 1 : 0, offset);
 		offset += 2; // offset is 387
 		buf.writeUInt16LE(this._driverAIEnabled ? 1 : 0, offset);
-		offset += 2; // offset is 389
+		
+		
+		offset += 6; // offset is 389
+
+
+
 		buf.write(this._topDog, offset, 13);
 		offset += 13; // offset is 402
 		buf.write(this._turfOwner, offset, 33);
