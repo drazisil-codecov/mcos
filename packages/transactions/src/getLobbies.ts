@@ -30,7 +30,7 @@ async function _getLobbies({
 
 	const lobby = new LobbyInfo();
 	lobby._lobbyId = 2;
-	lobby._lobbyName = "LOBBY";
+	lobby._lobbyName = "MCC10";
 	lobby._raceTypeId = 17; // TESTDRIVE
 	lobby._elementId = 25 // TrackId
 	lobby._turfName = "Hillvally Punks"

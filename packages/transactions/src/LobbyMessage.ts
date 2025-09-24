@@ -31,11 +31,11 @@ export class LobbyMessage extends SerializedBufferOld {
 		this._lobbyCount = 0; // 1 bytes
 		this._shouldExpectMoreMessages = false; // 1 byte
 		/** @type {LobbyInfo[]} */
-		this._lobbyList = []; // 563 bytes each
+		this._lobbyList = []; // 567 bytes each
 	}
 
 	override size() {
-		return 5 + this._lobbyList.length * 563;
+		return 5 + this._lobbyList.length * 567;
 	}
 
 	/**
@@ -48,7 +48,7 @@ export class LobbyMessage extends SerializedBufferOld {
 	}
 
 	override serialize() {
-		const neededSize = 5 + this._lobbyList.length * 563;
+		const neededSize = 5 + this._lobbyList.length * 567;
 		const buffer = Buffer.alloc(neededSize);
 		let offset = 0; // offset is 0
 		buffer.writeUInt16LE(this._msgNo, offset);
