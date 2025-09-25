@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { getPersonasByPersonaId } from "../src/getPersonasByPersonaId.js";
+import { getPersonaByPersonaId } from "../src/getPersonasByPersonaId.js";
 
 describe("getPersonasByPersonaId", () => {
 	it("returns a persona", async () => {
@@ -7,13 +7,13 @@ describe("getPersonasByPersonaId", () => {
 		const id = 22;
 
 		// act
-		const result = await getPersonasByPersonaId({
+		const result = await getPersonaByPersonaId({
 			personaId: id,
 		});
 
 		// assert
-		expect(result).toBeInstanceOf(Array);
-		expect(result[0].personaId).toBe(id);
+		expect(result).toBeDefined
+		expect(result.personaId).toBe(id);
 	});
 
 	describe("getPersonasByPersonaId", () => {
@@ -40,24 +40,23 @@ describe("getPersonasByPersonaId", () => {
 
 
 			// act
-			const result = await getPersonasByPersonaId({ personaId: id });
+			const result = await getPersonaByPersonaId({ personaId: id });
 
 			// assert
-			expect(result).toBeInstanceOf(Array);
-			expect(result.length).toBe(1);
-			expect(result[0].personaId).toBe(id);
+			expect(result).toBeDefined
+			expect(result.personaId).toBe(id);
 		});
 
-		it("throws an error when no matching ID is found", async () => {
+		it("returns undefined when no matching ID is found", async () => {
 			// arrange
 			const id = 3;
 
 			// act & assert
 			await expect(
-				getPersonasByPersonaId({
+				getPersonaByPersonaId({
 					personaId: id,
 				}),
-			).rejects.toThrow(`Unable to locate a persona for id: ${id}`);
+			).resolves.toBe(undefined)
 		});
 	});
 });
