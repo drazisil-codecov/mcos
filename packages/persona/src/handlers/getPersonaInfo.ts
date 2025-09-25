@@ -1,6 +1,6 @@
 import { LegacyMessage, NPSMessage, SerializedBufferOld, ServerLogger  } from "rusty-motors-shared";
 import { createGameProfile } from "rusty-motors-nps";
-import { getPersonasByPersonaId } from "../getPersonasByPersonaId.js";
+import { getPersonaByPersonaId } from "../getPersonasByPersonaId.js";
 import { personaToString } from "../internal.js";
 
 import { getServerLogger } from "rusty-motors-shared";
@@ -31,21 +31,28 @@ export async function getPersonaInfo({
 
     log.debug(`personaId: ${personaId}`);
 
-    const persona = await getPersonasByPersonaId({
+    const persona = await getPersonaByPersonaId({
         personaId,
     });
 
-    if (!persona[0]) {
-        throw new Error(`Persona not found for personaId: ${personaId}`);
+    if (typeof persona === "undefined") {
+		const responsePacket = new LegacyMessage();
+		responsePacket._header.id = 0x612; // no persona
+		const outboundMessage = new SerializedBufferOld();
+		outboundMessage.setBuffer(responsePacket._doSerialize());
+		return {
+			connectionId,
+			messages: [outboundMessage]
+		}
     }
 
-	log.debug(`Persona found: ${personaToString(persona[0])}`);
+	log.debug(`Persona found: ${personaToString(persona)}`);
 
     const profile = createGameProfile();
 
-    profile.customerId = persona[0]!.customerId;
-    profile.profileId = persona[0]!.personaId;
-    profile.profileName = persona[0]!.personaName;
+    profile.customerId = persona.customerId;
+    profile.profileId = persona.personaId;
+    profile.profileName = persona.personaName;
 
 	// Build the packet
 	// Response Code

@@ -6,21 +6,11 @@ import {
 import { receiveLobbyData } from 'rusty-motors-lobby';
 import { receivePersonaData } from 'rusty-motors-personas';
 import { receiveLoginData } from 'rusty-motors-login';
-
+import {receiveChatData} from "rusty-motors-chat"
 import { BytableMessage, createRawMessage } from '@rustymotors/binary';
-// import { RoomServer } from '@rustymotors/roomserver';
-// import { addRoomServer, getRoomServerByPort } from 'rusty-motors-database';
 import * as Sentry from '@sentry/node';
 import { getServerLogger, messageQueueItem, ServerLogger } from 'rusty-motors-shared';
 import { MessageQueue } from './MessageQueue.js';
-
-// const server01 = new RoomServer({
-//     id: 224,
-//     name: 'MCC01',
-//     ip: getServerConfiguration().host,
-//     port: 9001,
-// });
-// addRoomServer(server01);
 
 /**
  * Handles routing for the NPS (Network Play System) ports.
@@ -302,15 +292,15 @@ async function routeInitialMessage(
 			log.debug(`[${id}] Received ${responses.length} login response packets`);
 			wasHandled = true
 			break;
-		// case 8227:
-		// 	// Handle chat packet
-		// 	log.debug(
-		// 		`[${id}] Passing packet to chat handler: ${packet.serialize().toString("hex")}`,
-		// 	);
-		// 	responses = (await receiveChatData({ connectionId: id, message: packet }))
-		// 		.messages;
-		// 	log.debug(`[${id}] Chat Responses: ${responses.map((r) => r.serialize().toString("hex"))}`);
-		// 	break;
+		case 8227:
+			// Handle chat packet
+			log.debug(
+				`[${id}] Passing packet to chat handler: ${packet.serialize().toString("hex")}`,
+			);
+			responses = (await receiveChatData({ connectionId: id, message: packet }))
+				.messages;
+			log.debug(`[${id}] Chat Responses: ${responses.map((r) => r.serialize().toString("hex"))}`);
+			break;
 		case 8228:
 			log.debug(
 				`[${id}] Passing packet to persona handler: ${packet.serialize().toString("hex")}`,

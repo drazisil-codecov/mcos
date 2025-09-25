@@ -124,6 +124,12 @@ export const personaRecords: Pick<
 		personaName: "Admin",
 		shardId: 44,
 	},
+	{
+		customerId: 6,
+		personaId: 1,
+		personaName: "Enistein",
+		shardId: 44,
+	}
 ];
 
 /**

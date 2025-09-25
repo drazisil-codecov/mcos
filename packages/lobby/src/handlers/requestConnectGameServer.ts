@@ -1,4 +1,4 @@
-import { getPersonasByPersonaId } from "rusty-motors-personas";
+import { getPersonaByPersonaId } from "rusty-motors-personas";
 import { LoginInfoMessage } from "../LoginInfoMessage.js";
 
 import {
@@ -65,15 +65,15 @@ export async function _npsRequestGameConnectServer({
 
 	log.debug(`LoginInfoMessage: ${inboundMessage.toString()}`);
 
-	const personas = await getPersonasByPersonaId({
+	const personas = await getPersonaByPersonaId({
 		personaId: inboundMessage._userId,
 	});
-	if (typeof personas[0] === "undefined") {
+	if (typeof personas === "undefined") {
 		const err = Error("No personas found.");
 		throw err;
 	}
 
-	const { customerId } = personas[0];
+	const { customerId } = personas;
 
 	const state = fetchStateFromDatabase();
 
