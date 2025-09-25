@@ -21,6 +21,12 @@ export const channels = [
 		name: "MCCHAT",
 		population: 0,
 	},
+	{
+		id: 10001,
+		name: "MC100",
+		population: 6,
+	},
+
 ];
 export const chatChannelIds = [
 	'01',

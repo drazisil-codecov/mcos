@@ -83,7 +83,7 @@ async function processInput({
 	}
 
 	throw Error(
-		`[${connectionId}] Unable to locate handler for message: ${currentMessageNo} (${currentMessageString})`,
+		`[${connectionId}] UNSUPPORTED_MESSAGECODE:: ${currentMessageNo} (${currentMessageString})`,
 	);
 }
 

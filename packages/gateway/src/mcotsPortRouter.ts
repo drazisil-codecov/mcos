@@ -1,12 +1,11 @@
 import type { TaggedSocket } from "./socketUtility.js";
 import {
-	ServerPacket,
-	type SerializableInterface,
+    ServerPacket,
+    type SerializableInterface,
 } from "rusty-motors-shared-packets";
 import { receiveTransactionsData } from "rusty-motors-transactions";
 import * as Sentry from "@sentry/node";
 import { getServerLogger, ServerLogger } from "rusty-motors-shared";
-import { Socket } from 'net';
 
 /**
  * Handles the routing of messages for the MCOTS (Motor City Online Transaction Server) ports.
@@ -35,7 +34,7 @@ export async function mcotsPortRouter({
 
     // Handle the socket connection here
     socket.on('data', async (data) => {
-        await processIncomingPackets(data, log, id, port, socket);
+        await processIncomingPackets(data, log, id, port, taggedSocket);
     });
 
     socket.on('end', () => {
@@ -68,12 +67,20 @@ function findPackageSignatureIndices(data: Buffer): number[] {
     return packageSignatureIndices;
 }
 
+type messageQueueItem = {
+    id: string,
+    socket: TaggedSocket,
+    data: Buffer<ArrayBufferLike>,
+}
+
+const inboundQueue: messageQueueItem[] = []
+
 async function processIncomingPackets(
     data: Buffer<ArrayBufferLike>,
     log: ServerLogger,
     id: string,
     port: number,
-    socket: Socket,
+    socket: TaggedSocket,
 ) {
     try {
         let inPackets: Buffer[] = [];
@@ -96,16 +103,29 @@ async function processIncomingPackets(
                 indexOfPackageSignature + length,
             );
             log.debug(
-				`Packet(hex): ${packet.toString('hex')}`,
-				{
-                connectionId: id,
-                port,
-                length: length,
-                lengthAction: packet.length,
-            }, 
-		);
+                `Packet(hex): ${packet.toString('hex')}`,
+                {
+                    connectionId: id,
+                    port,
+                    length: length,
+                    lengthAction: packet.length,
+                },
+            );
+            inboundQueue.push({
+                id: id,
+                socket: socket,
+                data: packet
+            })
             inPackets.push(packet);
         }
+
+        if (inPackets) {
+            inboundQueue.shift()
+            console.log('S: ==================================================================')
+            console.dir(inPackets)
+            console.log('E: ==================================================================')
+        }
+
 
         log.warn(`[${id}] Received ${inPackets.length} packets`);
 
@@ -113,7 +133,7 @@ async function processIncomingPackets(
             log.debug(`[${id}] Received data: ${packet.toString('hex')}`);
             const initialPacket = parseInitialMessage(packet);
             log.debug(
-				`initial Packet(hex): ${initialPacket.toHexString()}`,
+                `initial Packet(hex): ${initialPacket.toHexString()}`,
                 {
                     connectionId: id,
                     port,
@@ -127,7 +147,7 @@ async function processIncomingPackets(
                     log.debug(
                         `[${id}] Sending response: ${response.toString('hex')}`,
                     );
-                    socket.write(response);
+                    socket.rawSocket.write(response);
                 })
                 .catch(error => {
                     throw new Error(
@@ -185,3 +205,44 @@ async function routeInitialMessage(
 
 	return Buffer.concat(serializedResponses);
 }
+
+const inWork: messageQueueItem[] = [];
+const outWork: messageQueueItem[] = [];
+
+const queues = [
+    { name: "inWork", queue: inWork},
+    { name: "outWork", queue: outWork}
+]
+
+async function doWork(item: messageQueueItem) {
+  console.log(`Doing work ${item}`);
+  await new Promise(resolve => setTimeout(resolve, 4, item));
+}
+
+async function handleWorkQueue(workQueue: {name: string, queue: messageQueueItem[]}) {
+  while(true) {
+    if(!workQueue.queue.length) {
+      await new Promise(resolve => setTimeout(resolve, 0)); 
+      continue;
+    }; // No work, skipping
+    const item = workQueue.queue.shift();
+    console.log(`${workQueue.name} doing work ${item}`);
+    console.log(`Doing work ${item}`);
+    if ( typeof item !== "undefined") {
+        await doWork(item);
+    }
+  }
+}
+
+// queues.forEach((q) => {
+//     handleWorkQueue(q);
+
+// })
+
+
+// // randomly add items to the in and out queues
+// setInterval(() => {
+//   console.log('adding work');
+//   inWork.push(Math.floor(Math.random() * 10));
+//   outWork.push(Math.floor(Math.random() * 10));
+// }, 1000);

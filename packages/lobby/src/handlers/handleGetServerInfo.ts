@@ -38,9 +38,21 @@ export async function handleGetServerInfo({
 
 		// TODO: Actually have servers
 		let commPort;
+		let commName;
 
 		if (cID > 0 && cID < 21) {
-			commPort = chatChannelIds[cID-1] ?? 7003
+			const port = chatChannelIds[cID-1]
+			if (typeof port === "undefined") {
+				throw new Error(`Why can't you find a channel id for ${cID-1}?`)
+			}
+			
+			commPort = parseInt(`90${port}`)
+			commName = `MCC${commPort}\n`
+		} else if (cID === 10001) {
+			commPort = parseInt('10001')
+			commName = 'MC100'
+		} else {
+			throw new Error(`Can't find entry for commId ${requestedCommId}`)
 		}
 
 		// plplll
@@ -56,7 +68,7 @@ export async function handleGetServerInfo({
 
 		outgoingGameMessage.header.setMessageId(525);
         outgoingGameMessage.setVersion(0);
-		outgoingGameMessage.setFieldValueByName("riffName", `MCC${commPort}\n`);
+		outgoingGameMessage.setFieldValueByName("riffName", commName);
 		outgoingGameMessage.setFieldValueByName("commId", requestedCommId);
 		outgoingGameMessage.setFieldValueByName(
 			"ipAddress",
@@ -64,7 +76,7 @@ export async function handleGetServerInfo({
 		);
 		outgoingGameMessage.setFieldValueByName(
 			"port",
-			parseInt(`90${commPort}`)
+			commPort
 		);
 		outgoingGameMessage.setFieldValueByName("userId", 21);
 		outgoingGameMessage.setFieldValueByName("playerCount", 1);

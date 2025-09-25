@@ -34,7 +34,7 @@ describe("LobbyInfo", () => {
 			const testMessage = new LobbyInfo();
 
 			// Assert
-			expect(testMessage.size()).toBe(563);
+			expect(testMessage.size()).toBe(569);
 		});
 	});
 
@@ -48,7 +48,7 @@ describe("LobbyInfo", () => {
 
 			// Assert
 			expect(result).toBeInstanceOf(Buffer);
-			expect(result.length).toBe(563);
+			expect(result.length).toBe(569);
 		});
 	});
 
@@ -65,14 +65,14 @@ describe("LobbyInfo", () => {
 
 			// Assert
 			expect(testFunction).toThrow(
-				"LobbyInfo.deserialize() expected 563 bytes but got 1 bytes",
+				"LobbyInfo.deserialize() expected 569 bytes but got 1 bytes",
 			);
 		});
 
 		it("should not throw an error when passed a buffer of the correct size", () => {
 			// Arrange
 			const testMessage = new LobbyInfo();
-			const buffer = Buffer.alloc(563);
+			const buffer = Buffer.alloc(569);
 
 			// Act
 			const testFunction = () => {
@@ -86,13 +86,13 @@ describe("LobbyInfo", () => {
 		it("should set the correct values when passed a buffer of the correct size", () => {
 			// Arrange
 			const testMessage = new LobbyInfo();
-			const buffer = Buffer.alloc(563);
+			const buffer = Buffer.alloc(569);
 
 			// Act
 			testMessage.deserialize(buffer);
 
 			// Assert
-			expect(testMessage.size()).toBe(563);
+			expect(testMessage.size()).toBe(569);
 
 			expect(testMessage._lobbyId).toBe(0);
 		});

@@ -31,7 +31,7 @@ export class LobbyMessage extends SerializedBufferOld {
 		this._lobbyCount = 0; // 1 bytes
 		this._shouldExpectMoreMessages = false; // 1 byte
 		/** @type {LobbyInfo[]} */
-		this._lobbyList = []; // 567 bytes each
+		this._lobbyList = []; // 569 bytes each
 	}
 
 	override size() {
@@ -48,7 +48,7 @@ export class LobbyMessage extends SerializedBufferOld {
 	}
 
 	override serialize() {
-		const neededSize = 5 + this._lobbyList.length * 567;
+		const neededSize = 5 + this._lobbyList.length * 569;
 		const buffer = Buffer.alloc(neededSize);
 		let offset = 0; // offset is 0
 		buffer.writeUInt16LE(this._msgNo, offset);
@@ -260,7 +260,7 @@ export class LobbyInfo extends SerializedBufferOld {
 	}
 
 	override size() {
-		return 567;
+		return 569;
 	}
 
 	/**
@@ -640,7 +640,7 @@ export class LobbyInfo extends SerializedBufferOld {
 		buf.writeUInt16LE(this._teamTrialsBaseTimeUnderPar, offset);
 		offset += 2; // offset is 559
 		buf.writeUInt32LE(this._raceCashFactor, offset);
-		// offset is 563
+		// offset is 569
 
 		return buf;
 	}

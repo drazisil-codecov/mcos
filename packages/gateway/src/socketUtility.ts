@@ -4,6 +4,7 @@ export type TaggedSocket = {
 		connectionId: string;
 		rawSocket: Socket;
 		connectedAt: number;
+		localPort: number;
 	};
 
 /**
@@ -19,11 +20,13 @@ export function tagSocket(
 	rawSocket: Socket,
 	connectedAt: number,
 	connectionId: string,
+	localPort: number
 ): TaggedSocket {
 	return {
 		connectionId,
 		rawSocket,
 		connectedAt,
+		localPort
 	};
 }
 

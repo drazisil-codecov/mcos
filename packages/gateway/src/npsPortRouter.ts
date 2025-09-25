@@ -322,7 +322,17 @@ async function routeInitialMessage(
 			log.debug(`[${id}] Received ${responses.length} persona response packets`);
 			wasHandled = true
 			break;
-		// case 9001: {
+		case 10001:
+			log.debug(
+				`[${id}] Passing race? packet to lobby handler: ${packet.getMessageId()}`,
+			);
+			responses = (
+				await receiveLobbyData({ connectionId: id, message: initialPacket })
+			).messages;
+			log.debug(`[${id}] Received ${responses.length} race? lobby response packets`);
+			wasHandled = true
+			break;
+
 		default:
 			// No handler
 			if (wasHandled === false) {
