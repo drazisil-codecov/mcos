@@ -1,4 +1,4 @@
-import { Serializable, SerializableMessage } from "./interfaces.js"
+import { Serializable, SerializableMessage } from "./types.js"
 import { RawMessageHeader } from "./RawMessage.js"
 
 /**

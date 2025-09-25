@@ -1,6 +1,5 @@
 import { Socket, createServer as createSocketServer } from "node:net";
-import { Configuration, getServerConfiguration, getServerLogger, ServerLogger } from "rusty-motors-shared";
-import { createInitialState } from "rusty-motors-shared";
+import { Configuration, getServerConfiguration, getServerLogger, ServerLogger,createInitialState } from "rusty-motors-shared";
 import { onSocketConnection } from "./index.js";
 import { initializeRouteHandlers, processHttpRequest } from "./web.js";
 import type { GatewayOptions } from "./types.js";

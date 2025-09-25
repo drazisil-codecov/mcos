@@ -47,6 +47,7 @@
         "moment": "^2.30.1",
         "pino-debug": "^3.0.0",
         "pklib-ts": "github:drazisil/pklib-ts",
+        "rusty-motors-shared": "^1.0.0-next.0",
         "slonik": "^48.6.0",
         "ts-node": "10.9.2"
     },

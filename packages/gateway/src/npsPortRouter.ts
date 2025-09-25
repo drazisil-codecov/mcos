@@ -1,4 +1,4 @@
-import type { TaggedSocket } from './socketUtility.js';
+import type { TaggedSocket } from "../../shared/src/types.js";
 import {
 	GamePacket,
 	type SerializableInterface,
@@ -10,10 +10,9 @@ import { receiveLoginData } from 'rusty-motors-login';
 import { BytableMessage, createRawMessage } from '@rustymotors/binary';
 // import { RoomServer } from '@rustymotors/roomserver';
 // import { addRoomServer, getRoomServerByPort } from 'rusty-motors-database';
-import { splitPackets } from './utility.js';
 import * as Sentry from '@sentry/node';
-import { Socket } from 'net';
-import { getServerLogger, ServerLogger } from 'rusty-motors-shared';
+import { getServerLogger, messageQueueItem, ServerLogger } from 'rusty-motors-shared';
+import { MessageQueue } from './MessageQueue.js';
 
 // const server01 = new RoomServer({
 //     id: 224,
@@ -48,14 +47,15 @@ export async function npsPortRouter({
 		return;
 	}
 	log.debug(`[${id}] NPS port router started for port ${port}`);
+	const receiveQueue = new MessageQueue("npsIn", 10, async (item: messageQueueItem) => {
+		try {
+			await processSocketData(item.data, log, taggedSocket.connectionId, taggedSocket.localPort, taggedSocket)
+		} catch (err) {
+			console.error(`Error processing item: ${err}`)
+		}
+	})
 
-	// getMCOProtocolInstance().acceptIncomingSocket({
-	// 	connectionId: id,
-	// 	port,
-	// 	socket,
-	// });
 
-	// return;
 
 	// TODO: Document this
 	if (port === 7003) {
@@ -65,10 +65,16 @@ export async function npsPortRouter({
 	}
 
 	// Handle the socket connection here
-	socket.on('data', processSocketData(log, id, port, socket));
+	socket.on('data', async (data) => {
+		receiveQueue.put({
+			id: -1,
+			socket: taggedSocket,
+			data
+		});
+	})
 
 	socket.on('end', () => {
-		// log.debug(`[${id}] Socket closed by client for port ${port}`);
+		receiveQueue.exit()
 	});
 
 	socket.on("error", (error) => {
@@ -98,43 +104,43 @@ export async function npsPortRouter({
  * - Routes the initial message and sends the response back to the client.
  * - Handles errors during parsing, routing, or response sending, logging them appropriately.
  */
-export function processSocketData(
+async function processSocketData(
+	data: Buffer<ArrayBufferLike>,
 	log: ServerLogger,
 	id: string,
 	port: number,
-	socket: Socket,
-): (data: Buffer) => void {
-	return async (data) => {
-		try {
-			log.debug(`[${id}] Received data: ${data.toString('hex')}`);
-			log.debug(`[${id}] Data length: ${data.length}`);
+	socket: TaggedSocket,
+): Promise<void> {
+	try {
+		log.debug(`[${id}] Received data: ${data.toString('hex')}`);
+		log.debug(`[${id}] Data length: ${data.length}`);
 
-			const separator = Buffer.from([0x11, 0x01]);
-			const packets = splitDataIntoPackets(data, separator, log, id);
+		const separator = Buffer.from([0x11, 0x01]);
+		const packets = splitDataIntoPackets(data, separator, log, id);
 
-			if (packets.length) {
-				console.log('S: ==================================================================')
-				console.dir(packets)
-				console.log('E: ==================================================================')
-			}
-
-			for (const packet of packets) {
-				log.debug(`raw packet: ${packet.toString("hex")}`)
-				if (packet.byteLength === 0) {
-					log.warn(`BUG: We recieved an empty packet from the splitter`)
-					continue
-				}
-				const initialPacket = parseInitialMessage(packet);
-				log.debug(`[${id}] Initial packet(str): ${initialPacket}`);
-				log.debug(
-					`[${id}] initial Packet(hex): ${initialPacket.toString()}`,
-				);
-				await handlePacketRouting(id, port, initialPacket, socket, log);
-			}
-		} catch (error) {
-			handleSocketError(error, log, id);
+		if (packets.length) {
+			console.log('S: ==================================================================')
+			console.dir(packets)
+			console.log('E: ==================================================================')
 		}
-	};
+
+		for (const packet of packets) {
+			log.debug(`raw packet: ${packet.toString("hex")}`)
+			if (packet.byteLength === 0) {
+				log.warn(`BUG: We recieved an empty packet from the splitter`)
+				continue
+			}
+			const initialPacket = parseInitialMessage(packet);
+			log.debug(`[${id}] Initial packet(str): ${initialPacket}`);
+			log.debug(
+				`[${id}] initial Packet(hex): ${initialPacket.toString()}`,
+			);
+			await handlePacketRouting(id, port, initialPacket, socket, log);
+		}
+	} catch (error) {
+		handleSocketError(error, log, id);
+	}
+
 }
 
 function splitDataIntoPackets(
@@ -154,7 +160,7 @@ function splitDataIntoPackets(
 			if (packet.length > 0) {
 				return Buffer.concat([Buffer.from([0x11, 0x01]), Buffer.from(packet, "hex")])
 			}
-			return
+			return Buffer.alloc(0)
 		})
 		packets = packets.filter((packet: Buffer | undefined) => {
 			return packet && packet.byteLength > 2
@@ -169,17 +175,11 @@ function splitDataIntoPackets(
 	}
 }
 
-function addPrefix(arr: Buffer[], prefix: Buffer) {
-	return arr.map((packet: Buffer) => {
-		return Buffer.concat([prefix, packet])
-	})
-}
-
 async function handlePacketRouting(
 	id: string,
 	port: number,
 	initialPacket: BytableMessage,
-	socket: Socket,
+	socket: TaggedSocket,
 	log: ServerLogger,
 ): Promise<void> {
 	try {
@@ -187,7 +187,7 @@ async function handlePacketRouting(
 		log.debug(
 			`[${id}] Sending response to socket: ${response.toString('hex')}`,
 		);
-		socket.write(response);
+		socket.rawSocket.write(response);
 	} catch (error) {
 		throw new Error(`[${id}] Error routing initial nps message: ${error}`, {
 			cause: error,

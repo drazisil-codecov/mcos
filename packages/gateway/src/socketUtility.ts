@@ -1,11 +1,5 @@
-import type { Socket } from "net";
-
-export type TaggedSocket = {
-		connectionId: string;
-		rawSocket: Socket;
-		connectedAt: number;
-		localPort: number;
-	};
+import type { Socket } from "node:net";
+import { TaggedSocket } from "rusty-motors-shared";
 
 /**
  * Tags a socket with an ID and a connection timestamp.

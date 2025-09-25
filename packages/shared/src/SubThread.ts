@@ -3,7 +3,8 @@
  */
 
 import { EventEmitter } from "node:events";
-import { getServerLogger, ServerLogger } from "rusty-motors-shared";
+import { ServerLogger } from "rusty-motors-shared";
+import { getServerLogger } from "../getServerLogger.js";
 
 
 export class SubThread extends EventEmitter {

@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { getServerConfiguration } from "./Configuration";
-import { getServerLogger } from "../index.js";
+import { getServerConfiguration } from "./Configuration.js";
+import { getServerLogger } from "../getServerLogger.js";
 
-vi.mock("../index.js", () => ({
+vi.mock("../getServerLogger.js", () => ({
 	getServerLogger: vi.fn().mockReturnValue({
 		fatal: vi.fn(),
 	}),

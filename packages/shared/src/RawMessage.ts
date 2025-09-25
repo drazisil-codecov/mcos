@@ -1,5 +1,5 @@
 import { checkSize4, sliceBuff, checkSize2 } from "./UserData.js";
-import { SerializableMessage } from "./interfaces.js";
+import { SerializableMessage } from "./types.js";
 
 
 export class RawMessage implements SerializableMessage {

@@ -1,5 +1,5 @@
 import type { Logger } from "pino";
-import { getServerLogger } from "../index.js";
+import { getServerLogger } from "../getServerLogger.js";
 
 /**
  * @module shared/Configuration

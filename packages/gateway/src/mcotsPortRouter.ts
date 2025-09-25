@@ -1,4 +1,4 @@
-import type { TaggedSocket } from "./socketUtility.js";
+import type { TaggedSocket } from "../../shared/src/types.js";
 import {
     ServerPacket,
     type SerializableInterface,
@@ -6,13 +6,14 @@ import {
 import { receiveTransactionsData } from "rusty-motors-transactions";
 import * as Sentry from "@sentry/node";
 import { getServerLogger, ServerLogger } from "rusty-motors-shared";
+import { MessageQueue } from "./MessageQueue.js";
+import { messageQueueItem } from "../../shared/src/types.js";
 
 /**
  * Handles the routing of messages for the MCOTS (Motor City Online Transaction Server) ports.
  *
  * @param taggedSocket - The socket object that contains the tagged information for routing.
  */
-
 export async function mcotsPortRouter({
     taggedSocket,
     log = getServerLogger('gateway.mcotsPortRouter'),
@@ -31,14 +32,27 @@ export async function mcotsPortRouter({
     }
 
     log.debug(`[${id}] MCOTS port router started for port ${port}`);
+    const receiveQueue = new MessageQueue("mcoIn", 10, async (item: messageQueueItem) => {
+        try {
+            await processIncomingPackets(item.data, log, taggedSocket.connectionId, taggedSocket.localPort, taggedSocket)
+        } catch (err) {
+            console.error(`Error processing item: ${err}`)
+        }
+    })
+
 
     // Handle the socket connection here
     socket.on('data', async (data) => {
-        await processIncomingPackets(data, log, id, port, taggedSocket);
+        receiveQueue.put({
+            id: -1,
+            socket: taggedSocket,
+            data
+        })
+        // await processIncomingPackets(data, log, id, port, taggedSocket);
     });
 
     socket.on('end', () => {
-        // log.debug(`[${id}] Socket closed by client for port ${port}`);
+        receiveQueue.exit()
     });
 
     socket.on('error', (error) => {
@@ -66,14 +80,6 @@ function findPackageSignatureIndices(data: Buffer): number[] {
 
     return packageSignatureIndices;
 }
-
-type messageQueueItem = {
-    id: string,
-    socket: TaggedSocket,
-    data: Buffer<ArrayBufferLike>,
-}
-
-const inboundQueue: messageQueueItem[] = []
 
 async function processIncomingPackets(
     data: Buffer<ArrayBufferLike>,
@@ -111,16 +117,10 @@ async function processIncomingPackets(
                     lengthAction: packet.length,
                 },
             );
-            inboundQueue.push({
-                id: id,
-                socket: socket,
-                data: packet
-            })
             inPackets.push(packet);
         }
 
         if (inPackets) {
-            inboundQueue.shift()
             console.log('S: ==================================================================')
             console.dir(inPackets)
             console.log('E: ==================================================================')
@@ -165,84 +165,43 @@ async function processIncomingPackets(
 }
 
 function parseInitialMessage(data: Buffer): ServerPacket {
-	const initialPacket = new ServerPacket();
-	initialPacket.deserialize(data);
-	return initialPacket;
+    const initialPacket = new ServerPacket();
+    initialPacket.deserialize(data);
+    return initialPacket;
 }
 
 async function routeInitialMessage(
-	id: string,
-	port: number,
-	initialPacket: ServerPacket,
-	log = getServerLogger("gateway.mcotsPortRouter/routeInitialMessage"),
+    id: string,
+    port: number,
+    initialPacket: ServerPacket,
+    log = getServerLogger("gateway.mcotsPortRouter/routeInitialMessage"),
 ): Promise<Buffer> {
-	// Route the initial message to the appropriate handler
-	// Messages may be encrypted, this will be handled by the handler
+    // Route the initial message to the appropriate handler
+    // Messages may be encrypted, this will be handled by the handler
 
-	log.debug(`Routing message for port ${port}: ${initialPacket.getMessageId()}`);
-	let responses: SerializableInterface[] = [];
+    log.debug(`Routing message for port ${port}: ${initialPacket.getMessageId()}`);
+    let responses: SerializableInterface[] = [];
 
-	switch (port) {
-		case 43300:
-			// Handle transactions packet
-			responses = (
-				await receiveTransactionsData({
-					connectionId: id,
-					message: initialPacket,
-				})
-			).messages;
-			break;
-		default:
-			console.log(`No handler found for port ${port}`);
-			break;
-	}
-
-	// Send responses back to the client
-	log.debug(`[${id}] Sending ${responses.length} responses`);
-
-	// Serialize the responses
-	const serializedResponses = responses.map((response) => response.serialize());
-
-	return Buffer.concat(serializedResponses);
-}
-
-const inWork: messageQueueItem[] = [];
-const outWork: messageQueueItem[] = [];
-
-const queues = [
-    { name: "inWork", queue: inWork},
-    { name: "outWork", queue: outWork}
-]
-
-async function doWork(item: messageQueueItem) {
-  console.log(`Doing work ${item}`);
-  await new Promise(resolve => setTimeout(resolve, 4, item));
-}
-
-async function handleWorkQueue(workQueue: {name: string, queue: messageQueueItem[]}) {
-  while(true) {
-    if(!workQueue.queue.length) {
-      await new Promise(resolve => setTimeout(resolve, 0)); 
-      continue;
-    }; // No work, skipping
-    const item = workQueue.queue.shift();
-    console.log(`${workQueue.name} doing work ${item}`);
-    console.log(`Doing work ${item}`);
-    if ( typeof item !== "undefined") {
-        await doWork(item);
+    switch (port) {
+        case 43300:
+            // Handle transactions packet
+            responses = (
+                await receiveTransactionsData({
+                    connectionId: id,
+                    message: initialPacket,
+                })
+            ).messages;
+            break;
+        default:
+            console.log(`No handler found for port ${port}`);
+            break;
     }
-  }
+
+    // Send responses back to the client
+    log.debug(`[${id}] Sending ${responses.length} responses`);
+
+    // Serialize the responses
+    const serializedResponses = responses.map((response) => response.serialize());
+
+    return Buffer.concat(serializedResponses);
 }
-
-// queues.forEach((q) => {
-//     handleWorkQueue(q);
-
-// })
-
-
-// // randomly add items to the in and out queues
-// setInterval(() => {
-//   console.log('adding work');
-//   inWork.push(Math.floor(Math.random() * 10));
-//   outWork.push(Math.floor(Math.random() * 10));
-// }, 1000);

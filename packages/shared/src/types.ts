@@ -3,7 +3,8 @@
  */
 
 import type { SerializedBufferOld } from "./SerializedBufferOld.js";
-import { ServerLogger } from "../index.js";
+import type { Socket } from "node:net";
+import pino from "pino";
 
 export const name = "interfaces";
 
@@ -11,6 +12,8 @@ export const name = "interfaces";
  * @exports
  * @interface
  */
+
+export type ServerLogger = Logger;
 
 export interface DatabaseManager {
 	updateSessionKey: (
@@ -45,10 +48,10 @@ export interface GameMessageOpCode {
 }
 
 export interface UserRecordMini {
-		contextId: string;
-		customerId: number;
-		profileId: number;
-	}
+	contextId: string;
+	customerId: number;
+	profileId: number;
+}
 
 /**
  * @exports
@@ -87,3 +90,38 @@ export interface SerializableMessage {
 	id: number
 	length: number
 }
+export type messageQueueItem = {
+	id: number;
+	socket: TaggedSocket;
+	data: Buffer<ArrayBufferLike>;
+};
+export type TaggedSocket = {
+	connectionId: string;
+	rawSocket: Pick<Socket, "write" | "localPort" | "end" | "on">;
+	connectedAt: number;
+	localPort: number;
+}; export interface Logger {
+	info: (msg: string, obj?: unknown) => void;
+	warn: (msg: string, obj?: unknown) => void;
+	error: (msg: string, obj?: unknown) => void;
+	fatal: (msg: string, obj?: unknown) => void;
+	debug: (msg: string, obj?: unknown) => void;
+	trace: (msg: string, obj?: unknown) => void;
+	child: (obj: pino.Bindings) => Logger;
+}
+export type LogLevel = "fatal" | "error" | "warn" | "info" | "debug" | "trace";
+export interface KeypressEvent {
+	sequence: string;
+	name: string;
+	ctrl: boolean;
+	meta: boolean;
+	shift: boolean;
+}
+export interface ConnectionRecord {
+	customerId: number;
+	connectionId: string;
+	sessionKey: string;
+	sKey: string;
+	contextId: string;
+}
+

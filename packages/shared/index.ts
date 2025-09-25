@@ -1,3 +1,5 @@
+import pino from "pino";
+import * as Sentry from "@sentry/node";
 export { SubThread } from "./src/SubThread.js";
 export { NetworkMessage } from "./src/NetworkMessage.js";
 export {
@@ -39,25 +41,7 @@ export type { OnDataHandler, ServiceResponse } from "./src/State.js";
 export { LegacyMessage } from "./src/LegacyMessage.js";
 export { NPSHeader } from "./src/NPSHeader.js";
 export {UserData, UserInfo, SetMyUserDataMessage, } from "./src/UserData.js"
-export * from "./src/interfaces.js";
-import * as Sentry from "@sentry/node";
-import pino from "pino";
-
-export interface KeypressEvent {
-	sequence: string;
-	name: string;
-	ctrl: boolean;
-	meta: boolean;
-	shift: boolean;
-}
-
-export interface ConnectionRecord {
-	customerId: number;
-	connectionId: string;
-	sessionKey: string;
-	sKey: string;
-	contextId: string;
-}
+export * from "./src/types.js";
 
 // Function to convert ARGB to 32-bit integer
 export function argbToInt(
