@@ -81,7 +81,34 @@ export async function _npsRequestGameConnectServer({
 
 	if (!existingEncryption) {
 		// Set the encryption keys on the lobby connection
-		const keys = await databaseManager.fetchSessionKeyByCustomerId(customerId);
+		let keys;
+
+		try {
+			keys = await databaseManager.fetchSessionKeyByCustomerId(customerId);
+		} catch (err) {
+			log.warn(`Unable to fetch sessionkey`, {
+				connectionId,
+				customerId,
+				err
+			})
+			// TODO: parse error and return approprate code
+			const responsePacket = new BytableMessage();
+			responsePacket.header.setMessageVersion(0);
+			responsePacket.header.setMessageId(0x22a); // invalid key
+
+			// log the packet
+			log.debug(
+				`!!! outbound lobby login response packet: ${responsePacket.toString()}`,
+			);
+
+			const outboundMessage = new SerializedBufferOld();
+			outboundMessage.deserialize(responsePacket.serialize());
+			return {
+				connectionId,
+				messages: [outboundMessage]
+			}
+		}
+		
 
 		if (keys === undefined) {
 			throw Error("Error fetching session keys!");
@@ -105,6 +132,7 @@ export async function _npsRequestGameConnectServer({
 		} catch (error) {
 			const err = Error(`Error creating encryption`);
 			err.cause = error;
+			// 20a
 			throw err;
 		}
 	}
@@ -137,16 +165,6 @@ export async function _npsRequestGameConnectServer({
 	outboundMessage.deserialize(responsePacket.serialize());
 
 	responsePackets.push(outboundMessage)
-
-	const localPort = connectionId.split(":")[1]
-
-	log.debug(`[${connectionId}] port ${localPort}`);
-
-	// if (localPort > 9000 && localPort < 9021) {
-    //    const grantPacket = createNPSChannelGrantedPacket(localPort, parseInt(`90${localPort}`))
-	// 	responsePackets.push(grantPacket)
-	// }
-
 
 	log.debug(`[${connectionId}] Returning with ${outboundMessage.toHexString()}`);
 
