@@ -121,10 +121,6 @@ async function processSocketData(
 				continue
 			}
 			const initialPacket = parseInitialMessage(packet);
-			log.debug(`[${id}] Initial packet(str): ${initialPacket}`);
-			log.debug(
-				`[${id}] initial Packet(hex): ${initialPacket.toString()}`,
-			);
 			await handlePacketRouting(id, port, initialPacket, socket, log);
 		}
 	} catch (error) {

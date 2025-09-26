@@ -132,15 +132,6 @@ async function processIncomingPackets(
         for (let packet of inPackets) {
             log.debug(`[${id}] Received data: ${packet.toString('hex')}`);
             const initialPacket = parseInitialMessage(packet);
-            log.debug(
-                `initial Packet(hex): ${initialPacket.toHexString()}`,
-                {
-                    connectionId: id,
-                    port,
-                    seq: initialPacket.getSequence(),
-                    length: initialPacket.getLength(),
-                },
-            );
             await routeInitialMessage(id, port, initialPacket)
                 .then((response) => {
                     // Send the response back to the client
