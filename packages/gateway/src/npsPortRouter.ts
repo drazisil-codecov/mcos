@@ -214,9 +214,6 @@ function parseInitialMessage(data: Buffer): BytableMessage {
 		if ([0x217, 0x532].includes(id)) {
 			message.setVersion(0);
 		}
-		getServerLogger("gateway.npsPortRouter/parseInitialMessage").debug(
-			`Parsing initial message: ${data.toString("hex")}`,
-		);
 
 		message.deserialize(data);
 
