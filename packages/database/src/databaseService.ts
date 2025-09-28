@@ -1,46 +1,106 @@
-import { hashSync } from "bcrypt";
+import { compareSync, hashSync } from "bcrypt";
 import { DatabaseSync } from "node:sqlite";
 import { getServerLogger } from "rusty-motors-shared";
 import type { UserRecordMini } from "rusty-motors-shared";
 import { SQL, DATABASE_PATH } from "./databaseConstrants.js";
+import { sql, db } from "./database.js"
+
+/**
+ * Generates a hashed password using bcrypt
+ * @param password - The plain text password to hash
+ * @param saltRounds - Number of salt rounds for bcrypt (default: 10)
+ * @returns The hashed password string
+ */
+export function generatePasswordHash(password: string, saltRounds = 10): string {
+	return hashSync(password, saltRounds);
+}
 
 // Database Service Interface
 export interface DatabaseService {
-		isDatabaseConnected: () => boolean;
-		registerUser: (
-			username: string,
-			password: string,
-			customerId: number,
-		) => void;
-		findUser: (username: string, password: string) => UserRecordMini;
-		getAllUsers: () => UserRecordMini[];
-		updateSession: (
-			customerId: number,
-			contextId: string,
-			userId: number,
-		) => void;
-		findSessionByContext: (contextId: string) => UserRecordMini | undefined;
+	isDatabaseConnected: () => boolean;
+	getAllUsers: () => UserRecordMini[];
+	updateSession: (
+		customerId: number,
+		contextId: string,
+		userId: number,
+	) => void;
+	findSessionByContext: (contextId: string) => UserRecordMini | undefined;
+}
+
+/**
+	 * Registers a new user in the database
+	 * @param username - Unique username for the new user
+	 * @param password - User's password (will be hashed)
+	 * @param customerId - Associated customer ID
+	 * @throws Error if registration fails for reasons other than duplicate username
+	 */
+export function registerNewUser(
+	username: string,
+	password: string,
+	customerId: number,
+) {
+	const logger = getServerLogger("database");
+	const hashedPassword = generatePasswordHash(password);
+	try {
+		db.query(sql`insert 
+	into login (login_name, "password", customer_id) 
+	values (${username}, ${hashedPassword}, ${customerId})
+	on conflict (customer_id) do update set password = ${hashedPassword};`)
+	} catch (error) {
+		if (
+			error instanceof Error &&
+			error.message.includes("UNIQUE constraint failed")
+		) {
+			logger.warn(`User ${username} already exists`);
+			return;
+		}
+		throw error;
+	}
+}
+
+	type DBLogin = {
+		login_name: string,
+		password: string,
+		customer_id: number,
+		login_level: number
+	}
+
+	/**
+	 * Finds a user by username and password
+	 * @param database - The SQLite database instance
+	 * @param username - Username to search for
+	 * @param password - Password to verify
+	 * @returns UserRecordMini object containing user details
+	 * @throws Error if user is not found
+	 */
+	export async function findUser(
+		username: string,
+		password: string,
+	): Promise<{customerId: number, userName: string, loginLevel: number}> {
+		const userRecords = await (db.query(sql`SELECT * FROM login WHERE login_name = ${username}`) as unknown as Promise<DBLogin[]>)
+		if (userRecords.length === 0) {
+			throw new Error("User not found");
+		}
+		const user = userRecords[0] as DBLogin
+		if (!compareSync(password, user.password)) {
+			throw new Error(`password invalid for user`)
+		}
+		return {
+			customerId: user.customer_id,
+			userName: user.login_name,
+			loginLevel: user.login_level
+		};
 	}
 
 // Database Implementation
 export const DatabaseImpl = {
-	/**
-	 * Generates a hashed password using bcrypt
-	 * @param password - The plain text password to hash
-	 * @param saltRounds - Number of salt rounds for bcrypt (default: 10)
-	 * @returns The hashed password string
-	 */
-	generatePasswordHash(password: string, saltRounds = 10): string {
-		const hash = hashSync(password, saltRounds);
-		return hash;
-	},
+
 
 	/**
 	 * Initializes the database schema by creating necessary tables and indexes
 	 * @param database - The SQLite database instance
 	 */
 	initializeDatabase(database: DatabaseSync) {
-		database.exec(SQL.CREATE_USER_TABLE);
 		database.exec(
 			"CREATE INDEX IF NOT EXISTS idx_user_username ON user(username)",
 		);
@@ -53,63 +113,7 @@ export const DatabaseImpl = {
 		);
 	},
 
-	/**
-	 * Registers a new user in the database
-	 * @param database - The SQLite database instance
-	 * @param username - Unique username for the new user
-	 * @param password - User's password (will be hashed)
-	 * @param customerId - Associated customer ID
-	 * @throws Error if registration fails for reasons other than duplicate username
-	 */
-	registerNewUser(
-		database: DatabaseSync,
-		username: string,
-		password: string,
-		customerId: number,
-	) {
-		const logger = getServerLogger("database");
-		const hashedPassword = this.generatePasswordHash(password);
-		try {
-			database
-				.prepare(SQL.INSERT_USER)
-				.run(username, hashedPassword, customerId);
-		} catch (error) {
-			if (
-				error instanceof Error &&
-				error.message.includes("UNIQUE constraint failed")
-			) {
-				logger.warn(`User ${username} already exists`);
-				return;
-			}
-			throw error;
-		}
-	},
 
-	/**
-	 * Finds a user by username and password
-	 * @param database - The SQLite database instance
-	 * @param username - Username to search for
-	 * @param password - Password to verify
-	 * @returns UserRecordMini object containing user details
-	 * @throws Error if user is not found
-	 */
-	findUser(
-		database: DatabaseSync,
-		username: string,
-		password: string,
-	): UserRecordMini {
-		const query = database.prepare(SQL.FIND_USER);
-		const hashedPassword = this.generatePasswordHash(password);
-		const user = query.get(username, hashedPassword) as UserRecordMini | null;
-		if (user == null) {
-			throw new Error("User not found");
-		}
-		return {
-			customerId: user.customerId,
-			profileId: user.profileId,
-			contextId: user.contextId,
-		};
-	},
 
 	/**
 	 * Retrieves all users from the database
@@ -156,8 +160,6 @@ export const DatabaseImpl = {
 	createDatabaseService(db: DatabaseSync): DatabaseService {
 		return {
 			isDatabaseConnected: () => db !== null,
-			registerUser: (...args) => this.registerNewUser(db, ...args),
-			findUser: (...args) => this.findUser(db, ...args),
 			getAllUsers: () => this.getAllUsers(db),
 			updateSession: (...args) => this.updateSession(db, ...args),
 			findSessionByContext: (...args) => this.findSessionByContext(db, ...args),
@@ -176,7 +178,7 @@ function initializeDatabaseService(): DatabaseService {
 	if (databaseInstance === null) {
 		databaseInstance = new DatabaseSync(DATABASE_PATH);
 		DatabaseImpl.initializeDatabase(databaseInstance);
-		DatabaseImpl.registerNewUser(databaseInstance, "admin", "admin", 5551212);
+		registerNewUser("admin", "admin", 654321);
 		DatabaseImpl.updateSession(
 			databaseInstance,
 			1212555,

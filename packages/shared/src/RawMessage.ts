@@ -1,4 +1,6 @@
-import { checkSize4, sliceBuff, checkSize2 } from "./UserData.js";
+import { checkSize4 } from "./helpers.js";
+import { checkSize2 } from "./helpers.js";
+import { sliceBuff } from "./helpers.js";
 import { SerializableMessage } from "./types.js";
 
 

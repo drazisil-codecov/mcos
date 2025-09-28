@@ -34,12 +34,12 @@ async function notFoundRouter({
 	taggedSocket,
 	log = getServerLogger("gateway.notFoundRouter"),
 }: PortRouterArgs) {
-	taggedSocket.rawSocket.on("error", (error) => {
+	taggedSocket.socket.on("error", (error) => {
 		console.error(`[${taggedSocket.connectionId}] Socket error: ${error}`);
 	});
-	taggedSocket.rawSocket.end();
+	taggedSocket.socket.end();
 	log.warn(
-		`[${taggedSocket.connectionId}] No router found for port ${taggedSocket.rawSocket.localPort}`,
+		`[${taggedSocket.connectionId}] No router found for port ${taggedSocket.socket.localPort}`,
 	);
 }
 /**

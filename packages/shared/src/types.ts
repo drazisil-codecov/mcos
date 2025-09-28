@@ -97,7 +97,7 @@ export type messageQueueItem = {
 };
 export type TaggedSocket = {
 	connectionId: string;
-	rawSocket: Pick<Socket, "write" | "localPort" | "end" | "on">;
+	socket: Pick<Socket, "write" | "localPort" | "end" | "on">;
 	connectedAt: number;
 	localPort: number;
 }; export interface Logger {

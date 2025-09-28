@@ -21,7 +21,7 @@ export async function mcotsPortRouter({
     taggedSocket: TaggedSocket;
     log?: ServerLogger;
 }): Promise<void> {
-    const { rawSocket: socket, connectionId: id } = taggedSocket;
+    const { socket: socket, connectionId: id } = taggedSocket;
 
     const port = socket.localPort || 0;
 
@@ -48,7 +48,6 @@ export async function mcotsPortRouter({
             socket: taggedSocket,
             data
         })
-        // await processIncomingPackets(data, log, id, port, taggedSocket);
     });
 
     socket.on('end', () => {
@@ -138,7 +137,7 @@ async function processIncomingPackets(
                     log.debug(
                         `[${id}] Sending response: ${response.toString('hex')}`,
                     );
-                    socket.rawSocket.write(response);
+                    socket.socket.write(response);
                 })
                 .catch(error => {
                     throw new Error(

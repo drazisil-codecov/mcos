@@ -27,7 +27,7 @@ export async function npsPortRouter({
 	taggedSocket: TaggedSocket;
 	log?: ServerLogger;
 }): Promise<void> {
-	const { rawSocket: socket, connectionId: id } = taggedSocket;
+	const { socket: socket, connectionId: id } = taggedSocket;
 
 	const port = socket.localPort || 0;
 
@@ -101,6 +101,15 @@ async function processSocketData(
 	port: number,
 	socket: TaggedSocket,
 ): Promise<void> {
+	// Early tossing of known bad packets
+	const msgCode = data.readInt16BE()
+
+	if ([0x300, 0x101, 0x4745, 0x4845, 0x1603,0x1e, 0x11,0x434e, 0x1603, 0x504f].includes(msgCode)) {
+		socket.socket.end()
+		return
+	}
+
+
 	try {
 		log.debug(`[${id}] Received data: ${data.toString('hex')}`);
 		log.debug(`[${id}] Data length: ${data.length}`);
@@ -137,27 +146,33 @@ function splitDataIntoPackets(
 ): Buffer[] {
 	const packetsArray = data.toString('hex').split(separator.toString('hex'))
 	const packetCount =
-		packetsArray.length - 1;
-	log.debug(`[${id}] Number of packets: ${packetCount}`);
+		packetsArray.length;
+	let packets: Buffer[];
+	log.debug(`[${id}] ${packetCount} packets detected`);
 
 	if (packetCount > 1) {
-		log.debug(`[${id}] ${packetCount} packets detected`);
-		let packets = packetsArray.map((packet: string) => {
+		packets = packetsArray.map((packet: string) => {
 			if (packet.length > 0) {
 				return Buffer.concat([Buffer.from([0x11, 0x01]), Buffer.from(packet, "hex")])
 			}
 			return Buffer.alloc(0)
 		})
-		packets = packets.filter((packet: Buffer | undefined) => {
-			return packet && packet.byteLength > 2
-		})
+		packets = removeEmptyEntries(packets);
 		log.debug(
 			`[${id}] Split packets: ${packets.map((p) => p.toString('hex'))}`,
 		);
-		return packets as Buffer[]
 	} else {
-		log.debug(`[${id}] One packet detected`);
-		return [data];
+		packets = packetsArray.map((packet: string) => {
+			return Buffer.from(packet, "hex")
+		})
+	}
+	return packets;
+
+	function removeEmptyEntries(packets: Buffer<ArrayBufferLike>[]) {
+		packets = packets.filter((packet: Buffer | undefined) => {
+			return packet && packet.byteLength > 2;
+		});
+		return packets;
 	}
 }
 
@@ -173,7 +188,7 @@ async function handlePacketRouting(
 		log.debug(
 			`[${id}] Sending response to socket: ${response.toString('hex')}`,
 		);
-		socket.rawSocket.write(response);
+		socket.socket.write(response);
 	} catch (error) {
 		throw new Error(`[${id}] Error routing initial nps message: ${error}`, {
 			cause: error,

@@ -23,13 +23,14 @@ import {
 	handleGetRegistry,
 } from "rusty-motors-shard";
 import { getServerConfiguration, getServerLogger } from "rusty-motors-shared";
+import { findUser } from "rusty-motors-database";
 
 type WebHandlerResponse = {
 	headers: Record<string, string>;
 	body: string | Buffer;
 };
 
-type WebHandler = (request: http.IncomingMessage, response: http.ServerResponse) => WebHandlerResponse;
+type WebHandler = (request: http.IncomingMessage, response: http.ServerResponse) => Promise<WebHandlerResponse>;
 
 class AuthLoginResponse {
 	valid: boolean = false;
@@ -79,19 +80,19 @@ export function initializeRouteHandlers() {
 	routeHandlers.set("/urls", handleWebUrl);
 	routeHandlers.set("/ShardList/", handleShardList);
 	routeHandlers.set("/ticker", handleTicker);
-	routeHandlers.set("/cert", () => {
+	routeHandlers.set("/cert", async () => {
 		return {
 			headers: { "Content-Type": "octet-stream", "Content-Disposition": "attachment; filename=server.crt" },
 			body: handleGetCert(getServerConfiguration()),
 		};
 	});
-	routeHandlers.set("/key", () => {
+	routeHandlers.set("/key", async () => {
 		return {
 			headers: { "Content-Type": "octet-stream", "Content-Disposition": "attachment; filename=pub.key" },
 			body: handleGetKey(getServerConfiguration()),
 		};
 	});
-	routeHandlers.set("/registry", () => {
+	routeHandlers.set("/registry", async () => {
 		return {
 			headers: { "Content-Type": "octet-stream", "Content-Disposition": "attachment; filename=server.reg" },
 			body: handleGetRegistry(getServerConfiguration()),
@@ -104,9 +105,9 @@ export function initializeRouteHandlers() {
  *
  * @returns The response headers and body for the root path request.
  */
-function handleRoot(): WebHandlerResponse {
+async function handleRoot(): Promise<WebHandlerResponse> {
 	return {
-		headers: {"Content-Type": "text/plain"},
+		headers: { "Content-Type": "text/plain" },
 		body: "Hello, world!",
 	};
 }
@@ -116,7 +117,7 @@ function handleRoot(): WebHandlerResponse {
  *
  * @returns The response headers and body for Castanet routes.
  */
-function handleCastanet(): WebHandlerResponse {
+async function handleCastanet(): Promise<WebHandlerResponse> {
 	return {
 		headers: {
 			[CastanetResponse.header.type]: CastanetResponse.header.value,
@@ -130,9 +131,9 @@ function handleCastanet(): WebHandlerResponse {
  *
  * @returns The response headers and body for the ticker request.
  */
-function handleTicker(): WebHandlerResponse {
+async function handleTicker(): Promise<WebHandlerResponse> {
 	return {
-		headers: {"Content-Type": "text/plain"},
+		headers: { "Content-Type": "text/plain" },
 		body: `/color=0xFFFF00
 		Hi Mark!`
 	};
@@ -150,10 +151,10 @@ function handleTicker(): WebHandlerResponse {
  * @param request - The incoming HTTP request object.
  * @param response - The HTTP response object to send the authentication response.
  */
-function handleAuthLogin(
+async function handleAuthLogin(
 	request: http.IncomingMessage,
 	response: http.ServerResponse,
-): WebHandlerResponse {
+): Promise<WebHandlerResponse> {
 	const url = new URL(
 		`http://${process.env["HOST"] ?? "localhost"}${request.url}`,
 	);
@@ -168,7 +169,7 @@ function handleAuthLogin(
 		"https://winehq.com",
 	);
 
-	const user = retrieveUserAccount(username, password);
+	const user = await findUser(username, password);
 
 	if (user !== null) {
 		const ticket = generateTicket(user.customerId);
@@ -178,9 +179,11 @@ function handleAuthLogin(
 	}
 
 	return {
-		headers: {"Content-Type": "text/plain"},
+		headers: { "Content-Type": "text/plain" },
 		body: authResponse.formatResponse(),
 	}
+
+
 }
 
 /**
@@ -188,10 +191,10 @@ function handleAuthLogin(
  *
  * @returns The response headers and body for the shard list request.
  */
-function handleShardList(): WebHandlerResponse {
+async function handleShardList(): Promise<WebHandlerResponse> {
 	const shardList = generateShardList(getServerConfiguration().host);
 	return {
-		headers: {"Content-Type": "text/plain"},
+		headers: { "Content-Type": "text/plain" },
 		body: shardList,
 	};
 }
@@ -201,10 +204,10 @@ function handleShardList(): WebHandlerResponse {
  * @param request - The incoming HTTP request object.
  * @param response - The HTTP response object to send to the client.
  */
-function handleWebUrl(
+async function handleWebUrl(
 	request: http.IncomingMessage,
 	response: http.ServerResponse,
-): WebHandlerResponse {
+): Promise<WebHandlerResponse> {
 	const url = new URL(
 		`http://${process.env["HOST"] ?? "localhost"}${request.url}`,
 	);
@@ -216,7 +219,7 @@ function handleWebUrl(
 		response.statusCode = 404;
 		response.end("Not found");
 		return {
-			headers: {"Content-Type": "text/plain"},
+			headers: { "Content-Type": "text/plain" },
 			body: 'Not found'
 		}
 	}
@@ -3436,7 +3439,7 @@ function handleWebUrl(
 	}
 
 	return {
-		headers: {"Content-Type": "text/plain"},
+		headers: { "Content-Type": "text/plain" },
 		body: urlResponse
 	}
 }
@@ -3460,7 +3463,7 @@ function handleWebUrl(
  * - `/registry`: Responds with registry information based on server configuration.
  * - Any other route: Responds with a 404 status code and "Not found" message.
  */
-export function processHttpRequest(
+export async function processHttpRequest(
 	request: http.IncomingMessage,
 	response: http.ServerResponse,
 ) {
@@ -3472,7 +3475,7 @@ export function processHttpRequest(
 	if (routeHandlers.has(url.pathname)) {
 		const handler = routeHandlers.get(url.pathname);
 		if (handler) {
-			const { headers, body } = handler(request, response);
+			const { headers, body } = await handler(request, response);
 			Object.entries(headers).forEach(([key, value]) => {
 				response.setHeader(key, value);
 			});
@@ -3480,6 +3483,7 @@ export function processHttpRequest(
 			return;
 		}
 	}
+
 
 	response.statusCode = 404;
 	response.end("Not found");
@@ -3505,11 +3509,11 @@ const UserAccounts = [
 const AuthTickets = [
 	{
 		ticket: "5213dee3a6bcdb133373b2d4f3b9962758",
-		customerId: "123456",
+		customerId: 123456,
 	},
 	{
 		ticket: "d316cd2dd6bf870893dfbaaf17f965884e",
-		customerId: "654321",
+		customerId: 654321,
 	},
 ];
 
@@ -3519,7 +3523,7 @@ const AuthTickets = [
  * @param customerId - The ID of the customer for whom the ticket is being generated.
  * @returns The ticket associated with the given customer ID, or an empty string if no ticket is found.
  */
-function generateTicket(customerId: string): string {
+function generateTicket(customerId: number): string {
 	const ticket = AuthTickets.find((t) => t.customerId === customerId);
 	if (ticket) {
 		return ticket.ticket;
@@ -3527,20 +3531,3 @@ function generateTicket(customerId: string): string {
 	return "";
 }
 
-/**
- * Retrieves a user account based on the provided username and password.
- *
- * @param username - The username of the account to retrieve.
- * @param password - The password of the account to retrieve.
- * @returns An object containing the username, ticket, and customerId if the account is found, or null if not.
- */
-function retrieveUserAccount(
-	username: string,
-	password: string,
-): { username: string; ticket: string; customerId: string } | null {
-	const customer = UserAccounts.find(
-		(account) => account.username === username && account.password === password,
-	);
-
-	return customer ?? null;
-}

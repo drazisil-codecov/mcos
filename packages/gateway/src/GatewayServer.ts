@@ -1,4 +1,4 @@
-import { Socket, createServer as createSocketServer } from "node:net";
+import { Server, Socket, createServer as createSocketServer } from "node:net";
 import { Configuration, getServerConfiguration, getServerLogger, ServerLogger,createInitialState } from "rusty-motors-shared";
 import { onSocketConnection } from "./index.js";
 import { initializeRouteHandlers, processHttpRequest } from "./web.js";
@@ -73,13 +73,21 @@ export class Gateway {
 	 * 
 	 * @throws {Error} If the web server is undefined.
 	 */
-	start(): void {
+	async start(): Promise<void> {
 		// Initialize the GatewayServer
 		this.init();
 
-		this.listeningPortList.forEach(async (port) => {
-			this.startNewServer(port, this.socketconnection);
-		});
+		const listeningServers: Promise<Server>[] = []
+
+		for (const port of this.listeningPortList) {
+			const server = this.startNewServer(port, this.socketconnection);
+			listeningServers.push(server)
+		}
+
+		await Promise.all(listeningServers)
+
+		this.log.debug(`All sockets listening`)
+		
 
 		if (this.webServer === undefined) {
 			throw Error("webServer is undefined");
@@ -101,23 +109,30 @@ export class Gateway {
 	 * @param socketConnectionHandler - A callback function that handles incoming socket connections.
 	 * @param socketConnectionHandler.incomingSocket - The incoming socket connection.
 	 */
-	private startNewServer(
+	private async startNewServer(
 		port: number,
 		socketConnectionHandler: ({
 			incomingSocket,
 		}: { incomingSocket: Socket }) => void,
-	) {
+	): Promise<Server> {
 		const server = createSocketServer((s) => {
 			socketConnectionHandler({ incomingSocket: s });
 		});
 
 		// Listen on the specified port
-		server.listen(port, "0.0.0.0", this.backlogAllowedCount, () => {
-			this.log.debug(`Listening on port ${port}`);
-		});
+		const handle: Promise<Server> = new Promise((resolve, reject) => {
+			try {
+			server.listen(port, "0.0.0.0", this.backlogAllowedCount, () => {
+				resolve(server)
+			});
+		} catch (err) {
+			reject(err)
+		}})
+		
 
 		// Add the server to the list of servers
 		this.activeServers.push(server);
+		return handle
 	}
 
 	/**

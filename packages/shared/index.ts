@@ -41,6 +41,7 @@ export type { OnDataHandler, ServiceResponse } from "./src/State.js";
 export { LegacyMessage } from "./src/LegacyMessage.js";
 export { NPSHeader } from "./src/NPSHeader.js";
 export {UserData, UserInfo, SetMyUserDataMessage, } from "./src/UserData.js"
+export {RiffInfoListMessage, RiffInfo} from "./src/Lobby.js"
 export * from "./src/types.js";
 
 // Function to convert ARGB to 32-bit integer

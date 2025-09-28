@@ -1,24 +1,37 @@
 import type { Socket } from "node:net";
-import { TaggedSocket } from "rusty-motors-shared";
+import { ServerLogger, TaggedSocket } from "rusty-motors-shared";
+
+
+
+export type ConnectionContext = {
+	connectionId: string;
+	connectedStamp: number;
+	personaId: number;
+	isEncrypted: boolean;
+	logger: ServerLogger;
+};
+
+export function createConnectionContext() {}
+
 
 /**
  * Tags a socket with an ID and a connection timestamp.
  *
- * @param rawSocket - The socket to be tagged.
+ * @param socket - The socket to be tagged.
  * @param connectedAt - The timestamp of the connection.
  * @param connectionId - The unique identifier to tag the socket with.
  * @returns An object containing the id, socket, and connectionStamp.
  */
 
 export function tagSocket(
-	rawSocket: Socket,
+	socket: Socket,
 	connectedAt: number,
 	connectionId: string,
 	localPort: number
 ): TaggedSocket {
 	return {
 		connectionId,
-		rawSocket,
+		socket,
 		connectedAt,
 		localPort
 	};
@@ -34,7 +47,7 @@ export function tagSocket(
  */
 export async function trySocketWrite(socket: TaggedSocket, data: string): Promise<void> {
     return new Promise((resolve, reject) => {
-        socket.rawSocket.write(data, (error) => {
+        socket.socket.write(data, (error) => {
             if (error) {
                 reject(error);
             } else {
@@ -43,3 +56,5 @@ export async function trySocketWrite(socket: TaggedSocket, data: string): Promis
         });
     });
 }
+
+

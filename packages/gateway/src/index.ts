@@ -41,8 +41,10 @@ export function onSocketConnection({
 
 	// If the local port or remote address is undefined, throw an error
 	if (localPort === undefined || remoteAddress === undefined) {
-		const s = JSON.stringify(incomingSocket);
-		log.fatal("localPort or remoteAddress is undefined: " + s)
+		log.error("localPort or remoteAddress is undefined. Closing socket.")
+		if (!incomingSocket.destroyed) {
+			incomingSocket.destroy()
+		}
 		return
 	}
 
@@ -60,7 +62,7 @@ export function onSocketConnection({
 	const portRouter = getPortRouter(localPort);
 
 	// Hand the socket to the port router
-	portRouter({ taggedSocket: socketWithId }).catch((error) => {
+	portRouter({ taggedSocket: socketWithId }).catch(function onSocketError(error) {
 		Sentry.captureException(error);
 		log.error(`Error in port router: ${error.message}`);
 	});

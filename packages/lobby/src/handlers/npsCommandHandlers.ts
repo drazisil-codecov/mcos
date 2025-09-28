@@ -6,6 +6,7 @@ import { handleGetServerInfo } from "./handleGetServerInfo.js";
 import { handleGetUserList } from "./handleGetUserList.js";
 import { handleOpenCommChannel } from "./handleOpenCommChannel.js";
 import { handleSendMiniRiffList } from "./handleSendMiniRiffList.js";
+import { handleSendRiffList } from "./handleSendRiffList.js";
 
 export const npsCommandHandlers: NpsCommandHandler[] = [
 	{
@@ -42,5 +43,10 @@ export const npsCommandHandlers: NpsCommandHandler[] = [
 		opCode: 0x106,
 		name: "NPS_OPEN_COMM_CHANNEL",
 		handler: handleOpenCommChannel
+	},
+	{
+		opCode: 0x302,
+		name: "NPS_SEND_RIFF_LIST",
+		handler: handleSendRiffList
 	}
 ];
