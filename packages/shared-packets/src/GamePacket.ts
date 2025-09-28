@@ -1,9 +1,9 @@
-import { BasePacket } from "./BasePacket.js";
+import { BaseServerPacket } from "./BasePacket.js";
 import { GameMessageHeader } from "./GameMessageHeader.js";
 import { GameMessagePayload } from "./GameMessagePayload.js";
-import type { SerializableMessage } from "./types.js";
+import type { SerializableServerMessage } from "./types.js";
 
-export class GamePacket extends BasePacket implements SerializableMessage {
+export class GamePacket extends BaseServerPacket implements SerializableServerMessage {
 	protected override header: GameMessageHeader = new GameMessageHeader();
 	data: GameMessagePayload = new GameMessagePayload();
 

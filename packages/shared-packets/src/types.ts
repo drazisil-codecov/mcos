@@ -9,7 +9,7 @@ export interface SerializableInterface {
 	toHexString(): string;
 }
 
-export interface SerializableMessage extends SerializableInterface {
+export interface SerializableServerMessage extends SerializableInterface {
 	connectionId: string;
 
 	messageId: number;

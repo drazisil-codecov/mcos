@@ -1,9 +1,9 @@
-import { BasePacket } from "./BasePacket.js";
+import { BaseServerPacket } from "./BasePacket.js";
 import { ServerMessageHeader } from "./ServerMessageHeader.js";
 import { ServerMessagePayload } from "./ServerMessagePayload.js";
-import type { SerializableMessage } from "./types.js";
+import type { SerializableServerMessage } from "./types.js";
 
-export class ServerPacket extends BasePacket implements SerializableMessage {
+export class ServerPacket extends BaseServerPacket implements SerializableServerMessage {
 	protected override header: ServerMessageHeader = new ServerMessageHeader();
 	data: ServerMessagePayload = new ServerMessagePayload();
 

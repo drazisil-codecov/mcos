@@ -1,9 +1,9 @@
 import { BufferSerializer } from "./BufferSerializer.js";
-import type { SerializableInterface, SerializableMessage } from "./types.js";
+import type { SerializableInterface, SerializableServerMessage } from "./types.js";
 
-export class BasePacket
+export class BaseServerPacket
 	extends BufferSerializer
-	implements SerializableMessage
+	implements SerializableServerMessage
 {
 	connectionId: string;
 	messageId: number;

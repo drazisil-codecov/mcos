@@ -1,6 +1,7 @@
 import {
 	fetchStateFromDatabase,
 	getEncryption,
+	SerializedBufferOld,
 	ServerLogger,
 	updateEncryption,
 } from "rusty-motors-shared";
@@ -195,7 +196,7 @@ async function handleCommand({
  * @param {ServerLogger} [args.log=getServerLogger({ name: "Lobby" })]
   * @returns {Promise<{
 *  connectionId: string,
-* messages: BytableMessage[],
+* messages: SerializedBufferOld[],
 * }>}
 
  */
@@ -209,7 +210,7 @@ export async function handleEncryptedNPSCommand({
 	log?: ServerLogger;
 }): Promise<{
 	connectionId: string;
-	messages: BytableMessage[];
+	messages: SerializedBufferOld[];
 }> {
 	log.debug(`[${connectionId}] Received encrypted command: ${message.header.messageId}`);
 
@@ -244,8 +245,11 @@ export async function handleEncryptedNPSCommand({
 
 	const encryptedResponse = result.message;
 
+	const outPacket = new SerializedBufferOld()
+	outPacket.deserialize(encryptedResponse.serialize())
+
 	return {
 		connectionId,
-		messages: [encryptedResponse],
+		messages: [outPacket],
 	};
 }

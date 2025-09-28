@@ -7,7 +7,7 @@ export { ServerMessagePayload } from "./src/ServerMessagePayload.js";
 export { ServerPacket } from "./src/ServerPacket.js";
 export { LoginPayload } from "./src/LoginPayload.js";
 export { LoginCompletePayload } from "./src/LoginCompletePayload.js";
-export { BasePacket } from "./src/BasePacket.js";
+export { BaseServerPacket as BasePacket } from "./src/BasePacket.js";
 export { BufferSerializer } from "./src/BufferSerializer.js";
 export { GenericRequestPayload } from "./src/GenericRequestPayload.js";
 export { GenericReplyPayload } from "./src/GenericReplyPayload.js";
