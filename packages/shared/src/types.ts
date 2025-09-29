@@ -83,7 +83,18 @@ export interface Serializable {
 	sizeOf: number
 }
 
-export interface SerializableMessage {
+export interface MCOTSMessage {
+	connectionId: string
+	serialize: () => Buffer
+	deserialize: (buf: Buffer) => void
+	sizeOf: number
+	length: number
+	signature: string
+	sequence: number
+	flags: number
+}
+
+export interface NPSMessage {
 	serialize: () => Buffer
 	deserialize: (buf: Buffer) => void
 	sizeOf: number

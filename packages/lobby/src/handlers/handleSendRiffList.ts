@@ -1,4 +1,4 @@
-import { LegacyMessage, RiffInfoListMessage, SerializableMessage, ServerLogger, } from "rusty-motors-shared";
+import { RiffInfoListMessage, ServerLogger, } from "rusty-motors-shared";
 import { getServerLogger } from "rusty-motors-shared";
 import { BytableMessage } from "@rustymotors/binary";
 

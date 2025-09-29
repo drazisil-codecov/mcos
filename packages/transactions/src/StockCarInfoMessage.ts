@@ -20,11 +20,11 @@
  * @property {StockCar[]} StockCarList
  */
 
-import { MessageNode } from "rusty-motors-shared";
+import { MessageNodeOld } from "rusty-motors-shared";
 
 type StockCar = import("./StockCar.js").StockCar;
 
-export class StockCarInfoMessage extends MessageNode {
+export class StockCarInfoMessage extends MessageNodeOld {
 	starterCash: number;
 	dealerId: number;
 	brand: number;

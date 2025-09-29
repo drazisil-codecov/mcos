@@ -1,10 +1,10 @@
 import { checkSize4 } from "./helpers.js";
 import { checkSize2 } from "./helpers.js";
 import { sliceBuff } from "./helpers.js";
-import { SerializableMessage } from "./types.js";
+import { NPSMessage } from "./types.js";
 
 
-export class RawMessage implements SerializableMessage {
+export class RawMessage implements NPSMessage {
 	private _header: RawMessageHeader;
 	private _data: Buffer;
 
@@ -54,7 +54,7 @@ export class RawMessage implements SerializableMessage {
 		this._data = val
 	}
 }
-export class RawMessageHeader implements SerializableMessage {
+export class RawMessageHeader implements NPSMessage {
 	private _id: Buffer
 	private _length: Buffer
 

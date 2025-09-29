@@ -33,7 +33,8 @@ export async function validatePersonaName({
 	}
 
 	// Build the packet
-	const responsePacket = new RawMessage(responseCodes.NPS_DUP_USER);
+	const responsePacket = new RawMessage();
+	responsePacket.id = responseCodes.NPS_DUP_USER
 	log.debug(
 		`NPSMsg response object from validatePersonaName
       ${JSON.stringify({

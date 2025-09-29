@@ -3,6 +3,11 @@ import { ServerMessageHeader } from "./ServerMessageHeader.js";
 import { ServerMessagePayload } from "./ServerMessagePayload.js";
 import type { SerializableServerMessage } from "./types.js";
 
+/**
+ * @deprecated
+ * 
+ * use {@link MessageNode} instead
+ */
 export class ServerPacket extends BaseServerPacket implements SerializableServerMessage {
 	protected override header: ServerMessageHeader = new ServerMessageHeader();
 	data: ServerMessagePayload = new ServerMessagePayload();
@@ -37,12 +42,6 @@ export class ServerPacket extends BaseServerPacket implements SerializableServer
 		return this.data.serialize();
 	}
 	override setDataBuffer(data: Buffer): ServerPacket {
-		if (this.data.getByteSize() > 2) {
-			throw new Error(
-				`ServerPacket data buffer is already set, use copy() to create a new ServerPacket`,
-			);
-		}
-
 		this.data.deserialize(data);
 		return this;
 	}

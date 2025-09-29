@@ -305,7 +305,7 @@ export class PersonaMapsMessage extends NPSMessage {
 	/**
 	 * @returns {Buffer}
 	 */
-	override serialize(): Buffer {
+	override serialize() {
 		try {
 			if (!this._personaRecords) {
 				throw Error("PersonaRecords is undefined");

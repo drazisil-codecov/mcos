@@ -1,4 +1,3 @@
-import type { TaggedSocket } from "../../shared/src/types.js";
 import {
 	GamePacket,
 	type SerializableInterface,
@@ -9,7 +8,7 @@ import { receiveLoginData } from 'rusty-motors-login';
 import {receiveChatData} from "rusty-motors-chat"
 import { BytableMessage, createRawMessage } from '@rustymotors/binary';
 import * as Sentry from '@sentry/node';
-import { getServerLogger, messageQueueItem, ServerLogger } from 'rusty-motors-shared';
+import { getServerLogger, messageQueueItem, ServerLogger, TaggedSocket } from 'rusty-motors-shared';
 import { MessageQueue } from './MessageQueue.js';
 
 /**

@@ -42,7 +42,7 @@ export class GameMessageHeader extends legacyHeader {
 		return this;
 	}
 
-	serialize() {
+	override serialize() {
 		const buffer = Buffer.alloc(8);
 		buffer.writeUInt16BE(this.id, 0);
 		buffer.writeUInt16BE(this.length, 2);

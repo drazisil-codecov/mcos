@@ -1,17 +1,16 @@
-import { Serializable, SerializableMessage } from "./types.js"
+import { Serializable, NPSMessage } from "./types.js"
 import { RawMessageHeader } from "./RawMessage.js"
 import { align4, checkSize4, CString, padBuffer, setByte, sliceBuff } from "./helpers.js";
 
-// ...existing code...
-function real2Int(r: number): number {
-	// C cast to int truncates toward zero; Math.trunc mirrors that behaviour
-	return Math.trunc(r);
-}
+// function real2Int(r: number): number {
+// 	// C cast to int truncates toward zero; Math.trunc mirrors that behaviour
+// 	return Math.trunc(r);
+// }
 
-function real2Fixed(f: number): number {
-	// REAL2FIXED(x) -> REAL2INT((x)*65536.0f)
-	return real2Int(f * 65536.0);
-}
+// function real2Fixed(f: number): number {
+// 	// REAL2FIXED(x) -> REAL2INT((x)*65536.0f)
+// 	return real2Int(f * 65536.0);
+// }
 
 export function int2Real(x: number): number { return x; }         // INT2REAL
 export function fixed2Real(x: number): number { return x * (1.0 / 65536.0); } // FIXED2REAL
@@ -294,7 +293,7 @@ export class UserInfo implements Serializable {
 	}
 }
 
-export class SetMyUserDataMessage implements SerializableMessage {
+export class SetMyUserDataMessage implements NPSMessage {
 	private _header: RawMessageHeader
 	private _userInfo: UserInfo
 

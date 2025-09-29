@@ -1,5 +1,4 @@
-import { getServerLogger } from "rusty-motors-shared";
-import { messageQueueItem } from "../../shared/src/types.js";
+import { getServerLogger, messageQueueItem } from "rusty-motors-shared";
 
 export class MessageQueue {
     private _name: string;

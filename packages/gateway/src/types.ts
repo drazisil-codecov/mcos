@@ -1,5 +1,4 @@
-import type { TaggedSocket } from "../../shared/src/types.js";
-import type { Configuration, ServerLogger } from "rusty-motors-shared";
+import type { Configuration, ServerLogger, TaggedSocket } from "rusty-motors-shared";
 import type { Socket } from "node:net";
 
 export type PortRouterArgs = {

@@ -1,8 +1,7 @@
 import { BytableContainer } from "@rustymotors/binary";
-import { deserializeString } from "../../shared/src/deserializeString.js";
-import { LegacyMessage } from "../../shared/src/LegacyMessage.js";
 import { LoginInfoMessage } from "./LoginInfoMessage.js";
 import { align8 } from "./UserInfoMessage.js";
+import { deserializeString, LegacyMessage } from "rusty-motors-shared";
 
 
 export class UserInfoMessage extends LegacyMessage {

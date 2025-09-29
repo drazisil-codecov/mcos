@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import http from "node:http";
-import { processHttpRequest, initializeRouteHandlers } from "./web";
+import { processHttpRequest, initializeRouteHandlers } from "./web.js";
 import { before } from "node:test";
 
 describe("processHttpRequest", () => {

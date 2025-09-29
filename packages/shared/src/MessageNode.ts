@@ -1,99 +1,353 @@
-import { SerializedBufferOld } from "./SerializedBufferOld.js";
+import { checkMinLength, checkSize4, sliceBuff } from "./helpers.js";
+import { MCOTSMessage, Serializable } from "./types.js";
 
-export class MessageNode {
-	header: {
-		length: number; // 2 bytes
-		mcoSig: string;
-	};
-	seq: number;
-	flags: number;
-	data: Buffer;
-	msgNo: number;
-	constructor() {
-		this.header = {
-			length: 0, // 2 bytes
-			mcoSig: "", // 4 bytes
-		};
-		this.seq = 999; // 2 bytes
-		this.flags = 0; // 1 byte
-		this.data = Buffer.alloc(0);
-		this.msgNo = 999; // 2 bytes
-	}
+export class MessageNodeBody implements Serializable {
+    protected body_: Buffer
 
-	/**
-	 * @static
-	 * @param {module:shared/RawMessage} rawMessage
-	 * @return {MessageNode}
-	 */
-	static fromRawMessage(rawMessage: SerializedBufferOld): MessageNode {
-		const messageNode = new MessageNode();
-		messageNode.deserialize(rawMessage.serialize());
+    constructor() {
+        this.body_ = Buffer.alloc(2)
+    }
 
-		if (messageNode.data.length > 2) {
-			messageNode.msgNo = messageNode.data.readUInt16LE(0);
-		}
+    get sizeOf() {
+        return this.body_.byteLength
+    }
 
-		return messageNode;
-	}
+    serialize() {
+        return this.body_
+    }
 
-	get size() {
-		return this.data.length + 9;
-	}
+    deserialize(buf: Buffer) {
+        checkMinLength(buf, 2)
+        this.body_ = buf
+    };
 
-	/**
-	 *
-	 * @param {Buffer} packet
-	 */
-	deserialize(packet: Buffer) {
-		const length = packet.readUInt16LE(0);
-		if (length !== packet.length) {
-			throw Error(
-				`[MessageNode] Length of packet ${length.toString()} does not match length of buffer ${packet.length.toString()}`,
-			);
-		}
-		this.header.length = length;
-		let offset = 2;
-		this.header.mcoSig = packet.subarray(offset, offset + 4).toString();
-		offset += 4;
-		this.seq = packet.readUInt16LE(offset);
-		offset += 2;
-		this.flags = packet.readUInt8(offset);
-		offset += 1; // offset = 9
-		this.data = packet.subarray(offset, offset + length - 9);
-		if (this.data.length > 2) {
-			this.msgNo = this.data.readUInt16LE(0);
-		}
-	}
-
-	/**
-	 *
-	 * @return {Buffer}
-	 */
-	serialize(): Buffer {
-		const packet = Buffer.alloc(this.header.length);
-		let offset = 0;
-		packet.writeUInt16LE(this.header.length, offset);
-		offset += 2;
-		packet.write(this.header.mcoSig, offset, 4);
-		offset += 4;
-		packet.writeUInt16LE(this.seq, offset);
-		offset += 2;
-		packet.writeUInt8(this.flags, offset);
-		offset += 1;
-		if (typeof this.data === "undefined") {
-			throw Error("MessageNode data is undefined");
-		}
-		this.data.copy(packet, offset);
-		return packet;
-	}
-
-	toString() {
-		return `MessageNode: ${JSON.stringify({
-			header: this.header,
-			seq: this.seq,
-			flags: this.flags,
-			data: this.data.toString("hex"),
-			msgNo: this.msgNo,
-		})}`;
-	}
+    get msgNumber() {
+        return this.body_.readInt16LE()
+    }
 }
+
+export class MessageNode implements MCOTSMessage {
+    protected connectionId_: string
+    protected msgLength_: number // 2
+    protected signature_: string // 4
+    protected sequence_: number // 4
+    protected flags_: number // 1
+    protected body_: MessageNodeBody
+
+    constructor() {
+        this.connectionId_ = ""
+        this.msgLength_ = 0
+        this.signature_ = "NOVM"
+        this.sequence_ = 0
+        this.flags_ = 0
+        this.body_ = new MessageNodeBody()
+    }
+
+    get sizeOf() {
+        return 11 + this.body_.sizeOf
+    }
+
+    serialize() {
+        checkSize4(this.signature_.length)
+        this.msgLength_ = 9 + this.body_.sizeOf
+        const buf = Buffer.alloc(this.sizeOf)
+        let offset = 0
+        buf.writeInt16LE(this.msgLength_, offset)
+        offset = offset + 2
+        buf.write(this.signature_, offset, "utf8")
+        offset = offset + 4
+        buf.writeInt32LE(this.sequence_, offset)
+        offset = offset + 4
+        buf.writeInt8(this.flags_, offset)
+        offset = offset + 1
+        this.body_.serialize().copy(buf, offset)
+        return buf
+    };
+
+    deserialize(buf: Buffer) {
+        checkMinLength(buf, 11)
+        let offset = 0
+        this.msgLength_ = buf.readInt16LE(offset)
+        offset = offset + 2
+        this.signature_ = sliceBuff(buf, offset, 4).toString("utf8")
+        offset = offset + 4
+        this.sequence_ = buf.readInt32LE(offset)
+        offset = offset + 4
+        this.flags_ = buf.readInt8(offset)
+        offset = offset + 1
+        this.body_.deserialize(buf.subarray(offset))
+
+    };
+
+    get connectionId() {
+        return this.connectionId_
+    }
+
+    set connectionId(val: string) {
+        this.connectionId_ = val
+    }
+
+    get length() {
+        return this.msgLength_
+    }
+
+    isSignatureValid() {
+        return this.signature_ === "TOMC"
+    }
+
+    get signature() {
+        return this.signature_
+    }
+
+    get sequence() {
+        return this.sequence_
+    }
+
+    set sequence(val: number) {
+        this.sequence_ = val
+    }
+
+    isSequenceSet() {
+        return this.sequence_ !== 0
+    }
+
+    get flags() {
+        return this.flags_
+    }
+
+    isPayloadEncrypted(): boolean {
+        // Does the flags bitmask contain have 0x08 set?
+        return (this.flags_ & 0x08) != 0;
+    }
+
+    isPayloadCompressed(): boolean {
+        return (this.flags_ & 0x02) != 0;
+    }
+
+    setPayloadEncryption(encrypted: boolean): void {
+        if (encrypted) {
+            this.flags_ |= 0x08;
+        } else {
+            this.flags_ &= ~0x08;
+        }
+    }
+
+    setPayloadCompression(encrypted: boolean): void {
+        if (encrypted) {
+            this.flags_ |= 0x02;
+        } else {
+            this.flags_ &= ~0x02;
+        }
+    }
+
+    getBody() {
+        return this.body_
+    }
+
+    setBody(body: MessageNodeBody) {
+        this.msgLength_ = body.sizeOf
+        this.body_ = body
+    };
+
+    get msgNo() {
+        return this.body_.msgNumber
+    }
+
+
+    toString() {
+        return `seq: ${this.sequence_}, id: ${this.msgNo}`
+    }
+
+    // TODO: change usable of these
+
+    /**
+     * @deprecated
+     * 
+     * see {@link signature} and {@link length}
+     */
+    get header() {
+        return {
+            length: this.length,
+            mcoSig: this.signature
+        }
+    }
+
+    /**
+     * @deprecated
+     * 
+     * see {@link sequence}
+     */
+    get seq() {
+        return this.sequence
+    }
+
+    /**
+     * @deprecated
+     * 
+     * see {@link getBody} and {@link setBody}
+     */
+    get data() {
+        return this.body_.serialize()
+    }
+
+    /**
+     * @deprecated
+     */
+    getDataBuffer() {
+        return this.body_
+    }
+
+    /**
+     * @deprecated
+     */
+    setDataBuffer(val: Buffer) {
+        this.body_.deserialize(val)
+    }
+
+    /**
+     * @deprecated
+     */
+    getByteSize() {
+        return 11 + this.body_.sizeOf
+    }
+
+    /**
+     * @deprecated
+     */
+    setSequence(val: number) {
+        this.sequence_ = val
+    }
+
+    /**
+     * @deprecated
+     */
+    setLength(val: number) {
+        this.msgLength_ = val
+    }
+
+    /**
+     * @deprecated
+     */
+    setSignature(val: string) {
+        this.signature_ = val
+    }
+
+    /**
+     * @deprecated
+     */
+    getMessageId() {
+        return this.msgNo
+    }
+
+    /**
+     * @deprecated
+     */
+    setMessageId(val: number) {
+        this.setMessageId(val)
+    }
+
+    /**
+     * @deprecated
+     */
+    getLength() {
+        return this.msgLength_
+    }
+
+    /**
+     * @deprecated
+     */
+    getSignature() {
+        return this.signature_
+    }
+
+    /**
+     * @deprecated
+     */
+    getSequence() {
+        return this.sequence_
+    }
+
+    /**
+     * @deprecated
+     */
+    isValidSignature() {
+        return this.isSignatureValid()
+    }
+
+    /**
+     * @deprecated
+     */
+    ensureValidSignature() {
+        if (!this.isSignatureValid()) {
+            throw new Error('Signature is not valid')
+        }
+    }
+
+    /**
+ * @deprecated
+ */
+    ensureNonZeroSequence() {
+        if (this.sequence_ === 0) {
+            throw new Error('please set sequence')
+        }
+    }
+
+    /**
+ * @deprecated
+ */
+    get messageId() {
+        return this.msgNo
+    }
+
+    /**
+ * @deprecated
+ */
+    get messageSource() {
+        return null
+    }
+
+    /**
+ * @deprecated
+ */
+    get _data() {
+        return this.body_
+    }
+
+    /**
+ * @deprecated
+ */
+    _assertEnoughData() {
+        return false
+    }
+
+    /**
+ * @deprecated
+ */
+    _doDeserialize() {
+
+    }
+
+    /**
+ * @deprecated
+ */
+
+    _doSerialize() { }
+
+    /**
+* @deprecated
+*/
+    toHexString() {
+        return this.serialize().toString("hex")
+    }
+
+        /**
+* @deprecated
+*/
+get sequenceNumber() {
+    return this.sequence_
+}
+
+
+}
+
+

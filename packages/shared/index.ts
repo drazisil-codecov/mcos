@@ -21,7 +21,7 @@ export { GameMessage } from "./src/GameMessage.js";
 export { serializeString } from "./src/serializeString.js";
 export { deserializeString } from "./src/deserializeString.js";
 export { serializeStringRaw } from "./src/serializeStringRaw.js";
-export { MessageNode } from "./src/MessageNode.js";
+export { MessageNodeOld } from "./src/MessageNodeOld.js";
 export { Timestamp } from "./src/TimeStamp.js";
 export {
 	McosEncryptionPair,
@@ -42,6 +42,7 @@ export { LegacyMessage } from "./src/LegacyMessage.js";
 export { NPSHeader } from "./src/NPSHeader.js";
 export {UserData, UserInfo, SetMyUserDataMessage, } from "./src/UserData.js"
 export {RiffInfoListMessage, RiffInfo} from "./src/Lobby.js"
+export {MessageNode} from "./src/MessageNode.js"
 export * from "./src/types.js";
 
 // Function to convert ARGB to 32-bit integer
@@ -97,7 +98,7 @@ export const cloth_black = argbToInt(255, 68, 68, 68); //black
 export const cloth_grey = argbToInt(255, 146, 143, 137); //grey
 export const cloth_white = argbToInt(255, 255, 255, 255); //white
 
-interface Logger {
+export interface Logger {
 	info: (msg: string, obj?: unknown) => void;
 	warn: (msg: string, obj?: unknown) => void;
 	error: (msg: string, obj?: unknown) => void;

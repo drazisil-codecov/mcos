@@ -22,7 +22,7 @@ export class GameMessage extends BufferSerializer {
 	}
 
 	/** @deprecated - Use deserialize instead */
-	_doDeserialize(buffer: Buffer) {
+	override _doDeserialize(buffer: Buffer) {
 		this._header._doDeserialize(buffer);
 		this._recordData = Buffer.alloc(this._header._gameMessageLength - 4);
 		buffer.copy(this._recordData, 0, 8);
@@ -37,7 +37,7 @@ export class GameMessage extends BufferSerializer {
 	}
 
 	/** @deprecated - Use serialize instead */
-	_doSerialize(): void {
+	override _doSerialize() {
 		this._header._gameMessageLength = 4 + this._recordData.length;
 		this._header.length = this._header._gameMessageLength + 4;
 		const buffer = Buffer.alloc(this._header.length);
@@ -47,6 +47,7 @@ export class GameMessage extends BufferSerializer {
 
 		this._recordData.copy(buffer, offset);
 		this.setBuffer(buffer);
+		return buffer
 	}
 
 	override serialize() {

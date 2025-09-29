@@ -1,8 +1,8 @@
-import { Serializable, SerializableMessage } from "./types.js"
+import { Serializable, NPSMessage } from "./types.js"
 import { RawMessageHeader } from "./RawMessage.js"
 import { CBlock, checkMinLength, checkSize2, checkSize4, CString, padBuffer, sliceBuff } from "./helpers.js"
 
-export class Lobby implements Serializable { }
+// export class Lobby implements Serializable { }
 
 export class RiffInfo implements Serializable {
     private _riffName: CString // max 32, null term
@@ -87,9 +87,9 @@ export class RiffInfo implements Serializable {
 
     };
 }
-export class RunningServerInfo implements Serializable { }
+// export class RunningServerInfo implements Serializable { }
 
-export class GameServerListHeader implements Serializable { }
+// export class GameServerListHeader implements Serializable { }
 
 /**
  * NPS_GameServersInfo is the message passed back in response to
@@ -195,7 +195,7 @@ export class RiffList implements Serializable {
     }
 }
 
-export class RiffInfoListMessage implements SerializableMessage {
+export class RiffInfoListMessage implements NPSMessage {
     private _header: RawMessageHeader
     private _riffListHeader: RiffListHeader
     private _riffs: RiffList

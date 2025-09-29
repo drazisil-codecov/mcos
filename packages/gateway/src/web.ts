@@ -3491,21 +3491,6 @@ export async function processHttpRequest(
 
 
 
-const UserAccounts = [
-	{
-		username: "new",
-		ticket: "5213dee3a6bcdb133373b2d4f3b9962758",
-		password: "new",
-		customerId: "123456",
-	},
-	{
-		username: "admin",
-		ticket: "d316cd2dd6bf870893dfbaaf17f965884e",
-		password: "admin",
-		customerId: "654321",
-	},
-];
-
 const AuthTickets = [
 	{
 		ticket: "5213dee3a6bcdb133373b2d4f3b9962758",

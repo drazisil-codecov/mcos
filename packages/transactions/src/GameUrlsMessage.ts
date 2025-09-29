@@ -15,7 +15,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import { SerializedBufferOld } from "rusty-motors-shared";
-import { serializeString } from "rusty-motors-shared";
 
 /**
  * A message listing the lobbies

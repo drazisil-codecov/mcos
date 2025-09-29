@@ -39,7 +39,7 @@ export class MessageHeader extends SerializedBufferOld {
 	 * @param {Buffer} buffer
 	 * @returns {MessageHeader}
 	 */
-	override deserialize(buffer: Buffer): MessageHeader {
+	override deserialize(buffer: Buffer): this {
 		this._messageId = buffer.readUInt16BE(0);
 		this._messageLength = buffer.readUInt16BE(2);
 		return this;

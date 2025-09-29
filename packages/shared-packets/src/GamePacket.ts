@@ -42,12 +42,6 @@ export class GamePacket extends BaseServerPacket implements SerializableServerMe
 	}
 
 	override setDataBuffer(data: Buffer): GamePacket {
-		if (this.data.getByteSize() > 2) {
-			throw new Error(
-				`GamePacket data buffer is already set, use copy() to create a new ServerPacket`,
-			);
-		}
-
 		this.data.deserialize(data);
 		return this;
 	}

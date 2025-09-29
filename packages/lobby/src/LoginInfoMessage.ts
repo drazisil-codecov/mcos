@@ -64,7 +64,7 @@ export class LoginInfoMessage extends LegacyMessage {
 	/**
 	 * @returns {Buffer}
 	 */
-	override serialize(): Buffer {
+	override serialize() {
 		try {
 			const buffer = Buffer.alloc(this._header.length);
 			this._header._doSerialize().copy(buffer);

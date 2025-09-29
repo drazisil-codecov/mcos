@@ -11,9 +11,9 @@
  * @property {string} serviceName
  */
 
-import { MessageNode } from "rusty-motors-shared";
+import { MessageNodeOld } from "rusty-motors-shared";
 
-export class GenericRequestMessage extends MessageNode {
+export class GenericRequestMessage extends MessageNodeOld {
 	data2: Buffer;
 	/**
 	 *

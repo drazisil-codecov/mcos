@@ -16,7 +16,7 @@ export class BufferSerializer implements SerializableInterface {
 	 *
 	 * @returns {Buffer} The serialized data as a Buffer.
 	 */
-	serialize(): Buffer {
+	serialize()  {
 		return this._data;
 	}
 
@@ -25,7 +25,7 @@ export class BufferSerializer implements SerializableInterface {
 	 *
 	 * @param data - The buffer containing the serialized data.
 	 */
-	deserialize(data: Buffer): void {
+	deserialize(data: Buffer) {
 		this._data = data;
 	}
 

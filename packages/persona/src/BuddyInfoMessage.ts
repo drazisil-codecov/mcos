@@ -20,7 +20,8 @@ export class BuddyInfoMessage extends RawMessage {
 	_longOne = 0x00000000; // 4 bytes
 	_longTwo = 0x00000000; // 4 bytes
 	constructor() {
-		super(0x614);
+		super();
+		this.id = 0x614
 		this._buddyCount = 0;
 	}
 
@@ -28,7 +29,7 @@ export class BuddyInfoMessage extends RawMessage {
 		return super.length + 2 + this._buddyCount * 115;
 	}
 
-	override serialize(): Buffer {
+	override serialize() {
 		const buffer = Buffer.alloc(this.length);
 		let offset = 0;
 		super.serialize().copy(buffer, offset);
@@ -59,7 +60,7 @@ export class BuddyCount extends NetworkMessage {
 		return super.length + 2;
 	}
 
-	override serialize(): Buffer {
+	override serialize() {
 		const buffer = Buffer.alloc(this.length);
 		let offset = 0;
 		buffer.writeUInt16BE(this.messageId, offset);
@@ -95,19 +96,20 @@ export class BuddyList extends RawMessage {
 	muteChat = false; // 1 byte
 
 	constructor() {
-		super(0x608);
+		super();
+		this.id = 0x608
 	}
 
 	override get length(): number {
 		return 115;
 	}
 
-	override serialize(): Buffer {
+	override serialize() {
 		const buffer = Buffer.alloc(this.length);
 		let offset = 0;
 		super.serialize().copy(buffer, offset);
 		offset += super.length;
-		buffer.writeUInt16BE(this.messageId, offset);
+		buffer.writeUInt16BE(this.id, offset);
 		offset += 2;
 		offset = serializeStringRaw(this.buddyName, buffer, offset, 33);
 		offset = serializeStringRaw(this.gameName, buffer, offset, 65);

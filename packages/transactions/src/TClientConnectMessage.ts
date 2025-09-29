@@ -39,7 +39,7 @@ export class TClientConnectMessage extends OldServerMessage {
 	/**
 	 * @param {Buffer} buffer
 	 */
-	override deserialize(buffer: Buffer) {
+	override deserialize(buffer: Buffer): this {
 		let offset = 0;
 		this._header._doDeserialize(buffer);
 		offset += this._header._size;
@@ -55,6 +55,7 @@ export class TClientConnectMessage extends OldServerMessage {
 		offset += 13;
 		this._mcVersion = buffer.toString("utf8", offset, offset + 4);
 		// 51 bytes
+		return this
 	}
 
 	override serialize() {

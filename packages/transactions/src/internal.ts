@@ -283,10 +283,9 @@ function encryptOutboundMessage(
 			`[${connectionId}] Encrypted buffer: ${encryptedMessage.toString("hex")}`,
 		);
 
-		const outboundMessage = ServerPacket.copy(
-			unencryptedMessage,
-			encryptedMessage,
-		);
+		const outboundMessage =  unencryptedMessage
+		outboundMessage.setDataBuffer(encryptedMessage)
+		outboundMessage.setSignature("TOMC")
 		outboundMessage.setPayloadEncryption(true);
 
 		log.debug(

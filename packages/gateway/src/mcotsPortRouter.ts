@@ -1,13 +1,11 @@
-import type { TaggedSocket } from "../../shared/src/types.js";
 import {
     ServerPacket,
     type SerializableInterface,
 } from "rusty-motors-shared-packets";
 import { receiveTransactionsData } from "rusty-motors-transactions";
 import * as Sentry from "@sentry/node";
-import { getServerLogger, ServerLogger } from "rusty-motors-shared";
+import { getServerLogger, MessageNode, ServerLogger, TaggedSocket, messageQueueItem } from "rusty-motors-shared";
 import { MessageQueue } from "./MessageQueue.js";
-import { messageQueueItem } from "../../shared/src/types.js";
 
 /**
  * Handles the routing of messages for the MCOTS (Motor City Online Transaction Server) ports.
@@ -130,7 +128,7 @@ async function processIncomingPackets(
 
         for (let packet of inPackets) {
             log.debug(`[${id}] Received data: ${packet.toString('hex')}`);
-            const initialPacket = parseInitialMessage(packet);
+            const initialPacket: ServerPacket | MessageNode = parseInitialMessage(packet);
             await routeInitialMessage(id, port, initialPacket)
                 .then((response) => {
                     // Send the response back to the client
@@ -154,8 +152,8 @@ async function processIncomingPackets(
     }
 }
 
-function parseInitialMessage(data: Buffer): ServerPacket {
-    const initialPacket = new ServerPacket();
+function parseInitialMessage(data: Buffer): ServerPacket | MessageNode {
+    const initialPacket: ServerPacket | MessageNode = new ServerPacket();
     initialPacket.deserialize(data);
     return initialPacket;
 }

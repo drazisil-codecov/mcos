@@ -105,11 +105,9 @@ async function encryptCmd({
 async function decryptCmd({
 	connectionId,
 	message,
-	log = getServerLogger( "lobby.decryptCmd"),
 }: {
 	connectionId: string;
 	message: BytableMessage;
-	log?: ServerLogger;
 }): Promise<{
 	connectionId: string;
 	message: BytableMessage;

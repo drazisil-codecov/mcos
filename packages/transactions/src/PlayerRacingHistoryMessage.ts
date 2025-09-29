@@ -26,7 +26,7 @@ export class PlayerRacingHistoryMessage extends SerializedBufferOld {
 		this._raceHistoryRecords.push(record);
 	}
 
-	override deserialize(buffer: Buffer): PlayerRacingHistoryMessage {
+	override deserialize(buffer: Buffer): this {
 		let offset = 0;
 		this._msgId = buffer.readUInt16LE(offset);
 		offset += 2;
@@ -135,7 +135,7 @@ export class RacingHistoryRecordEntry extends SerializedBufferOld {
 		return buffer;
 	}
 
-	override deserialize(buffer: Buffer): RacingHistoryRecordEntry {
+	override deserialize(buffer: Buffer): this {
 		let offset = 0;
 		this.raceType = buffer.readUInt32LE(offset);
 		offset += 4;
