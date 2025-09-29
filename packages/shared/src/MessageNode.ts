@@ -1,4 +1,4 @@
-import { checkMinLength, checkSize4, sliceBuff } from "./helpers.js";
+import { checkMinLength, checkSize4, padBuffer, sliceBuff } from "./helpers.js";
 import { MCOTSMessage, Serializable } from "./types.js";
 
 export class MessageNodeBody implements Serializable {
@@ -340,14 +340,122 @@ export class MessageNode implements MCOTSMessage {
         return this.serialize().toString("hex")
     }
 
-        /**
+    /**
 * @deprecated
 */
-get sequenceNumber() {
-    return this.sequence_
-}
+    get sequenceNumber() {
+        return this.sequence_
+    }
 
 
 }
 
+export class CreateRaceInfo implements Serializable {
+    private _minLevel // 4
+    private _maxLevel // 4
+    private _maxHP // 4
+    private _maxRacers // 1
+    private _minRacers // 1
+    private _numRounds // 1
+    private _numLaps // 1
+    private _isRaceBackwards // 1
+    private _isRaceMirrored // 1
+    private _isRaceAtNight // 1
+    private _doesRaceHaveWeather // 1
+    private _doesRaceHaveDamage // 1
+    private _doesRaceHaveTraffic // 1
+    private _doesRaceHaveAI // 1
+    private _isRaceHandicapped // 1
+    private _powerClass  // 4
+    private _bodyClass // 4
+    private _isNOSDisallowed // 1
 
+    constructor() {
+        this._minLevel = Buffer.alloc(4)
+        this._maxLevel = Buffer.alloc(4)
+        this._maxHP = Buffer.alloc(4)
+        this._maxRacers = Buffer.alloc(1)
+        this._minRacers = Buffer.alloc(1)
+        this._numRounds = Buffer.alloc(1)
+        this._numLaps = Buffer.alloc(1)
+        this._isRaceBackwards = Buffer.alloc(1)
+        this._isRaceMirrored = Buffer.alloc(1)
+        this._isRaceAtNight = Buffer.alloc(1)
+        this._doesRaceHaveWeather = Buffer.alloc(1)
+        this._doesRaceHaveDamage = Buffer.alloc(1)
+        this._doesRaceHaveTraffic = Buffer.alloc(1)
+        this._doesRaceHaveAI = Buffer.alloc(1)
+        this._isRaceHandicapped = Buffer.alloc(1)
+        this._powerClass = Buffer.alloc(4)
+        this._bodyClass = Buffer.alloc(4)
+        this._isNOSDisallowed = Buffer.alloc(1)
+    }
+
+    get sizeOf() {
+        return 34
+    }
+
+    serialize() {
+        return padBuffer(Buffer.concat([
+            this._minLevel,
+            this._maxLevel,
+            this._maxHP,
+            this._maxRacers,
+            this._minRacers,
+            this._numRounds,
+            this._numLaps,
+            this._isRaceBackwards,
+            this._isRaceMirrored,
+            this._isRaceAtNight,
+            this._doesRaceHaveWeather,
+            this._doesRaceHaveDamage,
+            this._doesRaceHaveTraffic,
+            this._doesRaceHaveAI,
+            this._isRaceHandicapped,
+            this._powerClass,
+            this._bodyClass,
+            this._isRaceHandicapped
+        ]))
+    };
+
+    deserialize(buf: Buffer) {
+        checkMinLength(buf, this.sizeOf)
+        let offset = 0
+        this._minLevel = sliceBuff(buf, offset, 4)
+        offset = offset + 4
+        this._maxLevel= sliceBuff(buf, offset, 4)
+        offset = offset + 4
+        this._maxHP = sliceBuff(buf, offset, 4)
+        offset = offset + 4
+        this._maxRacers = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._minRacers = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._numRounds = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._numLaps = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._isRaceBackwards = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._isRaceMirrored = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._isRaceAtNight = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._doesRaceHaveWeather = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._doesRaceHaveDamage = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._doesRaceHaveTraffic = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._doesRaceHaveAI = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._isRaceHandicapped = sliceBuff(buf, offset, 1)
+        offset = offset + 1
+        this._powerClass = sliceBuff(buf, offset, 4)
+        offset = offset + 4
+        this._bodyClass = sliceBuff(buf, offset, 4)
+        offset = offset + 4
+        this._isNOSDisallowed = sliceBuff(buf, offset, 1)
+    };
+
+}
