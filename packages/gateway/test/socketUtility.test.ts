@@ -10,12 +10,13 @@ describe("tagSocketWithId", () => {
 		const id = "12345";
 
 		// act
-		const result = tagSocket(mockSocket, connectionStamp, id);
+		const result = tagSocket(mockSocket, connectionStamp, id, 3);
 
 		// assert
 		expect(result).toHaveProperty("connectionId");
-		expect(result).toHaveProperty("rawSocket");
+		expect(result).toHaveProperty("socket");
 		expect(result).toHaveProperty("connectedAt");
+		expect(result).toHaveProperty("localPort");
 	});
 
 	it("returns an object with the correct values", () => {
@@ -25,11 +26,11 @@ describe("tagSocketWithId", () => {
 		const id = "12345";
 
 		// act
-		const result = tagSocket(mockSocket, connectionStamp, id);
+		const result = tagSocket(mockSocket, connectionStamp, id, 3);
 
 		// assert
 		expect(result.connectionId).toBe(id);
-		expect(result.rawSocket).toBe(mockSocket);
+		expect(result.socket).toBe(mockSocket);
 		expect(result.connectedAt).toBe(connectionStamp);
 	});
 
@@ -41,12 +42,13 @@ describe("tagSocketWithId", () => {
 			const id = "12345";
 
 			// act
-			const result = tagSocket(mockSocket, connectionStamp, id);
+			const result = tagSocket(mockSocket, connectionStamp, id, 3);
 
 			// assert
 			expect(result).toHaveProperty("connectionId");
-			expect(result).toHaveProperty("rawSocket");
+			expect(result).toHaveProperty("socket");
 			expect(result).toHaveProperty("connectedAt");
+			expect(result).toHaveProperty("localPort");
 		});
 	});
 
@@ -56,7 +58,7 @@ describe("tagSocketWithId", () => {
 			const mockTaggedSocket = {
 				connectionId: "12345",
 				connectedAt: Date.now(),
-				rawSocket: {
+				socket: {
 					localPort: 3000,
 					write: vi.fn((_data, callback) => callback()),
 				},
@@ -69,12 +71,13 @@ describe("tagSocketWithId", () => {
 					{
 						connectionId: mockTaggedSocket.connectionId,
 						connectedAt: mockTaggedSocket.connectedAt,
-						rawSocket: mockTaggedSocket.rawSocket as unknown as Socket,
+						socket: mockTaggedSocket.socket as unknown as Socket,
+						localPort: 3
 					},
 					data,
 				),
 			).resolves.toBeUndefined();
-			expect(mockTaggedSocket.rawSocket.write).toHaveBeenCalledWith(
+			expect(mockTaggedSocket.socket.write).toHaveBeenCalledWith(
 				data,
 				expect.any(Function),
 			);
@@ -85,7 +88,7 @@ describe("tagSocketWithId", () => {
 			const mockTaggedSocket = {
 				connectionId: "12345",
 				connectedAt: Date.now(),
-				rawSocket: {
+				socket: {
 					localPort: 3000,
 					write: vi.fn((_data, callback) => callback(new Error("Write error"))),
 				} as unknown as Socket,
@@ -97,12 +100,13 @@ describe("tagSocketWithId", () => {
 					{
 						connectionId: mockTaggedSocket.connectionId,
 						connectedAt: mockTaggedSocket.connectedAt,
-						rawSocket: mockTaggedSocket.rawSocket as unknown as Socket,
+						socket: mockTaggedSocket.socket as unknown as Socket,
+						localPort: 3
 					},
 					data,
 				),
 			).rejects.toThrow("Write error");
-			expect(mockTaggedSocket.rawSocket.write).toHaveBeenCalledWith(
+			expect(mockTaggedSocket.socket.write).toHaveBeenCalledWith(
 				data,
 				expect.any(Function),
 			);

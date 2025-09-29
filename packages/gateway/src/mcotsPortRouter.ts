@@ -117,7 +117,7 @@ async function processIncomingPackets(
             inPackets.push(packet);
         }
 
-        if (inPackets) {
+        if (inPackets.length > 0) {
             console.log('S: ==================================================================')
             console.dir(inPackets)
             console.log('E: ==================================================================')

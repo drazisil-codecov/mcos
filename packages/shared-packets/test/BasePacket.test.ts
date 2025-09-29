@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { BasePacket } from "../src/BasePacket.js";
+import { BaseServerPacket } from "../src/BasePacket.js";
 import { BufferSerializer } from "../src/BufferSerializer.js";
 
 describe("BasePacket", () => {
 	it("should initialize with default values", () => {
-		const packet = new BasePacket({});
+		const packet = new BaseServerPacket({});
 		expect(packet.connectionId).toBe("");
 		expect(packet.messageId).toBe(0);
 		expect(packet.sequence).toBe(0);
@@ -13,7 +13,7 @@ describe("BasePacket", () => {
 	});
 
 	it("should initialize with provided values", () => {
-		const packet = new BasePacket({
+		const packet = new BaseServerPacket({
 			connectionId: "123",
 			messageId: 1,
 			sequence: 2,
@@ -26,7 +26,7 @@ describe("BasePacket", () => {
 	});
 
 	it("should serialize data correctly", () => {
-		const packet = new BasePacket({});
+		const packet = new BaseServerPacket({});
 		const bufferSerializer = new BufferSerializer();
 		const serializedHeader = bufferSerializer.serialize();
 		const serializedData = packet.serialize();
@@ -36,7 +36,7 @@ describe("BasePacket", () => {
 	});
 
 	it("should deserialize data correctly", () => {
-		const packet = new BasePacket({});
+		const packet = new BaseServerPacket({});
 		const bufferSerializer = new BufferSerializer();
 		const serializedHeader = bufferSerializer.serialize();
 		const data = Buffer.concat([serializedHeader, Buffer.from("test")]);
@@ -45,7 +45,7 @@ describe("BasePacket", () => {
 	});
 
 	it("should return correct byte size", () => {
-		const packet = new BasePacket({});
+		const packet = new BaseServerPacket({});
 		const bufferSerializer = new BufferSerializer();
 		const headerSize = bufferSerializer.getByteSize();
 		expect(packet.getByteSize()).toBe(headerSize);
@@ -54,7 +54,7 @@ describe("BasePacket", () => {
 	});
 
 	it("should set and get data buffer correctly", () => {
-		const packet = new BasePacket({});
+		const packet = new BaseServerPacket({});
 		const data = Buffer.from("test");
 		packet.setDataBuffer(data);
 		expect(packet.getDataBuffer()).toEqual(data);

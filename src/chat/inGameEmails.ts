@@ -92,11 +92,7 @@ export function handleReceiveEmailMessage(message: ChatMessage): Buffer[] {
 
 	const buffers: Buffer[] = [];
 
-	if (parsedMessage.headerOnly) {
-		buffers.push(email.toBuffer());
-	} else {
-		buffers.push(email.toBuffer());
-	}
+	buffers.push(email.toBuffer());
 
 	return buffers;
 }

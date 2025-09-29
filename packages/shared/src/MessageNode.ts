@@ -37,7 +37,7 @@ export class MessageNode implements MCOTSMessage {
     constructor() {
         this.connectionId_ = ""
         this.msgLength_ = 0
-        this.signature_ = "NOVM"
+        this.signature_ = "TOMC"
         this.sequence_ = 0
         this.flags_ = 0
         this.body_ = new MessageNodeBody()
@@ -414,7 +414,7 @@ export class CreateRaceInfo implements Serializable {
             this._isRaceHandicapped,
             this._powerClass,
             this._bodyClass,
-            this._isRaceHandicapped
+            this._isNOSDisallowed
         ]))
     };
 
